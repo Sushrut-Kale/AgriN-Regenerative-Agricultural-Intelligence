@@ -1,0 +1,110 @@
+# FarmFriend AI — Standardized Feature & Measurement Units Schema
+# Version: 2.0
+# Description: Canonical specification of all soil, environmental, and agronomic feature units used across FarmFriend AI.
+
+features:
+  N:
+    name: "Available Nitrogen"
+    unit: "kg/ha"
+    description: "Alkaline permanganate extractable nitrogen"
+    valid_range: [0, 1000]
+    shc_low_medium_boundary: 280
+    shc_medium_high_boundary: 560
+
+  P:
+    name: "Available Phosphorus"
+    unit: "kg/ha"
+    description: "Olsen's P / Bray's P extractable phosphorus"
+    valid_range: [0, 500]
+    shc_low_medium_boundary: 11
+    shc_medium_high_boundary: 25
+
+  K:
+    name: "Available Potassium"
+    unit: "kg/ha"
+    description: "Neutral N ammonium acetate extractable potassium"
+    valid_range: [0, 1000]
+    shc_low_medium_boundary: 118
+    shc_medium_high_boundary: 280
+
+  S:
+    name: "Available Sulphur"
+    unit: "ppm"
+    description: "0.15% CaCl2 extractable sulphur (mg/kg)"
+    valid_range: [0, 200]
+    critical_level: 10.0
+
+  Zn:
+    name: "Available Zinc"
+    unit: "ppm"
+    description: "DTPA extractable zinc (mg/kg)"
+    valid_range: [0, 50]
+    critical_level: 0.6
+
+  Fe:
+    name: "Available Iron"
+    unit: "ppm"
+    description: "DTPA extractable iron (mg/kg)"
+    valid_range: [0, 200]
+    critical_level: 4.5
+
+  Cu:
+    name: "Available Copper"
+    unit: "ppm"
+    description: "DTPA extractable copper (mg/kg)"
+    valid_range: [0, 50]
+    critical_level: 0.2
+
+  Mn:
+    name: "Available Manganese"
+    unit: "ppm"
+    description: "DTPA extractable manganese (mg/kg)"
+    valid_range: [0, 100]
+    critical_level: 2.0
+
+  B:
+    name: "Available Boron"
+    unit: "ppm"
+    description: "Hot water extractable boron (mg/kg)"
+    valid_range: [0, 20]
+    critical_level: 0.5
+
+  ph:
+    name: "Soil Reaction (pH)"
+    unit: "pH scale (1:2.5 soil-water)"
+    description: "Soil pH"
+    valid_range: [3.5, 10.5]
+
+  EC:
+    name: "Electrical Conductivity"
+    unit: "dS/m"
+    description: "Electrical conductivity in 1:2.5 soil-water suspension"
+    valid_range: [0, 20]
+
+  OC:
+    name: "Organic Carbon"
+    unit: "%"
+    description: "Walkley and Black organic carbon percentage"
+    valid_range: [0, 5.0]
+
+  temperature:
+    name: "Mean Temperature"
+    unit: "°C"
+    description: "Seasonal mean air temperature"
+    valid_range: [0, 55]
+
+  humidity:
+    name: "Relative Humidity"
+    unit: "%"
+    description: "Mean relative humidity during growing season"
+    valid_range: [10, 100]
+
+  rainfall:
+    name: "Seasonal Rainfall"
+    unit: "mm"
+    description: "Total seasonal rainfall during crop growing period"
+    valid_range: [0, 4000]
+
+conversions:
+  ppm_to_kg_ha_topsoil:
+    formula: "kg/ha = ppm * 2.24 (for 15cm soil depth, bulk density 1.47 g/cm3)"

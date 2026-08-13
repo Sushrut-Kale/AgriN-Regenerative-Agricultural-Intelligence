@@ -1,0 +1,16 @@
+{
+  "active_model_version": "random_forest_v2",
+  "updated_at": "2026-08-13T23:26:23.697848",
+  "versions": {
+    "logistic_regression_v1": {
+      "status": "retired",
+      "note": "Trained on legacy synthetic dataset"
+    },
+    "random_forest_v2": {
+      "status": "production",
+      "model_type": "Random Forest",
+      "f1_macro": 0.7943929372390125,
+      "accuracy": 0.7971014492753623
+    }
+  }
+}

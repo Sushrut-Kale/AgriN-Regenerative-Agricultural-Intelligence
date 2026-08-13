@@ -1,0 +1,164 @@
+{
+  "_metadata": {
+    "description": "Maharashtra-specific agricultural data for FarmFriend AI",
+    "sources": [
+      "Maharashtra State Department of Agriculture",
+      "Mahatma Phule Krishi Vidyapeeth (MPKV), Rahuri",
+      "Dr. Panjabrao Deshmukh Krishi Vidyapeeth (PDKV), Akola",
+      "Vasantrao Naik Marathwada Krishi Vidyapeeth (VNMKV), Parbhani",
+      "Dr. Balasaheb Sawant Konkan Krishi Vidyapeeth (BSKKV), Dapoli",
+      "ICAR-NBSS&LUP regional data"
+    ],
+    "version": "1.0",
+    "last_updated": "2026-08-12"
+  },
+  "districts": [
+    {"id": "ahmednagar", "name": "Ahmednagar", "division": "Nashik", "agro_zone": "Western Plateau"},
+    {"id": "akola", "name": "Akola", "division": "Amravati", "agro_zone": "Vidarbha"},
+    {"id": "amravati", "name": "Amravati", "division": "Amravati", "agro_zone": "Vidarbha"},
+    {"id": "aurangabad", "name": "Aurangabad (Chhatrapati Sambhajinagar)", "division": "Aurangabad", "agro_zone": "Marathwada"},
+    {"id": "beed", "name": "Beed", "division": "Aurangabad", "agro_zone": "Marathwada"},
+    {"id": "bhandara", "name": "Bhandara", "division": "Nagpur", "agro_zone": "Vidarbha"},
+    {"id": "buldhana", "name": "Buldhana", "division": "Amravati", "agro_zone": "Vidarbha"},
+    {"id": "chandrapur", "name": "Chandrapur", "division": "Nagpur", "agro_zone": "Vidarbha"},
+    {"id": "dhule", "name": "Dhule", "division": "Nashik", "agro_zone": "North Maharashtra"},
+    {"id": "gadchiroli", "name": "Gadchiroli", "division": "Nagpur", "agro_zone": "Vidarbha"},
+    {"id": "gondia", "name": "Gondia", "division": "Nagpur", "agro_zone": "Vidarbha"},
+    {"id": "hingoli", "name": "Hingoli", "division": "Aurangabad", "agro_zone": "Marathwada"},
+    {"id": "jalgaon", "name": "Jalgaon", "division": "Nashik", "agro_zone": "North Maharashtra"},
+    {"id": "jalna", "name": "Jalna", "division": "Aurangabad", "agro_zone": "Marathwada"},
+    {"id": "kolhapur", "name": "Kolhapur", "division": "Konkan", "agro_zone": "Western Ghats Transition"},
+    {"id": "latur", "name": "Latur", "division": "Aurangabad", "agro_zone": "Marathwada"},
+    {"id": "mumbai_city", "name": "Mumbai City", "division": "Konkan", "agro_zone": "Konkan Coast"},
+    {"id": "mumbai_suburban", "name": "Mumbai Suburban", "division": "Konkan", "agro_zone": "Konkan Coast"},
+    {"id": "nagpur", "name": "Nagpur", "division": "Nagpur", "agro_zone": "Vidarbha"},
+    {"id": "nanded", "name": "Nanded", "division": "Aurangabad", "agro_zone": "Marathwada"},
+    {"id": "nandurbar", "name": "Nandurbar", "division": "Nashik", "agro_zone": "North Maharashtra"},
+    {"id": "nashik", "name": "Nashik", "division": "Nashik", "agro_zone": "North Maharashtra"},
+    {"id": "osmanabad", "name": "Osmanabad (Dharashiv)", "division": "Aurangabad", "agro_zone": "Marathwada"},
+    {"id": "palghar", "name": "Palghar", "division": "Konkan", "agro_zone": "Konkan Coast"},
+    {"id": "parbhani", "name": "Parbhani", "division": "Aurangabad", "agro_zone": "Marathwada"},
+    {"id": "pune", "name": "Pune", "division": "Pune", "agro_zone": "Western Plateau"},
+    {"id": "raigad", "name": "Raigad", "division": "Konkan", "agro_zone": "Konkan Coast"},
+    {"id": "ratnagiri", "name": "Ratnagiri", "division": "Konkan", "agro_zone": "Konkan Coast"},
+    {"id": "sangli", "name": "Sangli", "division": "Pune", "agro_zone": "Western Plateau"},
+    {"id": "satara", "name": "Satara", "division": "Pune", "agro_zone": "Western Plateau"},
+    {"id": "sindhudurg", "name": "Sindhudurg", "division": "Konkan", "agro_zone": "Konkan Coast"},
+    {"id": "solapur", "name": "Solapur", "division": "Pune", "agro_zone": "Western Plateau"},
+    {"id": "thane", "name": "Thane", "division": "Konkan", "agro_zone": "Konkan Coast"},
+    {"id": "wardha", "name": "Wardha", "division": "Nagpur", "agro_zone": "Vidarbha"},
+    {"id": "washim", "name": "Washim", "division": "Amravati", "agro_zone": "Vidarbha"},
+    {"id": "yavatmal", "name": "Yavatmal", "division": "Amravati", "agro_zone": "Vidarbha"}
+  ],
+  "seasons": [
+    {
+      "id": "kharif",
+      "name": "Kharif",
+      "local_name": "Kharip",
+      "period": "June to October",
+      "description": "Monsoon season — main agricultural season in Maharashtra",
+      "major_crops": ["cotton", "soybean", "pigeonpeas", "maize", "rice", "bajra", "mungbean", "blackgram"]
+    },
+    {
+      "id": "rabi",
+      "name": "Rabi",
+      "local_name": "Rabi",
+      "period": "October to March",
+      "description": "Winter/post-monsoon season — irrigated crops on residual moisture or irrigation",
+      "major_crops": ["wheat", "chickpea", "lentil", "jowar", "sunflower", "safflower", "maize"]
+    },
+    {
+      "id": "summer",
+      "name": "Summer / Zaid",
+      "local_name": "Unhala",
+      "period": "March to June",
+      "description": "Summer season — short-duration crops under irrigation",
+      "major_crops": ["mungbean", "watermelon", "muskmelon", "vegetables", "sunflower"]
+    },
+    {
+      "id": "perennial",
+      "name": "Perennial / Annual",
+      "local_name": "Barahmasi",
+      "period": "Year-round",
+      "description": "Perennial fruit crops and long-duration cash crops",
+      "major_crops": ["sugarcane", "banana", "pomegranate", "grapes", "mango", "orange", "coconut"]
+    }
+  ],
+  "agro_ecological_zones": {
+    "Konkan Coast": {
+      "avg_rainfall_mm": "2000-3500",
+      "avg_temperature_C": "24-32",
+      "soil_types": ["red", "laterite", "alluvial"],
+      "typical_crops": ["rice", "coconut", "mango", "cashew", "vegetables"]
+    },
+    "North Maharashtra": {
+      "avg_rainfall_mm": "600-800",
+      "avg_temperature_C": "22-38",
+      "soil_types": ["loam", "sandy_loam", "black"],
+      "typical_crops": ["banana", "cotton", "maize", "wheat", "onion"]
+    },
+    "Western Plateau": {
+      "avg_rainfall_mm": "400-800",
+      "avg_temperature_C": "20-38",
+      "soil_types": ["loam", "black", "alluvial"],
+      "typical_crops": ["sugarcane", "grapes", "pomegranate", "chickpea", "wheat", "soybean"]
+    },
+    "Marathwada": {
+      "avg_rainfall_mm": "600-900",
+      "avg_temperature_C": "22-40",
+      "soil_types": ["black", "medium_black"],
+      "typical_crops": ["cotton", "soybean", "chickpea", "pigeonpeas", "jowar"]
+    },
+    "Vidarbha": {
+      "avg_rainfall_mm": "900-1400",
+      "avg_temperature_C": "22-42",
+      "soil_types": ["black", "red", "loam"],
+      "typical_crops": ["cotton", "soybean", "orange", "wheat", "jowar", "pulses"]
+    }
+  },
+  "previous_crops": [
+    {"id": "cotton", "name": "Cotton (Kapas)", "category": "cash_crop"},
+    {"id": "soybean", "name": "Soybean (Soya)", "category": "oilseed"},
+    {"id": "wheat", "name": "Wheat (Gehun)", "category": "cereal"},
+    {"id": "jowar", "name": "Sorghum / Jowar", "category": "cereal"},
+    {"id": "bajra", "name": "Pearl Millet / Bajra", "category": "cereal"},
+    {"id": "maize", "name": "Maize (Makka)", "category": "cereal"},
+    {"id": "rice", "name": "Rice (Dhan)", "category": "cereal"},
+    {"id": "chickpea", "name": "Chickpea / Harbhara", "category": "pulse"},
+    {"id": "pigeonpeas", "name": "Pigeon Pea / Tur", "category": "pulse"},
+    {"id": "mungbean", "name": "Green Gram / Moong", "category": "pulse"},
+    {"id": "sugarcane", "name": "Sugarcane (Oos)", "category": "cash_crop"},
+    {"id": "onion", "name": "Onion (Kanda)", "category": "vegetable"},
+    {"id": "groundnut", "name": "Groundnut (Shenga)", "category": "oilseed"},
+    {"id": "sunflower", "name": "Sunflower (Surajmukhi)", "category": "oilseed"},
+    {"id": "fallow", "name": "Fallow / No previous crop", "category": "none"},
+    {"id": "other", "name": "Other crop", "category": "other"}
+  ],
+  "soil_types_ui": [
+    {"id": "black", "name": "Black Soil (Kali mati — Vertisol)"},
+    {"id": "red", "name": "Red / Laterite Soil (Lal mati)"},
+    {"id": "alluvial", "name": "Alluvial Soil (Gad mati — River valley soil)"},
+    {"id": "sandy_loam", "name": "Sandy Loam (Valuka-domatlya mati)"},
+    {"id": "loam", "name": "Loam Soil (Domatlya mati)"},
+    {"id": "clay_loam", "name": "Clay Loam (Chikhal-domatlya mati)"},
+    {"id": "sandy", "name": "Sandy Soil (Valukamay mati)"},
+    {"id": "unknown", "name": "I don't know my soil type"}
+  ],
+  "water_sources": [
+    {"id": "canal", "name": "Canal / Nehr"},
+    {"id": "well", "name": "Open Well (Vihir)"},
+    {"id": "borewell", "name": "Borewell (Bore)"},
+    {"id": "river", "name": "River / Stream"},
+    {"id": "tank", "name": "Farm Pond / Tank (Sheti tale)"},
+    {"id": "rainfall_only", "name": "Rainfall Only (Rainfed — Jiraine)"},
+    {"id": "drip", "name": "Drip Irrigation System"},
+    {"id": "sprinkler", "name": "Sprinkler Irrigation"},
+    {"id": "other", "name": "Other Source"}
+  ],
+  "drainage_conditions": [
+    {"id": "good", "name": "Good — Water drains quickly after rain"},
+    {"id": "moderate", "name": "Moderate — Some water remains but drains in 1-2 days"},
+    {"id": "poor", "name": "Poor — Water stays on field for 3+ days"},
+    {"id": "unknown", "name": "I'm not sure"}
+  ]
+}

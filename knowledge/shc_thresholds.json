@@ -1,0 +1,230 @@
+{
+  "_metadata": {
+    "description": "Soil Health Card (SHC) parameter interpretation thresholds for India",
+    "sources": [
+      "Government of India Soil Health Card Scheme — Ministry of Agriculture and Farmers Welfare",
+      "ICAR (Indian Council of Agricultural Research) soil fertility rating guidelines",
+      "TNAU (Tamil Nadu Agricultural University) soil testing and fertilizer recommendation norms",
+      "NBSS&LUP (National Bureau of Soil Survey and Land Use Planning) soil classification"
+    ],
+    "version": "1.0",
+    "last_updated": "2026-08-12",
+    "extraction_method": "DTPA (Diethylenetriaminepentaacetic acid) for micronutrients unless specified",
+    "disclaimer": "Critical levels are general guidelines. Actual recommendations depend on soil type, crop variety, and regional calibration. Always refer to your specific Soil Health Card for locality-specific recommendations."
+  },
+  "parameters": {
+    "N": {
+      "name": "Available Nitrogen",
+      "unit": "kg/ha",
+      "extraction_method": "Alkaline KMnO4 method (Subbiah & Asija, 1956)",
+      "interpretation": {
+        "low": {"max": 240, "label": "Low", "color": "red", "description": "Nitrogen deficiency likely. Crop may show yellowing of older leaves."},
+        "medium": {"min": 240, "max": 480, "label": "Medium", "color": "yellow", "description": "Adequate nitrogen for most crops. Monitor crop response."},
+        "high": {"min": 480, "label": "High", "color": "green", "description": "Good nitrogen status. Reduce N application to avoid imbalance."}
+      },
+      "source": "ICAR Soil Health Card guidelines, 2015; TNAU Soil Testing Laboratory norms"
+    },
+    "P": {
+      "name": "Available Phosphorus",
+      "unit": "kg/ha",
+      "extraction_method": "Olsen method (NaHCO3 extraction) for neutral/alkaline soils; Bray-1 for acid soils",
+      "interpretation": {
+        "low": {"max": 11, "label": "Low", "color": "red", "description": "Phosphorus deficiency. Affects root development and early crop growth."},
+        "medium": {"min": 11, "max": 22, "label": "Medium", "color": "yellow", "description": "Moderate phosphorus status."},
+        "high": {"min": 22, "label": "High", "color": "green", "description": "Good phosphorus status."}
+      },
+      "source": "ICAR Soil Health Card guidelines, 2015"
+    },
+    "K": {
+      "name": "Available Potassium",
+      "unit": "kg/ha",
+      "extraction_method": "Neutral normal ammonium acetate extraction",
+      "interpretation": {
+        "low": {"max": 110, "label": "Low", "color": "red", "description": "Potassium deficiency. Affects grain/fruit quality and disease resistance."},
+        "medium": {"min": 110, "max": 280, "label": "Medium", "color": "yellow", "description": "Moderate potassium status."},
+        "high": {"min": 280, "label": "High", "color": "green", "description": "Good potassium status."}
+      },
+      "source": "ICAR Soil Health Card guidelines, 2015"
+    },
+    "S": {
+      "name": "Available Sulphur",
+      "unit": "ppm (mg/kg)",
+      "extraction_method": "Turbidimetric method using CaCl2 extraction",
+      "interpretation": {
+        "deficient": {"max": 10, "label": "Deficient", "color": "red", "description": "Sulphur deficiency. Affects protein synthesis and oilseed quality."},
+        "sufficient": {"min": 10, "label": "Sufficient", "color": "green", "description": "Adequate sulphur status."}
+      },
+      "critical_level": 10,
+      "source": "ICAR Soil Health Card guidelines; Fox & Kamprath (1970) modified for Indian soils"
+    },
+    "Zn": {
+      "name": "Available Zinc",
+      "unit": "ppm (mg/kg)",
+      "extraction_method": "DTPA (pH 7.3) extraction — Lindsay & Norvell (1978)",
+      "interpretation": {
+        "deficient": {"max": 0.6, "label": "Deficient", "color": "red", "description": "Zinc deficiency. Most widespread micronutrient deficiency in Indian soils."},
+        "sufficient": {"min": 0.6, "label": "Sufficient", "color": "green", "description": "Adequate zinc status."}
+      },
+      "critical_level": 0.6,
+      "notes": "Zinc deficiency affects 49% of Indian agricultural soils (ICAR-NBSS&LUP survey)",
+      "source": "ICAR Soil Health Card guidelines; Katyal & Sharma, 1980"
+    },
+    "Fe": {
+      "name": "Available Iron",
+      "unit": "ppm (mg/kg)",
+      "extraction_method": "DTPA extraction — Lindsay & Norvell (1978)",
+      "interpretation": {
+        "deficient": {"max": 4.5, "label": "Deficient", "color": "red", "description": "Iron deficiency. Causes chlorosis, particularly in calcareous/alkaline soils."},
+        "sufficient": {"min": 4.5, "label": "Sufficient", "color": "green", "description": "Adequate iron status."}
+      },
+      "critical_level": 4.5,
+      "notes": "Iron deficiency (lime-induced chlorosis) common in alkaline Vertisols of Maharashtra",
+      "source": "ICAR Soil Health Card guidelines; Lindsay & Norvell, 1978"
+    },
+    "Cu": {
+      "name": "Available Copper",
+      "unit": "ppm (mg/kg)",
+      "extraction_method": "DTPA extraction — Lindsay & Norvell (1978)",
+      "interpretation": {
+        "deficient": {"max": 0.2, "label": "Deficient", "color": "red", "description": "Copper deficiency. Affects enzyme activity and grain filling."},
+        "sufficient": {"min": 0.2, "label": "Sufficient", "color": "green", "description": "Adequate copper status."}
+      },
+      "critical_level": 0.2,
+      "source": "ICAR Soil Health Card guidelines"
+    },
+    "Mn": {
+      "name": "Available Manganese",
+      "unit": "ppm (mg/kg)",
+      "extraction_method": "DTPA extraction — Lindsay & Norvell (1978)",
+      "interpretation": {
+        "deficient": {"max": 2.0, "label": "Deficient", "color": "red", "description": "Manganese deficiency. Affects photosynthesis and nitrogen metabolism."},
+        "sufficient": {"min": 2.0, "label": "Sufficient", "color": "green", "description": "Adequate manganese status."}
+      },
+      "critical_level": 2.0,
+      "source": "ICAR Soil Health Card guidelines"
+    },
+    "B": {
+      "name": "Available Boron",
+      "unit": "ppm (mg/kg)",
+      "extraction_method": "Hot water extraction (Berger & Truog, 1939)",
+      "interpretation": {
+        "deficient": {"max": 0.5, "label": "Deficient", "color": "red", "description": "Boron deficiency. Critical for cell wall formation, pollen viability, and fruit set."},
+        "sufficient": {"min": 0.5, "label": "Sufficient", "color": "green", "description": "Adequate boron status."}
+      },
+      "critical_level": 0.5,
+      "notes": "Boron toxicity possible above 5 ppm; sensitive crops include groundnut, sunflower",
+      "source": "ICAR Soil Health Card guidelines; Berger & Truog, 1939"
+    },
+    "pH": {
+      "name": "Soil pH",
+      "unit": "dimensionless (0-14 scale)",
+      "extraction_method": "pH meter in 1:2 (soil:water) suspension",
+      "interpretation": {
+        "strongly_acidic": {"max": 5.0, "label": "Strongly Acidic", "color": "red", "description": "Highly acidic. Nutrient availability severely reduced; Al/Mn toxicity possible."},
+        "moderately_acidic": {"min": 5.0, "max": 6.0, "label": "Moderately Acidic", "color": "orange", "description": "Somewhat acidic. Some crops tolerate; liming may help."},
+        "slightly_acidic": {"min": 6.0, "max": 6.5, "label": "Slightly Acidic", "color": "yellow_green", "description": "Near optimal for most crops."},
+        "neutral": {"min": 6.5, "max": 7.5, "label": "Neutral", "color": "green", "description": "Optimal range for most crops; maximum nutrient availability."},
+        "slightly_alkaline": {"min": 7.5, "max": 8.5, "label": "Slightly Alkaline", "color": "yellow", "description": "Mildly alkaline. Micronutrient availability may be reduced."},
+        "alkaline": {"min": 8.5, "max": 9.0, "label": "Alkaline", "color": "orange", "description": "Alkaline. Fe, Mn, Zn deficiencies likely. Suitable only for tolerant crops."},
+        "strongly_alkaline": {"min": 9.0, "label": "Strongly Alkaline", "color": "red", "description": "Very alkaline. Most crops will suffer; requires amendment."}
+      },
+      "optimal_range": {"min": 6.5, "max": 7.5},
+      "source": "ICAR Soil Health Card guidelines; Indian Society of Soil Science classification"
+    },
+    "EC": {
+      "name": "Electrical Conductivity",
+      "unit": "dS/m (deciSiemens per metre)",
+      "extraction_method": "EC meter in 1:2 (soil:water) suspension or saturated paste extract",
+      "interpretation": {
+        "normal": {"max": 1.0, "label": "Normal", "color": "green", "description": "Non-saline. Suitable for all crops."},
+        "slightly_saline": {"min": 1.0, "max": 2.0, "label": "Slightly Saline", "color": "yellow", "description": "Critical for salt-sensitive crops during germination."},
+        "moderately_saline": {"min": 2.0, "max": 4.0, "label": "Moderately Saline", "color": "orange", "description": "Critical for growth of sensitive crops; restricts crop selection."},
+        "highly_saline": {"min": 4.0, "max": 8.0, "label": "Highly Saline", "color": "red", "description": "Injurious to most crops; only tolerant varieties can be grown."},
+        "very_highly_saline": {"min": 8.0, "label": "Very Highly Saline", "color": "dark_red", "description": "Very few crops can survive; soil reclamation required."}
+      },
+      "source": "ICAR Soil Health Card guidelines; Richards, 1954 (USDA Salinity Lab Handbook 60)"
+    },
+    "OC": {
+      "name": "Organic Carbon",
+      "unit": "% (percent by weight)",
+      "extraction_method": "Walkley-Black wet oxidation method",
+      "interpretation": {
+        "low": {"max": 0.5, "label": "Low", "color": "red", "description": "Low organic matter. Poor soil biology and structure; reduced moisture retention."},
+        "medium": {"min": 0.5, "max": 0.75, "label": "Medium", "color": "yellow", "description": "Moderate organic matter. Good management practices recommended."},
+        "high": {"min": 0.75, "label": "High", "color": "green", "description": "Good organic matter status. Supports soil health and nutrient cycling."}
+      },
+      "notes": "OC below 0.5% covers approximately 54% of Indian agricultural soils (ICAR-NBSS&LUP, 2010 survey)",
+      "source": "ICAR Soil Health Card guidelines; Walkley & Black, 1934"
+    }
+  },
+  "soil_types": {
+    "maharashtra_classification": {
+      "black": {
+        "local_name": "Kali mati",
+        "icar_name": "Vertisol / Black Cotton Soil",
+        "description": "Heavy, clay-rich, self-mulching soils with high water-holding capacity",
+        "typical_pH": "7.5-8.5",
+        "typical_OC": "0.3-0.7%",
+        "typical_nutrients": "Medium N, Low P, High K",
+        "crop_suitability": ["cotton", "soybean", "wheat", "chickpea", "jowar"],
+        "regions": ["Vidarbha", "Marathwada", "Central Maharashtra"],
+        "source": "ICAR-NBSS&LUP Maharashtra soil survey"
+      },
+      "red": {
+        "local_name": "Lal mati",
+        "icar_name": "Alfisol / Red Lateritic Soil",
+        "description": "Well-drained, iron-rich soils; relatively less fertile",
+        "typical_pH": "5.5-7.0",
+        "typical_OC": "0.4-0.8%",
+        "typical_nutrients": "Low N, Low P, Low K",
+        "crop_suitability": ["rice", "groundnut", "mango", "cashew"],
+        "regions": ["Konkan", "Western Ghats"],
+        "source": "ICAR-NBSS&LUP Maharashtra soil survey"
+      },
+      "alluvial": {
+        "local_name": "Gad mati",
+        "icar_name": "Inceptisol / Entisol — Alluvial Soil",
+        "description": "Fertile, river-deposited soils; good texture and nutrients",
+        "typical_pH": "6.5-8.0",
+        "typical_OC": "0.5-1.0%",
+        "typical_nutrients": "Medium N, Medium P, Medium K",
+        "crop_suitability": ["wheat", "sugarcane", "banana", "vegetables"],
+        "regions": ["River valleys — Godavari, Krishna, Bhima, Tapi basins"],
+        "source": "ICAR-NBSS&LUP Maharashtra soil survey"
+      },
+      "sandy": {
+        "local_name": "Valukamay mati",
+        "icar_name": "Entisol — Sandy Soil",
+        "description": "Light, coarse-textured soils with low water and nutrient retention",
+        "typical_pH": "6.0-7.5",
+        "typical_OC": "0.2-0.5%",
+        "typical_nutrients": "Low N, Low P, Low K",
+        "crop_suitability": ["mothbeans", "groundnut", "watermelon", "muskmelon"],
+        "regions": ["Coastal strips", "Konkan river banks"],
+        "source": "ICAR-NBSS&LUP"
+      },
+      "loam": {
+        "local_name": "Domatlya mati",
+        "icar_name": "Mixed — Loamy Soil",
+        "description": "Balanced texture; good water retention and drainage; generally fertile",
+        "typical_pH": "6.0-7.5",
+        "typical_OC": "0.5-1.0%",
+        "typical_nutrients": "Medium across all nutrients",
+        "crop_suitability": ["maize", "wheat", "vegetables", "groundnut", "soybean"],
+        "regions": ["Mixed across Maharashtra"],
+        "source": "ICAR-NBSS&LUP"
+      },
+      "laterite": {
+        "local_name": "Latriti mati",
+        "icar_name": "Oxisol / Ultisol — Laterite Soil",
+        "description": "Highly weathered, hard when dry; reddish-brown; low fertility",
+        "typical_pH": "5.0-6.5",
+        "typical_OC": "0.3-0.6%",
+        "typical_nutrients": "Low across all nutrients",
+        "crop_suitability": ["cashew", "mango", "rice"],
+        "regions": ["Konkan (Ratnagiri, Sindhudurg)"],
+        "source": "ICAR-NBSS&LUP"
+      }
+    }
+  }
+}

@@ -1,0 +1,843 @@
+{
+  "test_run_date": "2026-08-13T23:52:39.596612",
+  "total": 68,
+  "passed": 64,
+  "failed": 0,
+  "warnings": 4,
+  "blocked": 0,
+  "critical_failures": 0,
+  "results": [
+    {
+      "test_id": "TC-DQ-001",
+      "name": "Dataset file exists and loads",
+      "status": "PASS",
+      "severity": "critical",
+      "expected": "CSV loads without error",
+      "actual": "Loaded 3450 rows, 16 cols",
+      "evidence": "",
+      "root_cause": "",
+      "fix": ""
+    },
+    {
+      "test_id": "TC-DQ-002",
+      "name": "Dataset has expected columns",
+      "status": "PASS",
+      "severity": "critical",
+      "expected": "{'N', 'Zn', 'humidity', 'P', 'K', 'EC', 'ph', 'S', 'Cu', 'Mn', 'Fe', 'B', 'OC', 'temperature', 'label', 'rainfall'}",
+      "actual": "{'N', 'Mn', 'Zn', 'humidity', 'P', 'K', 'EC', 'Fe', 'rainfall', 'ph', 'B', 'OC', 'temperature', 'label', 'S', 'Cu'}",
+      "evidence": "",
+      "root_cause": "",
+      "fix": ""
+    },
+    {
+      "test_id": "TC-DQ-003",
+      "name": "No missing values in dataset",
+      "status": "PASS",
+      "severity": "high",
+      "expected": "0 missing",
+      "actual": "0 missing",
+      "evidence": "",
+      "root_cause": "",
+      "fix": ""
+    },
+    {
+      "test_id": "TC-DQ-004",
+      "name": "No duplicate rows",
+      "status": "PASS",
+      "severity": "high",
+      "expected": "0 duplicates",
+      "actual": "0 duplicates",
+      "evidence": "",
+      "root_cause": "",
+      "fix": ""
+    },
+    {
+      "test_id": "TC-DQ-005",
+      "name": "Balanced class distribution",
+      "status": "PASS",
+      "severity": "medium",
+      "expected": "Ratio <= 2.0",
+      "actual": "23 crops, min=150, max=150, ratio=1.00",
+      "evidence": "",
+      "root_cause": "",
+      "fix": ""
+    },
+    {
+      "test_id": "TC-DQ-006",
+      "name": "Feature ranges are scientifically plausible",
+      "status": "PASS",
+      "severity": "high",
+      "expected": "",
+      "actual": "",
+      "evidence": "N:[8-270] P:[15-119] K:[21-500] ph:[4.8-8.6] temp:[8-40] humidity:[25-97] rainfall:[220-2559]",
+      "root_cause": "",
+      "fix": ""
+    },
+    {
+      "test_id": "TC-DQ-007",
+      "name": "Dataset metadata accurate",
+      "status": "PASS",
+      "severity": "medium",
+      "expected": "",
+      "actual": "",
+      "evidence": "Records=3450, Crops=23, Nature=VERIFIED_MULTI_SOURCE_OPEN_DATA",
+      "root_cause": "",
+      "fix": ""
+    },
+    {
+      "test_id": "TC-DQ-008",
+      "name": "Feature units documented correctly",
+      "status": "WARNING",
+      "severity": "medium",
+      "expected": "All units documented",
+      "actual": "[\"N: expected 'kg/ha' in ''\", \"P: expected 'kg/ha' in ''\", \"K: expected 'kg/ha' in ''\", \"temperature: expected 'Celsius' in ''\", \"humidity: expected '%' in ''\", \"ph: expected 'dimensionless' in ''\", \"rainfall: expected 'mm' in ''\"]",
+      "evidence": "",
+      "root_cause": "",
+      "fix": ""
+    },
+    {
+      "test_id": "TC-DQ-009",
+      "name": "Data sources documented",
+      "status": "PASS",
+      "severity": "medium",
+      "expected": "",
+      "actual": "",
+      "evidence": "4 sources listed",
+      "root_cause": "",
+      "fix": ""
+    },
+    {
+      "test_id": "TC-DQ-010",
+      "name": "Known limitations documented",
+      "status": "PASS",
+      "severity": "medium",
+      "expected": "",
+      "actual": "",
+      "evidence": "Meso-level district and state agricultural data aggregated with Soil Health Card",
+      "root_cause": "",
+      "fix": ""
+    },
+    {
+      "test_id": "TC-ML-001",
+      "name": "All model artifacts exist",
+      "status": "PASS",
+      "severity": "critical",
+      "expected": "",
+      "actual": "",
+      "evidence": "",
+      "root_cause": "",
+      "fix": ""
+    },
+    {
+      "test_id": "TC-ML-002",
+      "name": "Model artifacts load correctly",
+      "status": "PASS",
+      "severity": "critical",
+      "expected": "",
+      "actual": "",
+      "evidence": "",
+      "root_cause": "",
+      "fix": ""
+    },
+    {
+      "test_id": "TC-ML-003",
+      "name": "Model metadata consistent with artifact",
+      "status": "PASS",
+      "severity": "high",
+      "expected": "",
+      "actual": "",
+      "evidence": "",
+      "root_cause": "",
+      "fix": ""
+    },
+    {
+      "test_id": "TC-ML-004",
+      "name": "Reproducible metrics (no data leakage)",
+      "status": "PASS",
+      "severity": "critical",
+      "expected": "acc=0.7971, f1=0.7944",
+      "actual": "acc=0.7971, f1=0.7944",
+      "evidence": "",
+      "root_cause": "",
+      "fix": ""
+    },
+    {
+      "test_id": "TC-ML-005",
+      "name": "All crops have acceptable F1 (>=0.6)",
+      "status": "WARNING",
+      "severity": "high",
+      "expected": "All F1 >= 0.6",
+      "actual": "Poor crops: ['blackgram: f1=0.551', 'mungbean: f1=0.408', 'muskmelon: f1=0.526', 'watermelon: f1=0.525']",
+      "evidence": "",
+      "root_cause": "",
+      "fix": ""
+    },
+    {
+      "test_id": "TC-ML-006",
+      "name": "Feature importance data available",
+      "status": "PASS",
+      "severity": "medium",
+      "expected": "",
+      "actual": "",
+      "evidence": "Top feature: rainfall (importance=0.1658)",
+      "root_cause": "",
+      "fix": ""
+    },
+    {
+      "test_id": "TC-KB-001",
+      "name": "All knowledge base files exist",
+      "status": "PASS",
+      "severity": "critical",
+      "expected": "",
+      "actual": "",
+      "evidence": "",
+      "root_cause": "",
+      "fix": ""
+    },
+    {
+      "test_id": "TC-KB-002",
+      "name": "Knowledge base covers all ML crop classes",
+      "status": "PASS",
+      "severity": "critical",
+      "expected": "",
+      "actual": "",
+      "evidence": "ML classes=23, KB crops=23",
+      "root_cause": "",
+      "fix": ""
+    },
+    {
+      "test_id": "TC-KB-003",
+      "name": "SHC thresholds cover all 12 parameters",
+      "status": "PASS",
+      "severity": "critical",
+      "expected": "",
+      "actual": "",
+      "evidence": "Parameters: ['b', 'cu', 'ec', 'fe', 'k', 'mn', 'n', 'oc', 'p', 'ph', 's', 'zn']",
+      "root_cause": "",
+      "fix": ""
+    },
+    {
+      "test_id": "TC-KB-004",
+      "name": "Maharashtra data has district information",
+      "status": "PASS",
+      "severity": "medium",
+      "expected": "",
+      "actual": "",
+      "evidence": "36 districts listed",
+      "root_cause": "",
+      "fix": ""
+    },
+    {
+      "test_id": "TC-API-001",
+      "name": "Health endpoint responds",
+      "status": "PASS",
+      "severity": "critical",
+      "expected": "",
+      "actual": "",
+      "evidence": "",
+      "root_cause": "",
+      "fix": ""
+    },
+    {
+      "test_id": "TC-API-002",
+      "name": "Root endpoint contains disclaimer",
+      "status": "PASS",
+      "severity": "medium",
+      "expected": "",
+      "actual": "",
+      "evidence": "FarmFriend AI provides data-driven decision support. It does not replace profess",
+      "root_cause": "",
+      "fix": ""
+    },
+    {
+      "test_id": "TC-API-003",
+      "name": "Validation passes for valid Maharashtra input",
+      "status": "PASS",
+      "severity": "high",
+      "expected": "",
+      "actual": "",
+      "evidence": "Warnings: 0",
+      "root_cause": "",
+      "fix": ""
+    },
+    {
+      "test_id": "TC-API-004",
+      "name": "Analyze endpoint returns crop recommendations",
+      "status": "PASS",
+      "severity": "critical",
+      "expected": "",
+      "actual": "",
+      "evidence": "Top crop: cotton (51.4/100), 10 crops returned",
+      "root_cause": "",
+      "fix": ""
+    },
+    {
+      "test_id": "TC-API-005",
+      "name": "Model info returned in analysis response",
+      "status": "PASS",
+      "severity": "medium",
+      "expected": "",
+      "actual": "",
+      "evidence": "Model: Random Forest, Acc: 0.7971014492753623",
+      "root_cause": "",
+      "fix": ""
+    },
+    {
+      "test_id": "TC-API-006",
+      "name": "Data completeness reports 12 SHC parameters",
+      "status": "PASS",
+      "severity": "high",
+      "expected": "",
+      "actual": "",
+      "evidence": "Missing: 0, Fields: []",
+      "root_cause": "",
+      "fix": ""
+    },
+    {
+      "test_id": "TC-API-007",
+      "name": "NLG explanation provided in response",
+      "status": "PASS",
+      "severity": "medium",
+      "expected": "",
+      "actual": "",
+      "evidence": "The analysis found that crop suitability is generally limited with the current conditions. Cotton ranks highest with a s",
+      "root_cause": "",
+      "fix": ""
+    },
+    {
+      "test_id": "TC-DET-001",
+      "name": "Model produces deterministic results (5 runs)",
+      "status": "PASS",
+      "severity": "critical",
+      "expected": "",
+      "actual": "",
+      "evidence": "All 5 runs identical. Top: ('cotton', 51.4)",
+      "root_cause": "",
+      "fix": ""
+    },
+    {
+      "test_id": "TC-RV-001",
+      "name": "All scores in valid range [0-100]",
+      "status": "PASS",
+      "severity": "critical",
+      "expected": "",
+      "actual": "",
+      "evidence": "Scores: [51.4, 48.3, 47.2, 46.9, 46.9]",
+      "root_cause": "",
+      "fix": ""
+    },
+    {
+      "test_id": "TC-RV-002",
+      "name": "Classification labels match score thresholds",
+      "status": "PASS",
+      "severity": "critical",
+      "expected": "",
+      "actual": "",
+      "evidence": "",
+      "root_cause": "",
+      "fix": ""
+    },
+    {
+      "test_id": "TC-RV-003",
+      "name": "Crops sorted by score descending",
+      "status": "PASS",
+      "severity": "high",
+      "expected": "",
+      "actual": "",
+      "evidence": "",
+      "root_cause": "",
+      "fix": ""
+    },
+    {
+      "test_id": "TC-RV-004",
+      "name": "All crops contain required response fields",
+      "status": "PASS",
+      "severity": "high",
+      "expected": "",
+      "actual": "",
+      "evidence": "",
+      "root_cause": "",
+      "fix": ""
+    },
+    {
+      "test_id": "TC-RV-005",
+      "name": "Final score roughly consistent with 60/40 blend",
+      "status": "PASS",
+      "severity": "high",
+      "expected": "",
+      "actual": "",
+      "evidence": "Top crop ml_score=10.0, rule_score=92.8, final=51.4",
+      "root_cause": "",
+      "fix": ""
+    },
+    {
+      "test_id": "TC-FEAS-001",
+      "name": "Feasibility returns result for non-top crop (cotton)",
+      "status": "PASS",
+      "severity": "critical",
+      "expected": "",
+      "actual": "",
+      "evidence": "Cotton: score=51.4, outcome=low",
+      "root_cause": "",
+      "fix": ""
+    },
+    {
+      "test_id": "TC-FEAS-002",
+      "name": "Feasibility explanation is substantive",
+      "status": "PASS",
+      "severity": "medium",
+      "expected": "",
+      "actual": "",
+      "evidence": "The analysis indicates that Cotton has low suitability (score: 51.4/100) under the current supplied conditions. Growing ",
+      "root_cause": "",
+      "fix": ""
+    },
+    {
+      "test_id": "TC-FEAS-003",
+      "name": "Feasibility outcome matches score threshold",
+      "status": "PASS",
+      "severity": "high",
+      "expected": "",
+      "actual": "",
+      "evidence": "score=51.4, outcome=low",
+      "root_cause": "",
+      "fix": ""
+    },
+    {
+      "test_id": "TC-FEAS-004",
+      "name": "Crop switching returns correct crop-specific results",
+      "status": "PASS",
+      "severity": "high",
+      "expected": "",
+      "actual": "",
+      "evidence": "Tested: ['cotton', 'chickpea', 'maize', 'rice', 'banana']",
+      "root_cause": "",
+      "fix": ""
+    },
+    {
+      "test_id": "TC-WI-001",
+      "name": "What-if simulation returns valid result",
+      "status": "PASS",
+      "severity": "critical",
+      "expected": "",
+      "actual": "",
+      "evidence": "Before=51.4, After=51.0, Change=-0.4",
+      "root_cause": "",
+      "fix": ""
+    },
+    {
+      "test_id": "TC-WI-002",
+      "name": "Changed parameter recorded correctly",
+      "status": "PASS",
+      "severity": "high",
+      "expected": "",
+      "actual": "",
+      "evidence": "K: before=310.0 \u2192 after=400.0",
+      "root_cause": "",
+      "fix": ""
+    },
+    {
+      "test_id": "TC-WI-003",
+      "name": "What-if disclaimer mentions simulation",
+      "status": "PASS",
+      "severity": "high",
+      "expected": "",
+      "actual": "",
+      "evidence": "\u26a0\ufe0f This is a SIMULATED scenario. Simulated results do not guarantee the same out",
+      "root_cause": "",
+      "fix": ""
+    },
+    {
+      "test_id": "TC-WI-004",
+      "name": "Only specified parameter changed (control test)",
+      "status": "PASS",
+      "severity": "critical",
+      "expected": "",
+      "actual": "",
+      "evidence": "Changed params: ['K']",
+      "root_cause": "",
+      "fix": ""
+    },
+    {
+      "test_id": "TC-WI-005",
+      "name": "What-if reversibility (restore original -> same score)",
+      "status": "PASS",
+      "severity": "high",
+      "expected": "",
+      "actual": "",
+      "evidence": "Before=51.4, After=51.4",
+      "root_cause": "",
+      "fix": ""
+    },
+    {
+      "test_id": "TC-WI-006",
+      "name": "Multi-variable what-if records all changes",
+      "status": "PASS",
+      "severity": "high",
+      "expected": "",
+      "actual": "",
+      "evidence": "Changed: ['K', 'ph', 'rainfall']",
+      "root_cause": "",
+      "fix": ""
+    },
+    {
+      "test_id": "TC-WI-007",
+      "name": "What-if rejects impossible pH=-5",
+      "status": "PASS",
+      "severity": "high",
+      "expected": "",
+      "actual": "",
+      "evidence": "HTTP 422 returned",
+      "root_cause": "",
+      "fix": ""
+    },
+    {
+      "test_id": "TC-VAL-001",
+      "name": "pH=-4 rejected by Pydantic schema",
+      "status": "PASS",
+      "severity": "critical",
+      "expected": "",
+      "actual": "",
+      "evidence": "HTTP 422",
+      "root_cause": "",
+      "fix": ""
+    },
+    {
+      "test_id": "TC-VAL-002",
+      "name": "pH=99 rejected",
+      "status": "PASS",
+      "severity": "critical",
+      "expected": "",
+      "actual": "",
+      "evidence": "",
+      "root_cause": "",
+      "fix": ""
+    },
+    {
+      "test_id": "TC-VAL-003",
+      "name": "Humidity=150 rejected",
+      "status": "PASS",
+      "severity": "high",
+      "expected": "",
+      "actual": "",
+      "evidence": "",
+      "root_cause": "",
+      "fix": ""
+    },
+    {
+      "test_id": "TC-VAL-004",
+      "name": "N=-20 rejected",
+      "status": "PASS",
+      "severity": "high",
+      "expected": "",
+      "actual": "",
+      "evidence": "",
+      "root_cause": "",
+      "fix": ""
+    },
+    {
+      "test_id": "TC-VAL-005",
+      "name": "Rainfall=-100 rejected",
+      "status": "PASS",
+      "severity": "high",
+      "expected": "",
+      "actual": "",
+      "evidence": "",
+      "root_cause": "",
+      "fix": ""
+    },
+    {
+      "test_id": "TC-VAL-006",
+      "name": "Empty district produces validation error",
+      "status": "PASS",
+      "severity": "high",
+      "expected": "",
+      "actual": "",
+      "evidence": "",
+      "root_cause": "",
+      "fix": ""
+    },
+    {
+      "test_id": "TC-MISS-001",
+      "name": "Missing K reported in data_completeness",
+      "status": "PASS",
+      "severity": "critical",
+      "expected": "",
+      "actual": "",
+      "evidence": "Missing fields: ['K']",
+      "root_cause": "",
+      "fix": ""
+    },
+    {
+      "test_id": "TC-MISS-002",
+      "name": "Missing K produces different score than full data",
+      "status": "WARNING",
+      "severity": "high",
+      "expected": "",
+      "actual": "",
+      "evidence": "Full: 51.4, Missing K: 51.4",
+      "root_cause": "",
+      "fix": ""
+    },
+    {
+      "test_id": "TC-MISS-003",
+      "name": "Sparse input -> reduced data confidence",
+      "status": "WARNING",
+      "severity": "high",
+      "expected": "low/medium",
+      "actual": "data_confidence=Low",
+      "evidence": "",
+      "root_cause": "",
+      "fix": ""
+    },
+    {
+      "test_id": "TC-AI-001",
+      "name": "NLG explanation does not contain fabricated data",
+      "status": "PASS",
+      "severity": "critical",
+      "expected": "",
+      "actual": "",
+      "evidence": "Explanation references actual scores. Engine=rule_based_nlg (no external LLM)",
+      "root_cause": "",
+      "fix": ""
+    },
+    {
+      "test_id": "TC-AI-002",
+      "name": "AI explanation engine is rule-based NLG (no external LLM)",
+      "status": "PASS",
+      "severity": "critical",
+      "expected": "",
+      "actual": "",
+      "evidence": "nlg_explainer.py uses template-based generation, no API calls",
+      "root_cause": "",
+      "fix": ""
+    },
+    {
+      "test_id": "TC-AI-003",
+      "name": "AI terminology consistent with score classification",
+      "status": "PASS",
+      "severity": "critical",
+      "expected": "",
+      "actual": "",
+      "evidence": "Score=51.4, Classification=Moderately Suitable",
+      "root_cause": "",
+      "fix": ""
+    },
+    {
+      "test_id": "TC-AI-004",
+      "name": "Explain endpoint confirms rule_based_nlg engine",
+      "status": "PASS",
+      "severity": "critical",
+      "expected": "",
+      "actual": "",
+      "evidence": "engine=rule_based_nlg",
+      "root_cause": "",
+      "fix": ""
+    },
+    {
+      "test_id": "TC-AI-005",
+      "name": "Q&A endpoint returns grounded answer",
+      "status": "PASS",
+      "severity": "high",
+      "expected": "",
+      "actual": "",
+      "evidence": "Cotton ranks first because it has the highest overall suitability score (51.4/100) based on the soil test values and far",
+      "root_cause": "",
+      "fix": ""
+    },
+    {
+      "test_id": "TC-RAI-001",
+      "name": "Disclaimer present in crop result",
+      "status": "PASS",
+      "severity": "critical",
+      "expected": "",
+      "actual": "",
+      "evidence": "This suitability score is a data-driven estimate based on soil parameters, seaso",
+      "root_cause": "",
+      "fix": ""
+    },
+    {
+      "test_id": "TC-RAI-002",
+      "name": "No economic/profit claims in response",
+      "status": "PASS",
+      "severity": "high",
+      "expected": "",
+      "actual": "",
+      "evidence": "",
+      "root_cause": "",
+      "fix": ""
+    },
+    {
+      "test_id": "TC-RAI-003",
+      "name": "Dataset provenance & nature is disclosed",
+      "status": "PASS",
+      "severity": "critical",
+      "expected": "",
+      "actual": "",
+      "evidence": "Model trained on verified multi-source open agricultural data. Decision support ",
+      "root_cause": "",
+      "fix": ""
+    },
+    {
+      "test_id": "TC-SEC-001",
+      "name": ".env is in .gitignore",
+      "status": "PASS",
+      "severity": "critical",
+      "expected": "",
+      "actual": "",
+      "evidence": "",
+      "root_cause": "",
+      "fix": ""
+    },
+    {
+      "test_id": "TC-SEC-002",
+      "name": "No hardcoded API keys in Python sources",
+      "status": "PASS",
+      "severity": "critical",
+      "expected": "",
+      "actual": "",
+      "evidence": "",
+      "root_cause": "",
+      "fix": ""
+    },
+    {
+      "test_id": "TC-SEC-003",
+      "name": "Error responses don't expose internals",
+      "status": "PASS",
+      "severity": "high",
+      "expected": "",
+      "actual": "",
+      "evidence": "",
+      "root_cause": "",
+      "fix": ""
+    },
+    {
+      "test_id": "TC-FAB-001",
+      "name": "No hardcoded scores in production services",
+      "status": "PASS",
+      "severity": "critical",
+      "expected": "",
+      "actual": "",
+      "evidence": "",
+      "root_cause": "",
+      "fix": ""
+    },
+    {
+      "test_id": "TC-FAB-002",
+      "name": "Feature importance from trained model (15 features, sums to 1.0)",
+      "status": "PASS",
+      "severity": "high",
+      "expected": "",
+      "actual": "",
+      "evidence": "Total importance = 0.9999",
+      "root_cause": "",
+      "fix": ""
+    },
+    {
+      "test_id": "TC-UNIT-001",
+      "name": "Dataset and validation units match for ML features",
+      "status": "PASS",
+      "severity": "critical",
+      "expected": "",
+      "actual": "",
+      "evidence": "",
+      "root_cause": "",
+      "fix": ""
+    },
+    {
+      "test_id": "TC-UNIT-002",
+      "name": "All 12 SHC parameters defined in validation",
+      "status": "PASS",
+      "severity": "critical",
+      "expected": "",
+      "actual": "",
+      "evidence": "Units: {'N': 'kg/ha', 'P': 'kg/ha', 'K': 'kg/ha', 'S': 'ppm', 'Zn': 'ppm', 'Fe': 'ppm', 'Cu': 'ppm', 'Mn': 'ppm', 'B': 'ppm', 'ph': '', 'EC': 'dS/m', 'OC': '%'}",
+      "root_cause": "",
+      "fix": ""
+    }
+  ],
+  "maharashtra_case_study": {
+    "top_5_crops": [
+      [
+        "cotton",
+        51.4,
+        "Moderately Suitable"
+      ],
+      [
+        "pigeonpeas",
+        48.3,
+        "Moderately Suitable"
+      ],
+      [
+        "soybean",
+        47.2,
+        "Moderately Suitable"
+      ],
+      [
+        "blackgram",
+        46.9,
+        "Moderately Suitable"
+      ],
+      [
+        "mungbean",
+        46.9,
+        "Moderately Suitable"
+      ]
+    ],
+    "model_info": {
+      "model_version": "random_forest_v2",
+      "model_type": "Random Forest",
+      "training_date": "2026-08-13T23:26:23.696520",
+      "metrics": {
+        "accuracy": 0.7971014492753623,
+        "precision_weighted": 0.7975675241389052,
+        "recall_weighted": 0.7971014492753623,
+        "f1_weighted": 0.7943929372390127,
+        "precision_macro": 0.7975675241389052,
+        "recall_macro": 0.7971014492753624,
+        "f1_macro": 0.7943929372390125,
+        "cv_accuracy_mean": 0.7920289855072463,
+        "cv_accuracy_std": 0.013672436423270453
+      },
+      "n_classes": 23,
+      "all_models": [
+        {
+          "name": "Logistic Regression",
+          "accuracy": 0.7869565217391304,
+          "precision_weighted": 0.7899587171175878,
+          "recall_weighted": 0.7869565217391304,
+          "f1_weighted": 0.7852235239591446,
+          "f1_macro": 0.7852235239591446,
+          "cv_mean": 0.7876811594202898
+        },
+        {
+          "name": "Decision Tree",
+          "accuracy": 0.6420289855072464,
+          "precision_weighted": 0.6504491593131008,
+          "recall_weighted": 0.6420289855072464,
+          "f1_weighted": 0.6426612935233132,
+          "f1_macro": 0.6426612935233131,
+          "cv_mean": 0.6405797101449275
+        },
+        {
+          "name": "Random Forest",
+          "accuracy": 0.7971014492753623,
+          "precision_weighted": 0.7975675241389052,
+          "recall_weighted": 0.7971014492753623,
+          "f1_weighted": 0.7943929372390127,
+          "f1_macro": 0.7943929372390125,
+          "cv_mean": 0.7920289855072463
+        },
+        {
+          "name": "HistGradientBoosting",
+          "accuracy": 0.7855072463768116,
+          "precision_weighted": 0.786704232006268,
+          "recall_weighted": 0.7855072463768116,
+          "f1_weighted": 0.7831201031252166,
+          "f1_macro": 0.783120103125217,
+          "cv_mean": 0.7782608695652173
+        }
+      ]
+    }
+  }
+}

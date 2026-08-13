@@ -1,0 +1,63 @@
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+env/
+venv/
+ENV/
+.env
+*.egg-info/
+dist/
+build/
+*.egg
+.eggs/
+.pytest_cache/
+
+# Jupyter
+.ipynb_checkpoints/
+*.ipynb_checkpoints
+
+# ML artifacts
+models/*.joblib
+models/*.pkl
+models/*.h5
+models/*.pt
+
+# Data (raw data files not committed; use download script)
+data/raw/*.csv
+data/processed/*.csv
+data/raw/*.xlsx
+
+# Database
+*.db
+*.sqlite
+*.sqlite3
+
+# Node / Frontend
+node_modules/
+.npm
+frontend/dist/
+frontend/build/
+frontend/.next/
+
+# IDE
+.vscode/settings.json
+.idea/
+*.swp
+*.swo
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Logs
+*.log
+logs/
+
+# Secrets — NEVER commit
+.env
+.env.local
+.env.production
+secrets.json

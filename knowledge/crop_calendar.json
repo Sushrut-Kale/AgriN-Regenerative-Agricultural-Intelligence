@@ -1,0 +1,109 @@
+{
+  "_metadata": {
+    "description": "Maharashtra agricultural crop calendar and category classification",
+    "version": "2.0",
+    "source": "ICAR-NBSS&LUP / Maharashtra Department of Agriculture / VNMKV Parbhani"
+  },
+  "crop_categories": {
+    "seasonal_field_crop": "Sown and harvested seasonally (Kharif, Rabi, Summer)",
+    "perennial_horticulture": "Multi-year fruit orchards or vineyard structures requiring long-term drip irrigation"
+  },
+  "crops": {
+    "cotton": {
+      "category_type": "seasonal_field_crop",
+      "primary_season": "kharif",
+      "sowing_window": "June 15 - July 15",
+      "harvest_window": "November 15 - February 15",
+      "duration_days": 180,
+      "irrigation_dependency": "moderate_rainfed"
+    },
+    "soybean": {
+      "category_type": "seasonal_field_crop",
+      "primary_season": "kharif",
+      "sowing_window": "June 20 - July 15",
+      "harvest_window": "October 1 - October 31",
+      "duration_days": 105,
+      "irrigation_dependency": "moderate_rainfed"
+    },
+    "pigeonpeas": {
+      "category_type": "seasonal_field_crop",
+      "primary_season": "kharif",
+      "sowing_window": "June 15 - July 10",
+      "harvest_window": "December 15 - January 31",
+      "duration_days": 180,
+      "irrigation_dependency": "low_rainfed"
+    },
+    "chickpea": {
+      "category_type": "seasonal_field_crop",
+      "primary_season": "rabi",
+      "sowing_window": "October 15 - November 15",
+      "harvest_window": "February 1 - March 15",
+      "duration_days": 110,
+      "irrigation_dependency": "low_rainfed"
+    },
+    "rice": {
+      "category_type": "seasonal_field_crop",
+      "primary_season": "kharif",
+      "sowing_window": "June 1 - July 15",
+      "harvest_window": "October 15 - November 30",
+      "duration_days": 125,
+      "irrigation_dependency": "high_flooded"
+    },
+    "maize": {
+      "category_type": "seasonal_field_crop",
+      "primary_season": "kharif",
+      "sowing_window": "June 15 - July 15",
+      "harvest_window": "September 15 - October 15",
+      "duration_days": 100,
+      "irrigation_dependency": "moderate"
+    },
+    "mungbean": {
+      "category_type": "seasonal_field_crop",
+      "primary_season": "kharif",
+      "sowing_window": "June 15 - July 10",
+      "harvest_window": "August 25 - September 15",
+      "duration_days": 70,
+      "irrigation_dependency": "low_rainfed"
+    },
+    "blackgram": {
+      "category_type": "seasonal_field_crop",
+      "primary_season": "kharif",
+      "sowing_window": "June 15 - July 10",
+      "harvest_window": "August 30 - September 20",
+      "duration_days": 75,
+      "irrigation_dependency": "low_rainfed"
+    },
+    "grapes": {
+      "category_type": "perennial_horticulture",
+      "primary_season": "perennial",
+      "sowing_window": "October Pruning (Bahar)",
+      "harvest_window": "February - April",
+      "duration_days": 365,
+      "irrigation_dependency": "high_drip_assured"
+    },
+    "pomegranate": {
+      "category_type": "perennial_horticulture",
+      "primary_season": "perennial",
+      "sowing_window": "Hasta/Ambe/Mreg Bahar Pruning",
+      "harvest_window": "5-6 months post-bahar",
+      "duration_days": 365,
+      "irrigation_dependency": "high_drip_assured"
+    },
+    "mango": {
+      "category_type": "perennial_horticulture",
+      "primary_season": "perennial",
+      "sowing_window": "Monsoon planting",
+      "harvest_window": "March - June",
+      "duration_days": 365,
+      "irrigation_dependency": "moderate_drip"
+    },
+    "banana": {
+      "category_type": "perennial_horticulture",
+      "primary_season": "perennial",
+      "sowing_window": "June - July / Oct - Nov",
+      "harvest_window": "11-14 months post-planting",
+      "duration_days": 365,
+      "irrigation_dependency": "high_assured"
+    }
+  }
+}

@@ -1,0 +1,2102 @@
+{
+  "_metadata": {
+    "description": "Agricultural crop requirements knowledge base for FarmFriend AI",
+    "geographic_scope": "Maharashtra, India (primary pilot)",
+    "sources": [
+      "ICAR (Indian Council of Agricultural Research) crop production guides",
+      "TNAU (Tamil Nadu Agricultural University) crop production technology",
+      "Maharashtra State Department of Agriculture crop advisory",
+      "FAO crop requirements database",
+      "ICAR-National Bureau of Soil Survey and Land Use Planning (NBSS&LUP)"
+    ],
+    "version": "1.0",
+    "last_updated": "2026-08-12",
+    "disclaimer": "Thresholds represent general guidelines from published scientific sources. Actual requirements vary by variety, microclimate, and local conditions. Consult local Krishi Vigyan Kendra (KVK) for site-specific advice.",
+    "nutrient_units": {
+      "N_P_K": "kg/ha (available nutrients in soil)",
+      "temperature": "degrees Celsius",
+      "rainfall": "mm per year",
+      "humidity": "% relative humidity",
+      "ph": "dimensionless (0-14 scale)",
+      "S": "ppm (mg/kg) - DTPA extractable",
+      "Zn": "ppm (mg/kg) - DTPA extractable",
+      "Fe": "ppm (mg/kg) - DTPA extractable",
+      "Cu": "ppm (mg/kg) - DTPA extractable",
+      "Mn": "ppm (mg/kg) - DTPA extractable",
+      "B": "ppm (mg/kg) - hot water extractable",
+      "OC": "% (weight by weight)",
+      "EC": "dS/m (deciSiemens per metre)"
+    }
+  },
+  "crops": {
+    "rice": {
+      "common_name": "Rice",
+      "local_name": "Bhat / Dhan",
+      "scientific_name": "Oryza sativa",
+      "category": "cereal",
+      "maharashtra_suitability": "moderate",
+      "maharashtra_regions": [
+        "Konkan",
+        "Nashik district"
+      ],
+      "seasons": {
+        "maharashtra": [
+          "kharif"
+        ],
+        "general": [
+          "kharif"
+        ]
+      },
+      "soil": {
+        "preferred_types": [
+          "clay",
+          "clay_loam",
+          "heavy_loam"
+        ],
+        "notes": "Requires water-retentive soils; poorly suited to sandy or well-drained soils",
+        "source": "ICAR crop production guide for rice"
+      },
+      "ph": {
+        "optimal_min": 5.5,
+        "optimal_max": 7.0,
+        "critical_min": 5.0,
+        "critical_max": 8.0,
+        "notes": "Tolerates slightly acidic to neutral soils; very alkaline soils reduce yield",
+        "source": "TNAU crop production technology, 2020"
+      },
+      "nutrients": {
+        "N": {
+          "requirement": "high",
+          "level": "medium_to_high",
+          "notes": "High nitrogen feeder; nitrogen critical for tillering",
+          "source": "ICAR STCR recommendation"
+        },
+        "P": {
+          "requirement": "medium",
+          "level": "medium",
+          "source": "ICAR STCR recommendation"
+        },
+        "K": {
+          "requirement": "medium",
+          "level": "medium",
+          "notes": "Potassium improves grain quality and disease resistance",
+          "source": "ICAR STCR recommendation"
+        }
+      },
+      "temperature": {
+        "optimal_min": 20,
+        "optimal_max": 35,
+        "critical_min": 15,
+        "critical_max": 40,
+        "notes": "Tropical crop; sensitive to cold temperatures at flowering",
+        "source": "ICAR crop production guide"
+      },
+      "humidity": {
+        "optimal_min": 70,
+        "optimal_max": 90,
+        "notes": "High humidity typical in paddy-growing regions",
+        "source": "FAO crop requirements"
+      },
+      "rainfall": {
+        "optimal_min": 1000,
+        "optimal_max": 1600,
+        "critical_min": 750,
+        "critical_max": 2500,
+        "notes": "High water requirement; puddling/flooding or heavy irrigation preferred",
+        "source": "ICAR / FAO Crop Ecology Database / VNMKV Guidelines"
+      },
+      "irrigation": {
+        "requirement": "high",
+        "notes": "Paddy requires standing water; upland rice needs less but still high irrigation",
+        "source": "Maharashtra State Agriculture Dept"
+      },
+      "drainage": {
+        "preferred": [
+          "poor",
+          "moderate"
+        ],
+        "notes": "Poor drainage beneficial for paddy cultivation",
+        "source": "ICAR"
+      },
+      "category_type": "seasonal_field_crop",
+      "source_name": "Government of India Soil Health Card & ICAR Research Guidelines",
+      "source_url": "https://soilhealth.dac.gov.in/",
+      "last_verified": "2026-08-13"
+    },
+    "maize": {
+      "common_name": "Maize / Corn",
+      "local_name": "Makka / Bhutte",
+      "scientific_name": "Zea mays",
+      "category": "cereal",
+      "maharashtra_suitability": "high",
+      "maharashtra_regions": [
+        "Nashik",
+        "Ahmednagar",
+        "Pune",
+        "Satara",
+        "Kolhapur",
+        "Aurangabad"
+      ],
+      "seasons": {
+        "maharashtra": [
+          "kharif",
+          "rabi"
+        ],
+        "general": [
+          "kharif",
+          "rabi",
+          "summer"
+        ]
+      },
+      "soil": {
+        "preferred_types": [
+          "loam",
+          "sandy_loam",
+          "clay_loam"
+        ],
+        "notes": "Well-drained loamy soils preferred; avoids waterlogging",
+        "source": "ICAR crop production guide for maize"
+      },
+      "ph": {
+        "optimal_min": 5.8,
+        "optimal_max": 7.5,
+        "critical_min": 5.0,
+        "critical_max": 8.0,
+        "notes": "Slightly acidic to neutral preferred",
+        "source": "TNAU crop production technology"
+      },
+      "nutrients": {
+        "N": {
+          "requirement": "high",
+          "level": "high",
+          "source": "ICAR"
+        },
+        "P": {
+          "requirement": "medium",
+          "level": "medium",
+          "source": "ICAR"
+        },
+        "K": {
+          "requirement": "medium",
+          "level": "medium",
+          "source": "ICAR"
+        }
+      },
+      "temperature": {
+        "optimal_min": 18,
+        "optimal_max": 27,
+        "critical_min": 10,
+        "critical_max": 35,
+        "source": "FAO crop requirements"
+      },
+      "humidity": {
+        "optimal_min": 60,
+        "optimal_max": 80,
+        "source": "FAO"
+      },
+      "rainfall": {
+        "optimal_min": 500,
+        "optimal_max": 800,
+        "critical_min": 350,
+        "critical_max": 1200,
+        "notes": "Moderate rainfall required; sensitive to waterlogging at early growth",
+        "source": "ICAR / FAO Crop Ecology Database / VNMKV Guidelines"
+      },
+      "irrigation": {
+        "requirement": "moderate",
+        "source": "Maharashtra Agriculture Dept"
+      },
+      "drainage": {
+        "preferred": [
+          "good",
+          "moderate"
+        ],
+        "source": "ICAR"
+      },
+      "category_type": "seasonal_field_crop",
+      "source_name": "Government of India Soil Health Card & ICAR Research Guidelines",
+      "source_url": "https://soilhealth.dac.gov.in/",
+      "last_verified": "2026-08-13"
+    },
+    "chickpea": {
+      "common_name": "Chickpea / Bengal Gram",
+      "local_name": "Harbhara / Chana",
+      "scientific_name": "Cicer arietinum",
+      "category": "pulse",
+      "maharashtra_suitability": "high",
+      "maharashtra_regions": [
+        "Aurangabad",
+        "Latur",
+        "Nanded",
+        "Beed",
+        "Osmanabad",
+        "Solapur",
+        "Pune",
+        "Nashik"
+      ],
+      "seasons": {
+        "maharashtra": [
+          "rabi"
+        ],
+        "general": [
+          "rabi"
+        ]
+      },
+      "soil": {
+        "preferred_types": [
+          "sandy_loam",
+          "loam",
+          "clay_loam"
+        ],
+        "notes": "Well-drained soils; does not tolerate waterlogging",
+        "source": "ICAR-IIPR (Indian Institute of Pulse Research)"
+      },
+      "ph": {
+        "optimal_min": 6.0,
+        "optimal_max": 8.0,
+        "critical_min": 5.5,
+        "critical_max": 9.0,
+        "notes": "Tolerates slightly alkaline soils",
+        "source": "ICAR-IIPR crop production guide"
+      },
+      "nutrients": {
+        "N": {
+          "requirement": "low",
+          "level": "low",
+          "notes": "Legume; fixes atmospheric nitrogen via Rhizobium",
+          "source": "ICAR-IIPR"
+        },
+        "P": {
+          "requirement": "high",
+          "level": "medium_to_high",
+          "notes": "P important for nodulation and root development",
+          "source": "ICAR-IIPR"
+        },
+        "K": {
+          "requirement": "low",
+          "level": "low_to_medium",
+          "source": "ICAR-IIPR"
+        }
+      },
+      "temperature": {
+        "optimal_min": 15,
+        "optimal_max": 25,
+        "critical_min": 5,
+        "critical_max": 35,
+        "notes": "Cool weather crop; sensitive to heat at flowering",
+        "source": "ICAR-IIPR"
+      },
+      "humidity": {
+        "optimal_min": 14,
+        "optimal_max": 25,
+        "notes": "Low humidity preferred; high humidity increases disease risk",
+        "source": "ICAR-IIPR"
+      },
+      "rainfall": {
+        "optimal_min": 350,
+        "optimal_max": 600,
+        "critical_min": 250,
+        "critical_max": 800,
+        "notes": "Rabi crop; rainfed or light irrigation",
+        "source": "ICAR / FAO Crop Ecology Database / VNMKV Guidelines"
+      },
+      "irrigation": {
+        "requirement": "low",
+        "notes": "Often rainfed; one or two protective irrigations if needed",
+        "source": "Maharashtra Agriculture Dept"
+      },
+      "drainage": {
+        "preferred": [
+          "good"
+        ],
+        "source": "ICAR-IIPR"
+      },
+      "category_type": "seasonal_field_crop",
+      "source_name": "Government of India Soil Health Card & ICAR Research Guidelines",
+      "source_url": "https://soilhealth.dac.gov.in/",
+      "last_verified": "2026-08-13"
+    },
+    "kidneybeans": {
+      "common_name": "Kidney Beans / Rajma",
+      "local_name": "Rajma",
+      "scientific_name": "Phaseolus vulgaris",
+      "category": "pulse",
+      "maharashtra_suitability": "moderate",
+      "maharashtra_regions": [
+        "Western Ghats foothills",
+        "Nashik"
+      ],
+      "seasons": {
+        "maharashtra": [
+          "kharif",
+          "rabi"
+        ],
+        "general": [
+          "kharif",
+          "rabi"
+        ]
+      },
+      "soil": {
+        "preferred_types": [
+          "loam",
+          "sandy_loam",
+          "clay_loam"
+        ],
+        "source": "ICAR crop production guide"
+      },
+      "ph": {
+        "optimal_min": 6.0,
+        "optimal_max": 7.5,
+        "critical_min": 5.5,
+        "critical_max": 8.5,
+        "source": "FAO crop requirements"
+      },
+      "nutrients": {
+        "N": {
+          "requirement": "low",
+          "level": "low",
+          "notes": "Legume \u00e2\u20ac\u201d nitrogen fixer",
+          "source": "ICAR"
+        },
+        "P": {
+          "requirement": "high",
+          "level": "medium_to_high",
+          "source": "ICAR"
+        },
+        "K": {
+          "requirement": "low",
+          "level": "low_to_medium",
+          "source": "ICAR"
+        }
+      },
+      "temperature": {
+        "optimal_min": 15,
+        "optimal_max": 25,
+        "critical_min": 10,
+        "critical_max": 30,
+        "source": "FAO"
+      },
+      "humidity": {
+        "optimal_min": 15,
+        "optimal_max": 25,
+        "source": "FAO"
+      },
+      "rainfall": {
+        "optimal_min": 400,
+        "optimal_max": 650,
+        "critical_min": 300,
+        "critical_max": 900,
+        "notes": "Moderate rainfall, well-drained loamy soils",
+        "source": "ICAR / FAO Crop Ecology Database / VNMKV Guidelines"
+      },
+      "irrigation": {
+        "requirement": "moderate",
+        "source": "ICAR"
+      },
+      "drainage": {
+        "preferred": [
+          "good",
+          "moderate"
+        ],
+        "source": "ICAR"
+      },
+      "category_type": "seasonal_field_crop",
+      "source_name": "Government of India Soil Health Card & ICAR Research Guidelines",
+      "source_url": "https://soilhealth.dac.gov.in/",
+      "last_verified": "2026-08-13"
+    },
+    "pigeonpeas": {
+      "common_name": "Pigeon Pea / Red Gram / Arhar",
+      "local_name": "Tur / Arhar",
+      "scientific_name": "Cajanus cajan",
+      "category": "pulse",
+      "maharashtra_suitability": "high",
+      "maharashtra_regions": [
+        "Latur",
+        "Nanded",
+        "Osmanabad",
+        "Beed",
+        "Aurangabad",
+        "Yavatmal",
+        "Amravati"
+      ],
+      "seasons": {
+        "maharashtra": [
+          "kharif"
+        ],
+        "general": [
+          "kharif"
+        ]
+      },
+      "soil": {
+        "preferred_types": [
+          "sandy_loam",
+          "loam",
+          "clay_loam",
+          "medium_black"
+        ],
+        "notes": "Deep, well-drained soils preferred; tolerates poor soils",
+        "source": "ICAR-IIPR"
+      },
+      "ph": {
+        "optimal_min": 5.5,
+        "optimal_max": 7.0,
+        "critical_min": 5.0,
+        "critical_max": 8.5,
+        "source": "ICAR-IIPR"
+      },
+      "nutrients": {
+        "N": {
+          "requirement": "low",
+          "level": "low",
+          "notes": "Nitrogen fixer",
+          "source": "ICAR-IIPR"
+        },
+        "P": {
+          "requirement": "medium",
+          "level": "medium",
+          "source": "ICAR-IIPR"
+        },
+        "K": {
+          "requirement": "low",
+          "level": "low",
+          "source": "ICAR-IIPR"
+        }
+      },
+      "temperature": {
+        "optimal_min": 18,
+        "optimal_max": 30,
+        "critical_min": 10,
+        "critical_max": 40,
+        "source": "ICAR-IIPR"
+      },
+      "humidity": {
+        "optimal_min": 40,
+        "optimal_max": 65,
+        "source": "ICAR-IIPR"
+      },
+      "rainfall": {
+        "optimal_min": 600,
+        "optimal_max": 1000,
+        "critical_min": 450,
+        "critical_max": 1300,
+        "notes": "Deep rooted Kharif pulse; drought tolerant once established",
+        "source": "ICAR / FAO Crop Ecology Database / VNMKV Guidelines"
+      },
+      "irrigation": {
+        "requirement": "low",
+        "notes": "Drought tolerant; mainly rainfed",
+        "source": "ICAR-IIPR"
+      },
+      "drainage": {
+        "preferred": [
+          "good"
+        ],
+        "source": "ICAR-IIPR"
+      },
+      "category_type": "seasonal_field_crop",
+      "source_name": "Government of India Soil Health Card & ICAR Research Guidelines",
+      "source_url": "https://soilhealth.dac.gov.in/",
+      "last_verified": "2026-08-13"
+    },
+    "mothbeans": {
+      "common_name": "Moth Bean",
+      "local_name": "Matki",
+      "scientific_name": "Vigna aconitifolia",
+      "category": "pulse",
+      "maharashtra_suitability": "moderate",
+      "maharashtra_regions": [
+        "Marathwada",
+        "Vidarbha dry areas"
+      ],
+      "seasons": {
+        "maharashtra": [
+          "kharif"
+        ],
+        "general": [
+          "kharif"
+        ]
+      },
+      "soil": {
+        "preferred_types": [
+          "sandy",
+          "sandy_loam",
+          "loam"
+        ],
+        "notes": "Drought-tolerant; suited to arid and semi-arid conditions",
+        "source": "ICAR crop production guide"
+      },
+      "ph": {
+        "optimal_min": 7.0,
+        "optimal_max": 8.0,
+        "critical_min": 6.0,
+        "critical_max": 9.0,
+        "source": "ICAR"
+      },
+      "nutrients": {
+        "N": {
+          "requirement": "low",
+          "level": "low",
+          "notes": "Nitrogen fixer",
+          "source": "ICAR"
+        },
+        "P": {
+          "requirement": "medium",
+          "level": "low_to_medium",
+          "source": "ICAR"
+        },
+        "K": {
+          "requirement": "low",
+          "level": "low",
+          "source": "ICAR"
+        }
+      },
+      "temperature": {
+        "optimal_min": 24,
+        "optimal_max": 32,
+        "critical_min": 15,
+        "critical_max": 42,
+        "notes": "Heat-tolerant; suited to hot dry conditions",
+        "source": "ICAR"
+      },
+      "humidity": {
+        "optimal_min": 40,
+        "optimal_max": 65,
+        "source": "ICAR"
+      },
+      "rainfall": {
+        "optimal_min": 300,
+        "optimal_max": 500,
+        "critical_min": 200,
+        "critical_max": 750,
+        "notes": "Highly drought-tolerant arid pulse",
+        "source": "ICAR / FAO Crop Ecology Database / VNMKV Guidelines"
+      },
+      "irrigation": {
+        "requirement": "low",
+        "notes": "Primarily rainfed; drought tolerant",
+        "source": "ICAR"
+      },
+      "drainage": {
+        "preferred": [
+          "good"
+        ],
+        "source": "ICAR"
+      },
+      "category_type": "seasonal_field_crop",
+      "source_name": "Government of India Soil Health Card & ICAR Research Guidelines",
+      "source_url": "https://soilhealth.dac.gov.in/",
+      "last_verified": "2026-08-13"
+    },
+    "mungbean": {
+      "common_name": "Green Gram / Mung Bean",
+      "local_name": "Moong",
+      "scientific_name": "Vigna radiata",
+      "category": "pulse",
+      "maharashtra_suitability": "high",
+      "maharashtra_regions": [
+        "Nashik",
+        "Aurangabad",
+        "Pune",
+        "Solapur",
+        "Ahmednagar"
+      ],
+      "seasons": {
+        "maharashtra": [
+          "kharif",
+          "summer"
+        ],
+        "general": [
+          "kharif",
+          "summer"
+        ]
+      },
+      "soil": {
+        "preferred_types": [
+          "sandy_loam",
+          "loam"
+        ],
+        "notes": "Well-drained soils; short duration crop suited to summer cultivation",
+        "source": "ICAR-IIPR"
+      },
+      "ph": {
+        "optimal_min": 6.2,
+        "optimal_max": 7.5,
+        "critical_min": 5.5,
+        "critical_max": 8.5,
+        "source": "ICAR-IIPR"
+      },
+      "nutrients": {
+        "N": {
+          "requirement": "low",
+          "level": "low",
+          "notes": "Nitrogen fixer",
+          "source": "ICAR-IIPR"
+        },
+        "P": {
+          "requirement": "medium",
+          "level": "medium",
+          "source": "ICAR-IIPR"
+        },
+        "K": {
+          "requirement": "low",
+          "level": "low",
+          "source": "ICAR-IIPR"
+        }
+      },
+      "temperature": {
+        "optimal_min": 25,
+        "optimal_max": 35,
+        "critical_min": 18,
+        "critical_max": 40,
+        "source": "ICAR-IIPR"
+      },
+      "humidity": {
+        "optimal_min": 75,
+        "optimal_max": 95,
+        "source": "ICAR-IIPR"
+      },
+      "rainfall": {
+        "optimal_min": 400,
+        "optimal_max": 750,
+        "critical_min": 300,
+        "critical_max": 950,
+        "notes": "Short duration Kharif/Summer crop",
+        "source": "ICAR / FAO Crop Ecology Database / VNMKV Guidelines"
+      },
+      "irrigation": {
+        "requirement": "moderate",
+        "source": "ICAR-IIPR"
+      },
+      "drainage": {
+        "preferred": [
+          "good",
+          "moderate"
+        ],
+        "source": "ICAR-IIPR"
+      },
+      "category_type": "seasonal_field_crop",
+      "source_name": "Government of India Soil Health Card & ICAR Research Guidelines",
+      "source_url": "https://soilhealth.dac.gov.in/",
+      "last_verified": "2026-08-13"
+    },
+    "blackgram": {
+      "common_name": "Black Gram / Urad",
+      "local_name": "Udid / Urad",
+      "scientific_name": "Vigna mungo",
+      "category": "pulse",
+      "maharashtra_suitability": "moderate",
+      "maharashtra_regions": [
+        "Vidarbha",
+        "Marathwada"
+      ],
+      "seasons": {
+        "maharashtra": [
+          "kharif"
+        ],
+        "general": [
+          "kharif"
+        ]
+      },
+      "soil": {
+        "preferred_types": [
+          "loam",
+          "sandy_loam",
+          "clay_loam"
+        ],
+        "source": "ICAR-IIPR"
+      },
+      "ph": {
+        "optimal_min": 6.0,
+        "optimal_max": 7.5,
+        "critical_min": 5.5,
+        "critical_max": 8.5,
+        "source": "ICAR-IIPR"
+      },
+      "nutrients": {
+        "N": {
+          "requirement": "low",
+          "level": "low",
+          "notes": "Nitrogen fixer",
+          "source": "ICAR-IIPR"
+        },
+        "P": {
+          "requirement": "medium",
+          "level": "medium",
+          "source": "ICAR-IIPR"
+        },
+        "K": {
+          "requirement": "low",
+          "level": "low",
+          "source": "ICAR-IIPR"
+        }
+      },
+      "temperature": {
+        "optimal_min": 24,
+        "optimal_max": 35,
+        "critical_min": 18,
+        "critical_max": 40,
+        "source": "ICAR-IIPR"
+      },
+      "humidity": {
+        "optimal_min": 60,
+        "optimal_max": 75,
+        "source": "ICAR-IIPR"
+      },
+      "rainfall": {
+        "optimal_min": 400,
+        "optimal_max": 750,
+        "critical_min": 300,
+        "critical_max": 950,
+        "notes": "Short duration Kharif pulse",
+        "source": "ICAR / FAO Crop Ecology Database / VNMKV Guidelines"
+      },
+      "irrigation": {
+        "requirement": "low",
+        "source": "ICAR-IIPR"
+      },
+      "drainage": {
+        "preferred": [
+          "good"
+        ],
+        "source": "ICAR-IIPR"
+      },
+      "category_type": "seasonal_field_crop",
+      "source_name": "Government of India Soil Health Card & ICAR Research Guidelines",
+      "source_url": "https://soilhealth.dac.gov.in/",
+      "last_verified": "2026-08-13"
+    },
+    "lentil": {
+      "common_name": "Lentil / Masur",
+      "local_name": "Masur",
+      "scientific_name": "Lens culinaris",
+      "category": "pulse",
+      "maharashtra_suitability": "low",
+      "maharashtra_regions": [
+        "Limited - cooler plateau areas"
+      ],
+      "seasons": {
+        "maharashtra": [
+          "rabi"
+        ],
+        "general": [
+          "rabi"
+        ]
+      },
+      "soil": {
+        "preferred_types": [
+          "loam",
+          "sandy_loam"
+        ],
+        "notes": "Prefers well-drained soils with adequate moisture retention",
+        "source": "ICAR-IIPR"
+      },
+      "ph": {
+        "optimal_min": 6.0,
+        "optimal_max": 7.5,
+        "critical_min": 5.5,
+        "critical_max": 8.5,
+        "source": "ICAR-IIPR"
+      },
+      "nutrients": {
+        "N": {
+          "requirement": "low",
+          "level": "low",
+          "notes": "Nitrogen fixer",
+          "source": "ICAR-IIPR"
+        },
+        "P": {
+          "requirement": "high",
+          "level": "medium_to_high",
+          "source": "ICAR-IIPR"
+        },
+        "K": {
+          "requirement": "low",
+          "level": "low",
+          "source": "ICAR-IIPR"
+        }
+      },
+      "temperature": {
+        "optimal_min": 18,
+        "optimal_max": 30,
+        "critical_min": 5,
+        "critical_max": 35,
+        "notes": "Cool season crop; sensitive to heat at pod-filling stage",
+        "source": "ICAR-IIPR"
+      },
+      "humidity": {
+        "optimal_min": 60,
+        "optimal_max": 75,
+        "source": "ICAR-IIPR"
+      },
+      "rainfall": {
+        "optimal_min": 300,
+        "optimal_max": 500,
+        "critical_min": 200,
+        "critical_max": 700,
+        "notes": "Rabi cool-season crop",
+        "source": "ICAR / FAO Crop Ecology Database / VNMKV Guidelines"
+      },
+      "irrigation": {
+        "requirement": "low",
+        "source": "ICAR-IIPR"
+      },
+      "drainage": {
+        "preferred": [
+          "good"
+        ],
+        "source": "ICAR-IIPR"
+      },
+      "category_type": "seasonal_field_crop",
+      "source_name": "Government of India Soil Health Card & ICAR Research Guidelines",
+      "source_url": "https://soilhealth.dac.gov.in/",
+      "last_verified": "2026-08-13"
+    },
+    "pomegranate": {
+      "common_name": "Pomegranate",
+      "local_name": "Dalimb / Anar",
+      "scientific_name": "Punica granatum",
+      "category": "fruit",
+      "maharashtra_suitability": "high",
+      "maharashtra_regions": [
+        "Solapur",
+        "Nashik",
+        "Sangli",
+        "Pune",
+        "Ahmednagar"
+      ],
+      "seasons": {
+        "maharashtra": [
+          "perennial"
+        ],
+        "general": [
+          "perennial"
+        ]
+      },
+      "soil": {
+        "preferred_types": [
+          "sandy_loam",
+          "loam",
+          "medium_black"
+        ],
+        "notes": "Well-drained soils; adaptable to varied soils including alkaline",
+        "source": "Maharashtra State Horticulture Dept; ICAR-NRC Pomegranate"
+      },
+      "ph": {
+        "optimal_min": 5.5,
+        "optimal_max": 7.5,
+        "critical_min": 5.0,
+        "critical_max": 8.5,
+        "source": "ICAR-NRC Pomegranate, Solapur"
+      },
+      "nutrients": {
+        "N": {
+          "requirement": "medium",
+          "level": "medium",
+          "source": "ICAR-NRC Pomegranate"
+        },
+        "P": {
+          "requirement": "low",
+          "level": "low",
+          "source": "ICAR-NRC Pomegranate"
+        },
+        "K": {
+          "requirement": "medium",
+          "level": "medium",
+          "notes": "K improves fruit quality and color",
+          "source": "ICAR-NRC Pomegranate"
+        }
+      },
+      "temperature": {
+        "optimal_min": 25,
+        "optimal_max": 35,
+        "critical_min": 10,
+        "critical_max": 45,
+        "notes": "Tolerates hot dry conditions; needs cool/dry spell for fruit setting",
+        "source": "ICAR-NRC Pomegranate"
+      },
+      "humidity": {
+        "optimal_min": 80,
+        "optimal_max": 95,
+        "source": "ICAR-NRC Pomegranate"
+      },
+      "rainfall": {
+        "optimal_min": 500,
+        "optimal_max": 800,
+        "critical_min": 350,
+        "critical_max": 1100,
+        "notes": "Semi-arid horticultural crop; dry flowering/harvest preferred",
+        "source": "ICAR / FAO Crop Ecology Database / VNMKV Guidelines"
+      },
+      "irrigation": {
+        "requirement": "high",
+        "notes": "Drip irrigation recommended for water efficiency",
+        "source": "Maharashtra Horticulture"
+      },
+      "drainage": {
+        "preferred": [
+          "good"
+        ],
+        "source": "ICAR-NRC Pomegranate"
+      },
+      "category_type": "perennial_horticulture",
+      "source_name": "Government of India Soil Health Card & ICAR Research Guidelines",
+      "source_url": "https://soilhealth.dac.gov.in/",
+      "last_verified": "2026-08-13"
+    },
+    "banana": {
+      "common_name": "Banana",
+      "local_name": "Kela",
+      "scientific_name": "Musa spp.",
+      "category": "fruit",
+      "maharashtra_suitability": "high",
+      "maharashtra_regions": [
+        "Jalgaon",
+        "Kolhapur",
+        "Nashik"
+      ],
+      "seasons": {
+        "maharashtra": [
+          "perennial"
+        ],
+        "general": [
+          "perennial"
+        ]
+      },
+      "soil": {
+        "preferred_types": [
+          "loam",
+          "sandy_loam",
+          "clay_loam",
+          "alluvial"
+        ],
+        "notes": "Deep, well-drained fertile soils preferred; excellent drainage essential",
+        "source": "ICAR crop production guide for banana; Jalgaon KVK"
+      },
+      "ph": {
+        "optimal_min": 6.0,
+        "optimal_max": 7.5,
+        "critical_min": 5.5,
+        "critical_max": 8.0,
+        "source": "ICAR crop production guide"
+      },
+      "nutrients": {
+        "N": {
+          "requirement": "high",
+          "level": "high",
+          "notes": "High nitrogen demand for pseudostem and leaf development",
+          "source": "ICAR"
+        },
+        "P": {
+          "requirement": "high",
+          "level": "high",
+          "source": "ICAR"
+        },
+        "K": {
+          "requirement": "high",
+          "level": "high",
+          "notes": "Highest K requirement among food crops; K critical for bunch development",
+          "source": "ICAR"
+        }
+      },
+      "temperature": {
+        "optimal_min": 25,
+        "optimal_max": 35,
+        "critical_min": 15,
+        "critical_max": 40,
+        "notes": "Tropical crop; chilling injury below 12\u00c2\u00b0C",
+        "source": "FAO; ICAR"
+      },
+      "humidity": {
+        "optimal_min": 75,
+        "optimal_max": 90,
+        "source": "FAO"
+      },
+      "rainfall": {
+        "optimal_min": 1200,
+        "optimal_max": 2200,
+        "critical_min": 900,
+        "critical_max": 3000,
+        "notes": "High water requirement year-round",
+        "source": "ICAR / FAO Crop Ecology Database / VNMKV Guidelines"
+      },
+      "irrigation": {
+        "requirement": "high",
+        "notes": "Drip irrigation widely adopted in Jalgaon",
+        "source": "Maharashtra Horticulture"
+      },
+      "drainage": {
+        "preferred": [
+          "good",
+          "moderate"
+        ],
+        "source": "ICAR"
+      },
+      "category_type": "perennial_horticulture",
+      "source_name": "Government of India Soil Health Card & ICAR Research Guidelines",
+      "source_url": "https://soilhealth.dac.gov.in/",
+      "last_verified": "2026-08-13"
+    },
+    "mango": {
+      "common_name": "Mango",
+      "local_name": "Amba",
+      "scientific_name": "Mangifera indica",
+      "category": "fruit",
+      "maharashtra_suitability": "high",
+      "maharashtra_regions": [
+        "Ratnagiri (Alphonso)",
+        "Sindhudurg",
+        "Konkan",
+        "Nashik"
+      ],
+      "seasons": {
+        "maharashtra": [
+          "perennial"
+        ],
+        "general": [
+          "perennial"
+        ]
+      },
+      "soil": {
+        "preferred_types": [
+          "loam",
+          "sandy_loam",
+          "laterite"
+        ],
+        "notes": "Deep, well-drained soils; Konkan laterite soils ideal for Alphonso",
+        "source": "Maharashtra State Horticulture Dept; ICAR"
+      },
+      "ph": {
+        "optimal_min": 5.5,
+        "optimal_max": 7.5,
+        "critical_min": 5.0,
+        "critical_max": 8.0,
+        "source": "ICAR crop production guide"
+      },
+      "nutrients": {
+        "N": {
+          "requirement": "low",
+          "level": "low",
+          "source": "ICAR"
+        },
+        "P": {
+          "requirement": "low",
+          "level": "low",
+          "source": "ICAR"
+        },
+        "K": {
+          "requirement": "medium",
+          "level": "medium",
+          "source": "ICAR"
+        }
+      },
+      "temperature": {
+        "optimal_min": 24,
+        "optimal_max": 27,
+        "critical_min": 15,
+        "critical_max": 42,
+        "notes": "Requires hot dry period for flowering; fruiting needs 24-27\u00c2\u00b0C",
+        "source": "ICAR"
+      },
+      "humidity": {
+        "optimal_min": 50,
+        "optimal_max": 65,
+        "notes": "Low humidity during flowering reduces disease risk",
+        "source": "ICAR"
+      },
+      "rainfall": {
+        "optimal_min": 750,
+        "optimal_max": 1500,
+        "critical_min": 500,
+        "critical_max": 2200,
+        "notes": "Dry spell during flowering essential for fruit set",
+        "source": "ICAR / FAO Crop Ecology Database / VNMKV Guidelines"
+      },
+      "irrigation": {
+        "requirement": "moderate",
+        "notes": "Irrigation beneficial during fruit development; rain-fed in Konkan",
+        "source": "Maharashtra Horticulture"
+      },
+      "drainage": {
+        "preferred": [
+          "good"
+        ],
+        "source": "ICAR"
+      },
+      "category_type": "perennial_horticulture",
+      "source_name": "Government of India Soil Health Card & ICAR Research Guidelines",
+      "source_url": "https://soilhealth.dac.gov.in/",
+      "last_verified": "2026-08-13"
+    },
+    "grapes": {
+      "common_name": "Grapes",
+      "local_name": "Draksha",
+      "scientific_name": "Vitis vinifera",
+      "category": "fruit",
+      "maharashtra_suitability": "high",
+      "maharashtra_regions": [
+        "Nashik",
+        "Sangli",
+        "Pune",
+        "Satara"
+      ],
+      "seasons": {
+        "maharashtra": [
+          "perennial"
+        ],
+        "general": [
+          "perennial"
+        ]
+      },
+      "soil": {
+        "preferred_types": [
+          "sandy_loam",
+          "loam"
+        ],
+        "notes": "Well-drained soils critical; deep soils preferred for root development",
+        "source": "ICAR-NRC Grapes, Pune; Maharashtra Horticulture Dept"
+      },
+      "ph": {
+        "optimal_min": 5.5,
+        "optimal_max": 7.0,
+        "critical_min": 5.0,
+        "critical_max": 8.0,
+        "source": "ICAR-NRC Grapes"
+      },
+      "nutrients": {
+        "N": {
+          "requirement": "medium",
+          "level": "low_to_medium",
+          "source": "ICAR-NRC Grapes"
+        },
+        "P": {
+          "requirement": "low",
+          "level": "low",
+          "source": "ICAR-NRC Grapes"
+        },
+        "K": {
+          "requirement": "high",
+          "level": "high",
+          "notes": "Very high K requirement; K critical for berry quality",
+          "source": "ICAR-NRC Grapes"
+        }
+      },
+      "temperature": {
+        "optimal_min": 23,
+        "optimal_max": 28,
+        "critical_min": 10,
+        "critical_max": 40,
+        "notes": "Cool nights important for sugar accumulation and color development",
+        "source": "ICAR-NRC Grapes"
+      },
+      "humidity": {
+        "optimal_min": 75,
+        "optimal_max": 90,
+        "source": "ICAR-NRC Grapes"
+      },
+      "rainfall": {
+        "optimal_min": 500,
+        "optimal_max": 800,
+        "critical_min": 350,
+        "critical_max": 1000,
+        "notes": "Subtropical vine; needs dry weather during ripening",
+        "source": "ICAR / FAO Crop Ecology Database / VNMKV Guidelines"
+      },
+      "irrigation": {
+        "requirement": "high",
+        "notes": "Drip irrigation essential; precise water management required",
+        "source": "ICAR-NRC Grapes"
+      },
+      "drainage": {
+        "preferred": [
+          "good"
+        ],
+        "source": "ICAR-NRC Grapes"
+      },
+      "category_type": "perennial_horticulture",
+      "source_name": "Government of India Soil Health Card & ICAR Research Guidelines",
+      "source_url": "https://soilhealth.dac.gov.in/",
+      "last_verified": "2026-08-13"
+    },
+    "watermelon": {
+      "common_name": "Watermelon",
+      "local_name": "Kalingad",
+      "scientific_name": "Citrullus lanatus",
+      "category": "vegetable",
+      "maharashtra_suitability": "moderate",
+      "maharashtra_regions": [
+        "Nashik",
+        "Solapur",
+        "Pune"
+      ],
+      "seasons": {
+        "maharashtra": [
+          "summer",
+          "kharif"
+        ],
+        "general": [
+          "summer"
+        ]
+      },
+      "soil": {
+        "preferred_types": [
+          "sandy_loam",
+          "loam",
+          "sandy"
+        ],
+        "notes": "Light, well-drained soils preferred for good vine spread",
+        "source": "ICAR crop production guide"
+      },
+      "ph": {
+        "optimal_min": 6.0,
+        "optimal_max": 7.0,
+        "critical_min": 5.5,
+        "critical_max": 7.5,
+        "source": "FAO; ICAR"
+      },
+      "nutrients": {
+        "N": {
+          "requirement": "high",
+          "level": "high",
+          "source": "ICAR"
+        },
+        "P": {
+          "requirement": "low",
+          "level": "low",
+          "source": "ICAR"
+        },
+        "K": {
+          "requirement": "high",
+          "level": "medium_to_high",
+          "source": "ICAR"
+        }
+      },
+      "temperature": {
+        "optimal_min": 24,
+        "optimal_max": 27,
+        "critical_min": 18,
+        "critical_max": 35,
+        "source": "FAO"
+      },
+      "humidity": {
+        "optimal_min": 80,
+        "optimal_max": 92,
+        "source": "FAO"
+      },
+      "rainfall": {
+        "optimal_min": 400,
+        "optimal_max": 650,
+        "critical_min": 250,
+        "critical_max": 850,
+        "notes": "Warm season cucurbit; well-drained sandy loam",
+        "source": "ICAR / FAO Crop Ecology Database / VNMKV Guidelines"
+      },
+      "irrigation": {
+        "requirement": "high",
+        "source": "ICAR"
+      },
+      "drainage": {
+        "preferred": [
+          "good"
+        ],
+        "source": "ICAR"
+      },
+      "category_type": "seasonal_field_crop",
+      "source_name": "Government of India Soil Health Card & ICAR Research Guidelines",
+      "source_url": "https://soilhealth.dac.gov.in/",
+      "last_verified": "2026-08-13"
+    },
+    "muskmelon": {
+      "common_name": "Muskmelon",
+      "local_name": "Kharbuja",
+      "scientific_name": "Cucumis melo",
+      "category": "vegetable",
+      "maharashtra_suitability": "moderate",
+      "maharashtra_regions": [
+        "Nashik",
+        "Solapur",
+        "Pune"
+      ],
+      "seasons": {
+        "maharashtra": [
+          "summer"
+        ],
+        "general": [
+          "summer"
+        ]
+      },
+      "soil": {
+        "preferred_types": [
+          "sandy_loam",
+          "loam"
+        ],
+        "source": "ICAR"
+      },
+      "ph": {
+        "optimal_min": 6.0,
+        "optimal_max": 7.5,
+        "critical_min": 5.5,
+        "critical_max": 8.0,
+        "source": "FAO"
+      },
+      "nutrients": {
+        "N": {
+          "requirement": "high",
+          "level": "high",
+          "source": "ICAR"
+        },
+        "P": {
+          "requirement": "low",
+          "level": "low",
+          "source": "ICAR"
+        },
+        "K": {
+          "requirement": "high",
+          "level": "medium_to_high",
+          "source": "ICAR"
+        }
+      },
+      "temperature": {
+        "optimal_min": 28,
+        "optimal_max": 32,
+        "critical_min": 20,
+        "critical_max": 38,
+        "source": "FAO"
+      },
+      "humidity": {
+        "optimal_min": 85,
+        "optimal_max": 95,
+        "source": "FAO"
+      },
+      "rainfall": {
+        "optimal_min": 400,
+        "optimal_max": 650,
+        "critical_min": 250,
+        "critical_max": 850,
+        "notes": "Warm dry atmosphere preferred during fruit ripening",
+        "source": "ICAR / FAO Crop Ecology Database / VNMKV Guidelines"
+      },
+      "irrigation": {
+        "requirement": "high",
+        "source": "ICAR"
+      },
+      "drainage": {
+        "preferred": [
+          "good"
+        ],
+        "source": "ICAR"
+      },
+      "category_type": "seasonal_field_crop",
+      "source_name": "Government of India Soil Health Card & ICAR Research Guidelines",
+      "source_url": "https://soilhealth.dac.gov.in/",
+      "last_verified": "2026-08-13"
+    },
+    "apple": {
+      "common_name": "Apple",
+      "local_name": "Seb",
+      "scientific_name": "Malus domestica",
+      "category": "fruit",
+      "maharashtra_suitability": "low",
+      "maharashtra_regions": [
+        "Not well-suited to Maharashtra plains; Nashik at altitude occasionally attempted"
+      ],
+      "seasons": {
+        "maharashtra": [
+          "perennial"
+        ],
+        "general": [
+          "perennial"
+        ]
+      },
+      "soil": {
+        "preferred_types": [
+          "loam",
+          "sandy_loam"
+        ],
+        "notes": "Deep, well-drained loamy soils; requires chilling hours",
+        "source": "ICAR crop production guide"
+      },
+      "ph": {
+        "optimal_min": 5.5,
+        "optimal_max": 6.5,
+        "critical_min": 5.0,
+        "critical_max": 7.5,
+        "source": "ICAR"
+      },
+      "nutrients": {
+        "N": {
+          "requirement": "medium",
+          "level": "medium",
+          "source": "ICAR"
+        },
+        "P": {
+          "requirement": "high",
+          "level": "high",
+          "source": "ICAR"
+        },
+        "K": {
+          "requirement": "high",
+          "level": "high",
+          "source": "ICAR"
+        }
+      },
+      "temperature": {
+        "optimal_min": 21,
+        "optimal_max": 24,
+        "critical_min": -2,
+        "critical_max": 35,
+        "notes": "Requires chilling hours (below 7\u00c2\u00b0C) for dormancy break; unsuitable for warm plains",
+        "source": "ICAR"
+      },
+      "humidity": {
+        "optimal_min": 85,
+        "optimal_max": 95,
+        "source": "FAO"
+      },
+      "rainfall": {
+        "optimal_min": 800,
+        "optimal_max": 1250,
+        "critical_min": 600,
+        "critical_max": 1600,
+        "notes": "Temperate fruit crop; requires winter chilling",
+        "source": "ICAR / FAO Crop Ecology Database / VNMKV Guidelines"
+      },
+      "irrigation": {
+        "requirement": "moderate",
+        "source": "ICAR"
+      },
+      "drainage": {
+        "preferred": [
+          "good"
+        ],
+        "source": "ICAR"
+      },
+      "category_type": "perennial_horticulture",
+      "source_name": "Government of India Soil Health Card & ICAR Research Guidelines",
+      "source_url": "https://soilhealth.dac.gov.in/",
+      "last_verified": "2026-08-13"
+    },
+    "orange": {
+      "common_name": "Orange",
+      "local_name": "Santra",
+      "scientific_name": "Citrus sinensis",
+      "category": "fruit",
+      "maharashtra_suitability": "high",
+      "maharashtra_regions": [
+        "Nagpur",
+        "Amravati",
+        "Wardha",
+        "Yavatmal"
+      ],
+      "seasons": {
+        "maharashtra": [
+          "perennial"
+        ],
+        "general": [
+          "perennial"
+        ]
+      },
+      "soil": {
+        "preferred_types": [
+          "sandy_loam",
+          "loam",
+          "clay_loam"
+        ],
+        "notes": "Nagpur mandarin thrives on red lateritic and medium black soils",
+        "source": "ICAR-Citrus Research Station Nagpur; Maharashtra Horticulture"
+      },
+      "ph": {
+        "optimal_min": 6.0,
+        "optimal_max": 7.5,
+        "critical_min": 5.5,
+        "critical_max": 8.0,
+        "source": "ICAR-Citrus Research Station"
+      },
+      "nutrients": {
+        "N": {
+          "requirement": "medium",
+          "level": "medium",
+          "source": "ICAR Citrus"
+        },
+        "P": {
+          "requirement": "low",
+          "level": "low",
+          "source": "ICAR Citrus"
+        },
+        "K": {
+          "requirement": "low",
+          "level": "low_to_medium",
+          "source": "ICAR Citrus"
+        }
+      },
+      "temperature": {
+        "optimal_min": 10,
+        "optimal_max": 15,
+        "critical_min": 2,
+        "critical_max": 38,
+        "notes": "Nagpur mandarin requires cool dry period (10-15\u00c2\u00b0C) for flowering induction",
+        "source": "ICAR Citrus Research Station"
+      },
+      "humidity": {
+        "optimal_min": 85,
+        "optimal_max": 95,
+        "source": "ICAR Citrus"
+      },
+      "rainfall": {
+        "optimal_min": 800,
+        "optimal_max": 1200,
+        "critical_min": 600,
+        "critical_max": 1500,
+        "notes": "Citrus crop; requires well-drained soil",
+        "source": "ICAR / FAO Crop Ecology Database / VNMKV Guidelines"
+      },
+      "irrigation": {
+        "requirement": "moderate",
+        "source": "Maharashtra Horticulture"
+      },
+      "drainage": {
+        "preferred": [
+          "good",
+          "moderate"
+        ],
+        "source": "ICAR Citrus"
+      },
+      "category_type": "seasonal_field_crop",
+      "source_name": "Government of India Soil Health Card & ICAR Research Guidelines",
+      "source_url": "https://soilhealth.dac.gov.in/",
+      "last_verified": "2026-08-13"
+    },
+    "papaya": {
+      "common_name": "Papaya",
+      "local_name": "Papai",
+      "scientific_name": "Carica papaya",
+      "category": "fruit",
+      "maharashtra_suitability": "moderate",
+      "maharashtra_regions": [
+        "Nashik",
+        "Pune",
+        "Kolhapur",
+        "Aurangabad"
+      ],
+      "seasons": {
+        "maharashtra": [
+          "perennial"
+        ],
+        "general": [
+          "perennial"
+        ]
+      },
+      "soil": {
+        "preferred_types": [
+          "sandy_loam",
+          "loam"
+        ],
+        "notes": "Cannot tolerate waterlogging; excellent drainage essential",
+        "source": "ICAR crop production guide"
+      },
+      "ph": {
+        "optimal_min": 5.5,
+        "optimal_max": 7.0,
+        "critical_min": 5.0,
+        "critical_max": 8.0,
+        "source": "FAO; ICAR"
+      },
+      "nutrients": {
+        "N": {
+          "requirement": "high",
+          "level": "medium_to_high",
+          "source": "ICAR"
+        },
+        "P": {
+          "requirement": "low",
+          "level": "low_to_medium",
+          "source": "ICAR"
+        },
+        "K": {
+          "requirement": "high",
+          "level": "medium_to_high",
+          "source": "ICAR"
+        }
+      },
+      "temperature": {
+        "optimal_min": 25,
+        "optimal_max": 35,
+        "critical_min": 12,
+        "critical_max": 42,
+        "source": "FAO"
+      },
+      "humidity": {
+        "optimal_min": 85,
+        "optimal_max": 95,
+        "source": "FAO"
+      },
+      "rainfall": {
+        "optimal_min": 1000,
+        "optimal_max": 1800,
+        "critical_min": 750,
+        "critical_max": 2400,
+        "notes": "Tropical fruit; sensitive to waterlogging",
+        "source": "ICAR / FAO Crop Ecology Database / VNMKV Guidelines"
+      },
+      "irrigation": {
+        "requirement": "high",
+        "source": "ICAR"
+      },
+      "drainage": {
+        "preferred": [
+          "good"
+        ],
+        "source": "ICAR"
+      },
+      "category_type": "seasonal_field_crop",
+      "source_name": "Government of India Soil Health Card & ICAR Research Guidelines",
+      "source_url": "https://soilhealth.dac.gov.in/",
+      "last_verified": "2026-08-13"
+    },
+    "coconut": {
+      "common_name": "Coconut",
+      "local_name": "Narel",
+      "scientific_name": "Cocos nucifera",
+      "category": "fruit",
+      "maharashtra_suitability": "moderate",
+      "maharashtra_regions": [
+        "Konkan (Ratnagiri, Sindhudurg, Raigad)"
+      ],
+      "seasons": {
+        "maharashtra": [
+          "perennial"
+        ],
+        "general": [
+          "perennial"
+        ]
+      },
+      "soil": {
+        "preferred_types": [
+          "sandy_loam",
+          "loam",
+          "laterite",
+          "alluvial"
+        ],
+        "notes": "Coastal soils; tolerates slightly saline conditions",
+        "source": "ICAR-Central Plantation Crops Research Institute"
+      },
+      "ph": {
+        "optimal_min": 5.5,
+        "optimal_max": 7.5,
+        "critical_min": 5.0,
+        "critical_max": 8.5,
+        "source": "ICAR-CPCRI"
+      },
+      "nutrients": {
+        "N": {
+          "requirement": "medium",
+          "level": "medium",
+          "source": "ICAR-CPCRI"
+        },
+        "P": {
+          "requirement": "low",
+          "level": "low",
+          "source": "ICAR-CPCRI"
+        },
+        "K": {
+          "requirement": "high",
+          "level": "medium_to_high",
+          "notes": "Highest K requirement of plantation crops",
+          "source": "ICAR-CPCRI"
+        }
+      },
+      "temperature": {
+        "optimal_min": 27,
+        "optimal_max": 35,
+        "critical_min": 15,
+        "critical_max": 40,
+        "source": "FAO; ICAR-CPCRI"
+      },
+      "humidity": {
+        "optimal_min": 90,
+        "optimal_max": 98,
+        "source": "ICAR-CPCRI"
+      },
+      "rainfall": {
+        "optimal_min": 1300,
+        "optimal_max": 2500,
+        "critical_min": 1000,
+        "critical_max": 3500,
+        "notes": "Coastal/tropical palm; high humidity & rainfall",
+        "source": "ICAR / FAO Crop Ecology Database / VNMKV Guidelines"
+      },
+      "irrigation": {
+        "requirement": "moderate",
+        "notes": "Rain-fed in Konkan; drip irrigation beneficial in drier areas",
+        "source": "Maharashtra Horticulture"
+      },
+      "drainage": {
+        "preferred": [
+          "good",
+          "moderate"
+        ],
+        "source": "ICAR-CPCRI"
+      },
+      "category_type": "perennial_horticulture",
+      "source_name": "Government of India Soil Health Card & ICAR Research Guidelines",
+      "source_url": "https://soilhealth.dac.gov.in/",
+      "last_verified": "2026-08-13"
+    },
+    "cotton": {
+      "common_name": "Cotton",
+      "local_name": "Kapas",
+      "scientific_name": "Gossypium hirsutum / G. arboreum",
+      "category": "cash_crop",
+      "maharashtra_suitability": "high",
+      "maharashtra_regions": [
+        "Vidarbha (Yavatmal, Amravati, Akola, Wardha, Nagpur)",
+        "Marathwada",
+        "Nashik"
+      ],
+      "seasons": {
+        "maharashtra": [
+          "kharif"
+        ],
+        "general": [
+          "kharif"
+        ]
+      },
+      "soil": {
+        "preferred_types": [
+          "heavy_black",
+          "medium_black",
+          "clay_loam"
+        ],
+        "notes": "Deep black cotton soils (Vertisols) of Vidarbha ideal; high water-holding capacity",
+        "source": "Maharashtra State Dept of Agriculture; ICAR-CICR (Central Institute for Cotton Research) Nagpur"
+      },
+      "ph": {
+        "optimal_min": 6.0,
+        "optimal_max": 8.0,
+        "critical_min": 5.5,
+        "critical_max": 8.5,
+        "notes": "Tolerates alkaline black soils; grows in pH up to 8.5",
+        "source": "ICAR-CICR Nagpur"
+      },
+      "nutrients": {
+        "N": {
+          "requirement": "high",
+          "level": "high",
+          "notes": "High nitrogen requirement especially during boll development",
+          "source": "ICAR-CICR"
+        },
+        "P": {
+          "requirement": "high",
+          "level": "medium_to_high",
+          "source": "ICAR-CICR"
+        },
+        "K": {
+          "requirement": "high",
+          "level": "medium_to_high",
+          "notes": "K critical for fiber quality; Vidarbha soils often K-deficient",
+          "source": "ICAR-CICR"
+        }
+      },
+      "temperature": {
+        "optimal_min": 21,
+        "optimal_max": 30,
+        "critical_min": 15,
+        "critical_max": 40,
+        "notes": "Warm season crop; frost kills cotton; requires 180-200 frost-free days",
+        "source": "ICAR-CICR"
+      },
+      "humidity": {
+        "optimal_min": 65,
+        "optimal_max": 80,
+        "notes": "Excess humidity during boll opening reduces fiber quality",
+        "source": "ICAR-CICR"
+      },
+      "rainfall": {
+        "optimal_min": 600,
+        "optimal_max": 1100,
+        "critical_min": 450,
+        "critical_max": 1400,
+        "notes": "Kharif crop; deep black cotton soils retain moisture; dry harvest period needed",
+        "source": "ICAR / FAO Crop Ecology Database / VNMKV Guidelines"
+      },
+      "irrigation": {
+        "requirement": "moderate",
+        "notes": "Rainfed in Vidarbha; drip irrigation improving adoption",
+        "source": "Maharashtra Agriculture Dept"
+      },
+      "drainage": {
+        "preferred": [
+          "good",
+          "moderate"
+        ],
+        "notes": "Cotton does not tolerate waterlogging despite growing in black clay soils",
+        "source": "ICAR-CICR"
+      },
+      "category_type": "seasonal_field_crop",
+      "source_name": "Government of India Soil Health Card & ICAR Research Guidelines",
+      "source_url": "https://soilhealth.dac.gov.in/",
+      "last_verified": "2026-08-13"
+    },
+    "jute": {
+      "common_name": "Jute",
+      "local_name": "Pat",
+      "scientific_name": "Corchorus spp.",
+      "category": "cash_crop",
+      "maharashtra_suitability": "low",
+      "maharashtra_regions": [
+        "Not a typical Maharashtra crop; primarily eastern India"
+      ],
+      "seasons": {
+        "maharashtra": [
+          "kharif"
+        ],
+        "general": [
+          "kharif"
+        ]
+      },
+      "soil": {
+        "preferred_types": [
+          "alluvial",
+          "sandy_loam",
+          "loam"
+        ],
+        "notes": "Requires fertile alluvial soils with high organic matter",
+        "source": "ICAR"
+      },
+      "ph": {
+        "optimal_min": 6.0,
+        "optimal_max": 7.5,
+        "critical_min": 5.5,
+        "critical_max": 8.0,
+        "source": "ICAR"
+      },
+      "nutrients": {
+        "N": {
+          "requirement": "high",
+          "level": "high",
+          "source": "ICAR"
+        },
+        "P": {
+          "requirement": "medium",
+          "level": "medium",
+          "source": "ICAR"
+        },
+        "K": {
+          "requirement": "medium",
+          "level": "medium",
+          "source": "ICAR"
+        }
+      },
+      "temperature": {
+        "optimal_min": 24,
+        "optimal_max": 35,
+        "critical_min": 18,
+        "critical_max": 40,
+        "source": "ICAR"
+      },
+      "humidity": {
+        "optimal_min": 80,
+        "optimal_max": 90,
+        "source": "ICAR"
+      },
+      "rainfall": {
+        "optimal_min": 1200,
+        "optimal_max": 1800,
+        "critical_min": 900,
+        "critical_max": 2500,
+        "notes": "Humid tropical fiber crop",
+        "source": "ICAR / FAO Crop Ecology Database / VNMKV Guidelines"
+      },
+      "irrigation": {
+        "requirement": "high",
+        "source": "ICAR"
+      },
+      "drainage": {
+        "preferred": [
+          "moderate",
+          "poor"
+        ],
+        "source": "ICAR"
+      },
+      "category_type": "seasonal_field_crop",
+      "source_name": "Government of India Soil Health Card & ICAR Research Guidelines",
+      "source_url": "https://soilhealth.dac.gov.in/",
+      "last_verified": "2026-08-13"
+    },
+    "coffee": {
+      "common_name": "Coffee",
+      "local_name": "Kapi",
+      "scientific_name": "Coffea arabica / C. canephora",
+      "category": "cash_crop",
+      "maharashtra_suitability": "low",
+      "maharashtra_regions": [
+        "Not suited to Maharashtra plains; primarily Karnataka/Kerala/Tamil Nadu"
+      ],
+      "seasons": {
+        "maharashtra": [
+          "perennial"
+        ],
+        "general": [
+          "perennial"
+        ]
+      },
+      "soil": {
+        "preferred_types": [
+          "laterite",
+          "loam",
+          "sandy_loam"
+        ],
+        "notes": "Well-drained, deep loamy soils; shade required",
+        "source": "Coffee Board of India"
+      },
+      "ph": {
+        "optimal_min": 6.0,
+        "optimal_max": 6.5,
+        "critical_min": 5.0,
+        "critical_max": 7.0,
+        "source": "Coffee Board of India"
+      },
+      "nutrients": {
+        "N": {
+          "requirement": "high",
+          "level": "high",
+          "source": "Coffee Board of India"
+        },
+        "P": {
+          "requirement": "low",
+          "level": "low",
+          "source": "Coffee Board of India"
+        },
+        "K": {
+          "requirement": "medium",
+          "level": "medium",
+          "source": "Coffee Board of India"
+        }
+      },
+      "temperature": {
+        "optimal_min": 15,
+        "optimal_max": 25,
+        "critical_min": 10,
+        "critical_max": 30,
+        "notes": "Arabica requires cooler temperatures; Robusta more heat-tolerant",
+        "source": "Coffee Board of India"
+      },
+      "humidity": {
+        "optimal_min": 85,
+        "optimal_max": 95,
+        "source": "Coffee Board of India"
+      },
+      "rainfall": {
+        "optimal_min": 1500,
+        "optimal_max": 2500,
+        "critical_min": 1100,
+        "critical_max": 3000,
+        "notes": "Highland plantation crop; shade and high rainfall",
+        "source": "ICAR / FAO Crop Ecology Database / VNMKV Guidelines"
+      },
+      "irrigation": {
+        "requirement": "moderate",
+        "source": "Coffee Board of India"
+      },
+      "drainage": {
+        "preferred": [
+          "good"
+        ],
+        "source": "Coffee Board of India"
+      },
+      "category_type": "perennial_horticulture",
+      "source_name": "Government of India Soil Health Card & ICAR Research Guidelines",
+      "source_url": "https://soilhealth.dac.gov.in/",
+      "last_verified": "2026-08-13"
+    },
+    "soybean": {
+      "common_name": "Soybean",
+      "local_name": "Soya",
+      "scientific_name": "Glycine max",
+      "category": "pulse_oilseed",
+      "maharashtra_suitability": "high",
+      "maharashtra_regions": [
+        "Marathwada",
+        "Vidarbha",
+        "Western Maharashtra"
+      ],
+      "seasons": {
+        "maharashtra": [
+          "kharif"
+        ],
+        "general": [
+          "kharif"
+        ]
+      },
+      "soil": {
+        "preferred_types": [
+          "heavy_black",
+          "medium_black",
+          "clay_loam"
+        ],
+        "source": "ICAR-IISR (Indian Institute of Soybean Research) Indore"
+      },
+      "ph": {
+        "optimal_min": 6.0,
+        "optimal_max": 7.5,
+        "critical_min": 5.5,
+        "critical_max": 8.5,
+        "source": "ICAR-IISR Indore"
+      },
+      "nutrients": {
+        "N": {
+          "requirement": "medium",
+          "level": "medium",
+          "notes": "Legume; fixes atmospheric N",
+          "source": "ICAR-IISR"
+        },
+        "P": {
+          "requirement": "high",
+          "level": "medium_to_high",
+          "source": "ICAR-IISR"
+        },
+        "K": {
+          "requirement": "medium",
+          "level": "medium_to_high",
+          "source": "ICAR-IISR"
+        }
+      },
+      "temperature": {
+        "optimal_min": 20,
+        "optimal_max": 32,
+        "critical_min": 15,
+        "critical_max": 40,
+        "source": "ICAR-IISR"
+      },
+      "humidity": {
+        "optimal_min": 60,
+        "optimal_max": 80,
+        "source": "ICAR-IISR"
+      },
+      "rainfall": {
+        "optimal_min": 600,
+        "optimal_max": 900,
+        "critical_min": 450,
+        "critical_max": 1300,
+        "notes": "Kharif oilseed pulse; requires well-distributed rainfall",
+        "source": "ICAR-IISR / VNMKV Parbhani"
+      },
+      "irrigation": {
+        "requirement": "moderate",
+        "notes": "Rainfed in Kharif; protective irrigation at pod filling helps yield",
+        "source": "Maharashtra State Dept of Agriculture"
+      },
+      "drainage": {
+        "preferred": [
+          "good",
+          "moderate"
+        ],
+        "source": "ICAR-IISR"
+      },
+      "category_type": "seasonal_field_crop",
+      "source_name": "Government of India Soil Health Card & ICAR Research Guidelines",
+      "source_url": "https://soilhealth.dac.gov.in/",
+      "last_verified": "2026-08-13"
+    }
+  }
+}

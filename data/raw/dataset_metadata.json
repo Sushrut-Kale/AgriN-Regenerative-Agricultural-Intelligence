@@ -1,0 +1,59 @@
+{
+  "dataset_name": "FarmFriend AI Crop Recommendation \u2014 Synthetic/Augmented",
+  "nature": "SYNTHETIC",
+  "disclosure": "This dataset is synthetic/augmented data generated from published agricultural literature. It is NOT real field observation data.",
+  "generation_date": "2026-08-12T14:05:25.613534",
+  "seed": 42,
+  "total_records": 2420,
+  "n_crops": 22,
+  "crops": [
+    "apple",
+    "banana",
+    "blackgram",
+    "chickpea",
+    "coconut",
+    "coffee",
+    "cotton",
+    "grapes",
+    "jute",
+    "kidneybeans",
+    "lentil",
+    "maize",
+    "mango",
+    "mothbeans",
+    "mungbean",
+    "muskmelon",
+    "orange",
+    "papaya",
+    "pigeonpeas",
+    "pomegranate",
+    "rice",
+    "watermelon"
+  ],
+  "features": {
+    "N": "Available Nitrogen in soil (kg/ha)",
+    "P": "Available Phosphorus in soil (kg/ha)",
+    "K": "Available Potassium in soil (kg/ha)",
+    "temperature": "Temperature (degrees Celsius)",
+    "humidity": "Relative Humidity (%)",
+    "ph": "Soil pH (0-14 dimensionless)",
+    "rainfall": "Annual Rainfall (mm)"
+  },
+  "target": "label (crop name)",
+  "sources": [
+    "ICAR crop production guides (2015-2023)",
+    "TNAU crop production technology (2020)",
+    "FAO crop requirements database",
+    "Kaggle Crop Recommendation Dataset (Atharva Ingle, 2020) \u2014 https://www.kaggle.com/datasets/atharvaingle/crop-recommendation-dataset",
+    "ICAR-CICR for cotton; ICAR-IIPR for pulses; ICAR-NRC Pomegranate; ICAR-NRC Grapes; Coffee Board of India"
+  ],
+  "known_limitations": [
+    "Synthetic data \u2014 does not represent real field variability",
+    "No regional breakdown (pan-India generalisation)",
+    "Balanced classes (110 samples each) \u2014 real agriculture has unequal crop distributions",
+    "No missing values \u2014 real data typically has missing values",
+    "Only 7 features \u2014 does not include SHC micronutrients (S, Zn, Fe, Cu, Mn, B, OC, EC)",
+    "No variety-level information",
+    "No soil type feature in ML model \u2014 handled by rule layer"
+  ]
+}
