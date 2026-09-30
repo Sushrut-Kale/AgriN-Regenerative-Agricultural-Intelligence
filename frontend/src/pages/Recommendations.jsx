@@ -14,7 +14,7 @@ export default function Recommendations() {
   }
 
   const { ranked_crops, recommendation_explanation, data_completeness, model_info, session_id } = analysisResult
-  const district = farmData.district || 'Maharashtra District'
+  const district = farmData.district || 'Your District'
   const season = farmData.season || 'Kharif'
   const reportDate = new Date().toLocaleDateString('en-IN', { day: 'numeric', month: 'short', year: 'numeric' })
 
@@ -87,7 +87,7 @@ export default function Recommendations() {
             <div style={{ textAlign: 'right', fontSize: '9pt', color: '#4B5563' }}>
               <div><strong>Date:</strong> {reportDate}</div>
               <div><strong>Session ID:</strong> {session_id || 'LOCAL-SESSION'}</div>
-              <div><strong>Location:</strong> {district}, {farmData.state || 'Maharashtra'}</div>
+              <div><strong>Location:</strong> {district}, {farmData.state || 'India'}</div>
             </div>
           </div>
 

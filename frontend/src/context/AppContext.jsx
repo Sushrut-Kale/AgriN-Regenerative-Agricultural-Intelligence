@@ -23,9 +23,14 @@ const saveState = (key, value) => {
 
 export function AppProvider({ children }) {
   const [farmData, setFarmDataState] = useState(() => loadSaved('farmData', {
+    country: 'India',
     state: 'Maharashtra',
     district: '',
+    sub_district: '',
     village: '',
+    latitude: null,
+    longitude: null,
+    agro_climatic_zone: '',
     season: '',
     farm_area: '',
     soil_type: '',

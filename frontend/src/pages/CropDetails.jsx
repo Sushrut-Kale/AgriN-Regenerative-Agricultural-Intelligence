@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react'
-import { useNavigate, useParams } from 'react'
+import { useNavigate, useParams } from 'react-router-dom'
 import { useApp } from '../context/AppContext'
 import { checkFeasibility } from '../services/api'
 import { ArrowLeft, Sprout, Zap, Shield, CheckCircle, XCircle, AlertCircle, HelpCircle, Printer, FileText, Info } from 'lucide-react'
@@ -16,7 +16,10 @@ export default function CropDetails() {
 
   useEffect(() => {
     // If crop is not already in selectedCrop or analysisResult, fetch feasibility dynamically
-    const existing = selectedCrop || analysisResult?.ranked_crops?.find(c => c.crop === cropName)
+    const existing = (selectedCrop && selectedCrop.crop === cropName)
+      ? selectedCrop
+      : analysisResult?.ranked_crops?.find(c => c.crop === cropName)
+
     if (!existing && cropName) {
       setLoading(true)
       setFetchError(null)
@@ -50,7 +53,11 @@ export default function CropDetails() {
   }, [cropName, selectedCrop, analysisResult])
 
 
-  const crop = selectedCrop || analysisResult?.ranked_crops?.find(c => c.crop === cropName) || fetchedCrop
+  const crop = (selectedCrop && selectedCrop.crop === cropName ? selectedCrop : null)
+    || analysisResult?.ranked_crops?.find(c => c.crop === cropName)
+    || fetchedCrop
+
+  const formattedCropName = crop?.common_name || (cropName ? (cropName.charAt(0).toUpperCase() + cropName.slice(1)) : 'Crop')
 
   if (loading) {
     return (
@@ -58,7 +65,7 @@ export default function CropDetails() {
         <div className="ff-card" style={{ padding: 40, textAlign: 'center', maxWidth: 400, width: '100%' }}>
           <div className="pulse-icon" style={{ fontSize: 32, marginBottom: 16 }}>🌾</div>
           <h2 style={{ fontSize: '1.2rem', fontWeight: 700, color: 'var(--ff-text)', marginBottom: 8 }}>
-            Analyzing Crop Suitability for {cropName ? cropName.title() : 'Crop'}...
+            Analyzing Crop Suitability for {formattedCropName}...
           </h2>
           <p style={{ color: 'var(--ff-text-secondary)', fontSize: '0.85rem' }}>
             Fetching soil compatibility and agricultural benchmarks...
@@ -353,8 +360,9 @@ function renderParameterRow(label, userValue, factorObj) {
 }
 
 function getFactorStatus(crop, key) {
+  if (!crop) return null
   const all = [...(crop.supporting_factors || []), ...(crop.limiting_factors || []), ...(crop.moderate_factors || [])]
-  return all.find(f => f.factor === key || f.factor.toLowerCase().includes(key.toLowerCase()))
+  return all.find(f => f && f.factor && (f.factor.toLowerCase() === key.toLowerCase() || f.factor.toLowerCase().includes(key.toLowerCase())))
 }
 
 function FactorSection({ title, icon, color, bg, border, factors, factorIcon }) {

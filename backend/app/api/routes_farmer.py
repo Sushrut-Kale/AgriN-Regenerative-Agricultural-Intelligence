@@ -1,6 +1,7 @@
 """FarmFriend AI — Farm & Validation Routes"""
 
 import uuid
+from typing import Optional
 from fastapi import APIRouter, HTTPException, Depends
 from sqlalchemy.orm import Session
 
@@ -22,9 +23,14 @@ router = APIRouter()
 
 
 @router.get("/weather")
-def get_live_weather_for_district(district: str = "Parbhani"):
-    """Fetch real-time current weather parameters for a given district."""
-    return fetch_live_weather(district)
+def get_live_weather_for_district(
+    district: str = "Parbhani",
+    state: Optional[str] = None,
+    lat: Optional[float] = None,
+    lon: Optional[float] = None
+):
+    """Fetch real-time current weather parameters for a given location or coordinates."""
+    return fetch_live_weather(district_name=district, state_name=state, lat=lat, lon=lon)
 
 
 
@@ -90,8 +96,14 @@ def analyze(request: AnalysisRequest, db: Session = Depends(get_db)):
         if not existing_sess:
             farmer_sess = FarmerSession(
                 session_id=session_id,
+                country=farm_dict.get("country", "India"),
                 state=farm_dict.get("state", "Maharashtra"),
                 district=farm_dict.get("district"),
+                sub_district=farm_dict.get("sub_district"),
+                village=farm_dict.get("village"),
+                latitude=farm_dict.get("latitude"),
+                longitude=farm_dict.get("longitude"),
+                agro_climatic_zone=farm_dict.get("agro_climatic_zone"),
                 season=farm_dict.get("season"),
             )
             db.add(farmer_sess)

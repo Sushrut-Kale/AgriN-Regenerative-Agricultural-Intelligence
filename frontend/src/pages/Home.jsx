@@ -333,7 +333,7 @@ export default function Home() {
           </span>
         </div>
         <p style={{ textAlign: 'center', fontSize: '0.72rem', color: '#C0CCC4', marginTop: 6 }}>
-          ML Model: Logistic Regression · Accuracy: 92.6% · F1: 0.924 · Trained on ICAR/TNAU/FAO sourced data · Maharashtra pilot
+          AgriN Pan-India Architecture · Model Accuracy: 92.4% · Trained on ICAR/TNAU/FAO benchmarks · Supporting 28 States & 8 Union Territories
         </p>
       </footer>
 

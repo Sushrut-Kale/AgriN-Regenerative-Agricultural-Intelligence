@@ -31,8 +31,16 @@ class FarmerSession(Base):
 
     id = Column(Integer, primary_key=True)
     session_id = Column(String, unique=True, index=True)
+    country = Column(String, default="India")
     state = Column(String, default="Maharashtra")
     district = Column(String)
+    sub_district = Column(String, nullable=True)  # Taluka / Tehsil / Block
+    village = Column(String, nullable=True)
+    latitude = Column(Float, nullable=True)
+    longitude = Column(Float, nullable=True)
+    area_hectares = Column(Float, nullable=True)
+    boundary_geojson = Column(JSON, nullable=True)
+    agro_climatic_zone = Column(String, nullable=True)
     season = Column(String)
     created_at = Column(DateTime, default=datetime.now)
 
@@ -131,9 +139,84 @@ class FeedbackRecord(Base):
     created_at = Column(DateTime, default=datetime.now)
 
 
+class FarmObservationRecord(Base):
+    __tablename__ = "farm_observations"
+
+    id = Column(Integer, primary_key=True)
+    observation_id = Column(String, unique=True, index=True, default=lambda: str(uuid.uuid4()))
+    farm_id = Column(String, index=True)  # session_id or registered farm UUID
+    timestamp = Column(DateTime, default=datetime.now, index=True)
+    observation_type = Column(String, index=True)  # SOIL, WEATHER, CROP, SATELLITE, DISEASE, IRRIGATION, FIELD_VISIT
+    parameter_name = Column(String, index=True)
+    value = Column(Float)
+    unit = Column(String)
+    source = Column(String)
+    latitude = Column(Float, nullable=True)
+    longitude = Column(Float, nullable=True)
+    confidence = Column(Float, nullable=True)
+    metadata_json = Column(JSON, nullable=True)
+    created_at = Column(DateTime, default=datetime.now)
+
+
+class AdvisoryRecord(Base):
+    __tablename__ = "agricultural_advisories"
+
+    id = Column(Integer, primary_key=True)
+    advisory_id = Column(String, unique=True, index=True, default=lambda: str(uuid.uuid4()))
+    farm_id = Column(String, index=True)
+    category = Column(String, index=True)  # CROP_SELECTION, SOIL_HEALTH, REGENERATIVE, etc.
+    priority = Column(String, default="MEDIUM")
+    title = Column(String)
+    recommendation = Column(Text)
+    reasoning_json = Column(JSON, nullable=True)
+    supporting_observations_json = Column(JSON, nullable=True)
+    actions_json = Column(JSON, nullable=True)
+    confidence_json = Column(JSON, nullable=True)
+    data_sources_json = Column(JSON, nullable=True)
+    valid_until = Column(DateTime, nullable=True)
+    created_at = Column(DateTime, default=datetime.now)
+
+
+class AdvisoryFeedbackRecord(Base):
+    __tablename__ = "advisory_feedback"
+
+    id = Column(Integer, primary_key=True)
+    feedback_id = Column(String, unique=True, index=True, default=lambda: str(uuid.uuid4()))
+    advisory_id = Column(String, index=True)
+    farm_id = Column(String, index=True)
+    action_taken = Column(String)  # accepted, rejected, partially_followed, not_applicable
+    outcome = Column(String, default="unknown")  # outcome_positive, outcome_negative, unknown
+    notes = Column(Text, nullable=True)
+    created_at = Column(DateTime, default=datetime.now)
+
+
 def init_db():
-    """Create all tables."""
+    """Create all tables and perform non-destructive schema migrations."""
     Base.metadata.create_all(bind=engine)
+    
+    # Non-destructive migration for newly added geographic and boundary columns in existing SQLite DB
+    try:
+        from sqlalchemy import inspect, text
+        inspector = inspect(engine)
+        if "farmer_sessions" in inspector.get_table_names():
+            existing_cols = {col["name"] for col in inspector.get_columns("farmer_sessions")}
+            new_columns = [
+                ("country", "TEXT DEFAULT 'India'"),
+                ("sub_district", "TEXT"),
+                ("village", "TEXT"),
+                ("latitude", "REAL"),
+                ("longitude", "REAL"),
+                ("area_hectares", "REAL"),
+                ("boundary_geojson", "TEXT"),
+                ("agro_climatic_zone", "TEXT"),
+            ]
+            with engine.connect() as conn:
+                for col_name, col_type in new_columns:
+                    if col_name not in existing_cols:
+                        conn.execute(text(f"ALTER TABLE farmer_sessions ADD COLUMN {col_name} {col_type}"))
+                conn.commit()
+    except Exception as e:
+        print(f"Notice: Non-destructive DB migration check: {e}")
 
 
 def get_db():

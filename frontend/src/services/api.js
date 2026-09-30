@@ -23,14 +23,23 @@ async function apiCall(endpoint, options = {}) {
 }
 
 // ── Reference Data ─────────────────────────────────────────────────────────
-export const getReferenceData = () =>
-  apiCall('/reference-data');
+export const getReferenceData = (state = null) =>
+  apiCall(state ? `/reference-data?state=${encodeURIComponent(state)}` : '/reference-data');
 
 export const getCrops = () =>
   apiCall('/crops');
 
-export const getLiveWeather = (district = 'Parbhani') =>
-  apiCall(`/weather?district=${encodeURIComponent(district)}`);
+export const getLiveWeather = (params = 'Parbhani') => {
+  if (typeof params === 'object') {
+    const q = new URLSearchParams();
+    if (params.district) q.append('district', params.district);
+    if (params.state) q.append('state', params.state);
+    if (params.lat != null) q.append('lat', params.lat);
+    if (params.lon != null) q.append('lon', params.lon);
+    return apiCall(`/weather?${q.toString()}`);
+  }
+  return apiCall(`/weather?district=${encodeURIComponent(params)}`);
+};
 
 
 // ── Validation ──────────────────────────────────────────────────────────────
@@ -69,3 +78,31 @@ export const getAnalytics = () =>
 
 export const getModelInfo = () =>
   apiCall('/model-info');
+
+// ── Phase 2.5 Intelligence & Hardening Endpoints ────────────────────────────
+export const getRegenerativePractices = () =>
+  apiCall('/regenerative/practices');
+
+export const recommendRegenerative = (payload) =>
+  apiCall('/regenerative/recommend', { method: 'POST', body: JSON.stringify(payload) });
+
+export const getFarmHealth = (farmId, payload = null) =>
+  apiCall(`/farms/${encodeURIComponent(farmId)}/health`, {
+    method: 'POST',
+    body: payload ? JSON.stringify(payload) : undefined
+  });
+
+export const getFarmAdvisories = (farmId, payload) =>
+  apiCall(`/farms/${encodeURIComponent(farmId)}/advisories`, {
+    method: 'POST',
+    body: JSON.stringify(payload)
+  });
+
+export const submitAdvisoryFeedback = (payload) =>
+  apiCall('/advisory/feedback', { method: 'POST', body: JSON.stringify(payload) });
+
+export const getDataSources = () =>
+  apiCall('/data-sources');
+
+export const getCoverage = () =>
+  apiCall('/coverage');

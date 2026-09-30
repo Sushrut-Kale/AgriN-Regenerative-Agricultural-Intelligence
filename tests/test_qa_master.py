@@ -16,6 +16,20 @@ from datetime import datetime
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 sys.path.insert(0, BASE_DIR)
 
+try:
+    import pyarrow
+except ImportError:
+    import types
+    pa = types.ModuleType("pyarrow")
+    pa.__version__ = "0.0.0"
+    class _DummyType: pass
+    pa.Table = _DummyType
+    pa.RecordBatch = _DummyType
+    pa.Array = _DummyType
+    pa.ChunkedArray = _DummyType
+    pa.DataType = _DummyType
+    sys.modules["pyarrow"] = pa
+
 # ─── Test Results Collector ──────────────────────────────────────────────────
 class TestResult:
     def __init__(self, test_id, name, status, severity="medium",

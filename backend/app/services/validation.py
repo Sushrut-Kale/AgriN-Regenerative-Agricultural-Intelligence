@@ -153,7 +153,36 @@ def validate_farm_inputs(farm_data: dict) -> ValidationResult:
         result.add_error("state", "Please select your state.")
 
     if not farm_data.get("district"):
-        result.add_error("district", "Please select your district.")
+        if not (farm_data.get("latitude") is not None and farm_data.get("longitude") is not None):
+            result.add_error("district", "Please select your district.")
+        else:
+            from backend.app.services.geo_service import find_nearest_district
+            try:
+                d_info, s_name = find_nearest_district(float(farm_data["latitude"]), float(farm_data["longitude"]))
+                farm_data["district"] = d_info["name"]
+                if not farm_data.get("state"):
+                    farm_data["state"] = s_name
+            except Exception:
+                result.add_error("district", "Please select your district.")
+
+    # Validate coordinates if provided
+    lat = farm_data.get("latitude")
+    lon = farm_data.get("longitude")
+    if lat is not None and lat != "":
+        try:
+            lat_f = float(lat)
+            if lat_f < 6.0 or lat_f > 38.5:
+                result.add_warning("latitude", f"Latitude {lat_f}° is outside Indian geographical territory (6.0°N – 38.5°N).")
+        except (ValueError, TypeError):
+            result.add_error("latitude", "Latitude must be a valid number.")
+
+    if lon is not None and lon != "":
+        try:
+            lon_f = float(lon)
+            if lon_f < 68.0 or lon_f > 98.0:
+                result.add_warning("longitude", f"Longitude {lon_f}° is outside Indian geographical territory (68.0°E – 98.0°E).")
+        except (ValueError, TypeError):
+            result.add_error("longitude", "Longitude must be a valid number.")
 
     if not farm_data.get("season"):
         result.add_error("season", "Please select the current farming season.")

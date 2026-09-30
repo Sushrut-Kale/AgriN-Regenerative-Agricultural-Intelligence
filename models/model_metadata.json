@@ -1,7 +1,7 @@
 {
   "model_version": "random_forest_v2",
   "model_type": "Random Forest",
-  "training_date": "2026-08-13T23:26:23.696520",
+  "training_date": "2026-08-14T07:53:59.161634",
   "dataset": "unified_crop_soil_dataset.csv",
   "dataset_nature": "VERIFIED_MULTI_SOURCE_OPEN_DATA",
   "seed": 42,

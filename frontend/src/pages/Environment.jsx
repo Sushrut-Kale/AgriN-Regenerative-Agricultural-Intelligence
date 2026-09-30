@@ -18,23 +18,24 @@ const ENV_PARAMS = [
     unit: '%', min: 0, max: 100, step: 1, placeholder: 'e.g. 65',
     icon: <Droplets size={18} style={{ color: 'var(--ff-info)' }} />,
     color: '#3978B8', bg: '#EDF4FF',
-    tip: 'Average relative humidity. Typical: Konkan 70–90%, Vidarbha 50–75%, Marathwada 40–65%.',
+    tip: 'Average relative humidity. Typical: Coastal 70–90%, Semi-arid 40–65%, Arid < 45%.',
   },
   {
     key: 'rainfall', label: 'Annual Rainfall',
     unit: 'mm/yr', min: 0, max: 5000, step: 10, placeholder: 'e.g. 750',
     icon: <CloudRain size={18} style={{ color: 'var(--ff-primary)' }} />,
     color: 'var(--ff-primary)', bg: 'var(--ff-soft)',
-    tip: 'Total annual rainfall in mm. Maharashtra range: 400mm (Solapur) to 3500mm (Konkan). Check IMD data.',
+    tip: 'Total annual rainfall in mm. Indian range: 150mm (Western Rajasthan) to 3500mm+ (Western Ghats / Northeast). Check IMD data.',
   },
 ]
 
 const TYPICAL_VALUES = [
-  { region: 'Vidarbha',        temp: 30, humidity: 60, rainfall: 1000 },
-  { region: 'Marathwada',      temp: 29, humidity: 55, rainfall: 750  },
-  { region: 'Western Plateau', temp: 27, humidity: 60, rainfall: 600  },
-  { region: 'North MH',        temp: 28, humidity: 50, rainfall: 700  },
-  { region: 'Konkan',          temp: 28, humidity: 80, rainfall: 2500 },
+  { region: 'Trans-Gangetic (Punjab/Haryana)', temp: 24, humidity: 60, rainfall: 650  },
+  { region: 'Western Dry (Rajasthan)',         temp: 27, humidity: 42, rainfall: 350  },
+  { region: 'Middle Gangetic (UP/Bihar)',       temp: 26, humidity: 68, rainfall: 1100 },
+  { region: 'Western Plateau (Maharashtra/MP)',temp: 29, humidity: 55, rainfall: 750  },
+  { region: 'Southern Plateau (Karnataka/AP)',  temp: 26, humidity: 62, rainfall: 820  },
+  { region: 'West Coast / Konkan / Kerala',     temp: 28, humidity: 80, rainfall: 2800 },
 ]
 
 export default function Environment() {
@@ -51,14 +52,16 @@ export default function Environment() {
     setFetchingLive(true)
     setLiveNotice(null)
     try {
-      const district = farmData.district || 'Parbhani'
-      const res = await getLiveWeather(district)
+      const params = (farmData.latitude && farmData.longitude)
+        ? { lat: farmData.latitude, lon: farmData.longitude, district: farmData.district, state: farmData.state }
+        : { district: farmData.district || 'Parbhani', state: farmData.state || 'Maharashtra' }
+      const res = await getLiveWeather(params)
       setEnvData({
         temperature: res.temperature,
         humidity: res.humidity,
         rainfall: res.rainfall
       })
-      setLiveNotice(`Fetched live weather for ${res.district} (${res.source}): Temp ${res.temperature}°C, Humidity ${res.humidity}%`)
+      setLiveNotice(`Fetched live weather for ${res.district}, ${res.state || 'India'} (${res.source}): Temp ${res.temperature}°C, Humidity ${res.humidity}%`)
     } catch (err) {
       setLiveNotice('Failed to fetch live weather. Please enter values manually.')
     } finally {
@@ -77,7 +80,7 @@ export default function Environment() {
               <Radio size={16} className="pulse-icon" /> Live Real-Time Weather Sync
             </div>
             <div style={{ fontSize: '0.78rem', color: '#15803D', marginTop: 2 }}>
-              Automatically fetch real-time climate data for {farmData.district || 'Parbhani'}, Maharashtra
+              Automatically fetch real-time climate data for {farmData.district || 'selected district'}, {farmData.state || 'India'}
             </div>
           </div>
           <button
@@ -109,7 +112,7 @@ export default function Environment() {
       {/* Quick-fill region pills */}
       <div className="ff-card" style={{ padding: '16px 20px', marginBottom: 20 }}>
         <p style={{ fontSize: '0.82rem', color: 'var(--ff-text-secondary)', marginBottom: 10, fontWeight: 500 }}>
-          Quick-fill with typical Maharashtra regional values:
+          Quick-fill with typical Indian Agro-Climatic Zone values:
         </p>
         <div style={{ display: 'flex', flexWrap: 'wrap', gap: 8 }}>
           {TYPICAL_VALUES.map(v => (

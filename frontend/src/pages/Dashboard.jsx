@@ -179,16 +179,16 @@ export default function Dashboard() {
           <div style={{ display: 'grid', gridTemplateColumns: 'repeat(3, 1fr)', gap: 14 }} className="arch-grid">
             {[
               {
-                title: 'ML Layer (60%)', color: 'var(--ff-primary)', bg: 'var(--ff-soft)',
-                items: ['Logistic Regression', '92.6% accuracy', '22 crops', '7 features', 'Synthetic/augmented training data'],
+                title: 'ML Prediction Layer', color: 'var(--ff-primary)', bg: 'var(--ff-soft)',
+                items: ['Random Forest Classifier v1', '15 biophysical features', '23 crops calibrated', 'Probabilistic evidence baseline', 'Never treated as sole truth'],
               },
               {
-                title: 'Rule Layer (40%)', color: '#3978B8', bg: '#EDF4FF',
-                items: ['ICAR/TNAU thresholds', '12 SHC parameters', 'pH, NPK, micronutrients', 'Temperature & rainfall', 'Season/soil/irrigation'],
+                title: 'Agronomic Rules & Gates', color: '#3978B8', bg: '#EDF4FF',
+                items: ['15 ICAR Agro-Climatic Zones', '12 SHC threshold limits', 'Hard eligibility gates (pH/water/season)', 'Regional crop calendars', 'Data confidence tracking'],
               },
               {
-                title: 'NLG Explainer', color: '#7C3AED', bg: '#F5F0FF',
-                items: ['Rule-based templates', 'No external LLM API', 'Grounded in model outputs', 'Farmer-friendly language', 'Always includes disclaimer'],
+                title: 'Regenerative & Advisory Engine', color: '#7C3AED', bg: '#F5F0FF',
+                items: ['10+ verified regenerative practices', 'Standard AgriculturalAdvisory schema', 'Multi-source data provenance', 'Farmer outcome feedback loop', 'Pan-India & BRICS ready'],
               },
             ].map(col => (
               <div key={col.title} style={{ background: col.bg, borderRadius: 14, padding: 18, border: `1px solid ${col.color}20` }}>
@@ -205,9 +205,102 @@ export default function Dashboard() {
           </div>
         </div>
 
+        {/* ── Track 4 Intelligence Architecture Overview ─────────────────── */}
+        <div className="ff-card" style={{ padding: 24, marginBottom: 24, border: '1px solid #10B98130', background: 'linear-gradient(180deg, #F0FDF4 0%, #FFFFFF 100%)' }}>
+          <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', marginBottom: 16 }}>
+            <div style={{ display: 'flex', alignItems: 'center', gap: 10 }}>
+              <span style={{ fontSize: '1.4rem' }}>🌾</span>
+              <div>
+                <h2 style={{ fontSize: '1.05rem', fontWeight: 700, color: '#065F46' }}>Pan-India Agricultural Intelligence & Readiness</h2>
+                <p style={{ fontSize: '0.78rem', color: '#047857' }}>Phase 2.5 Hardened Multi-Modal Architecture — Ground Truth Without Fabrication</p>
+              </div>
+            </div>
+            <span style={{ fontSize: '0.72rem', background: '#D1FAE5', color: '#065F46', padding: '4px 10px', borderRadius: 20, fontWeight: 700 }}>
+              Track 4 Foundation
+            </span>
+          </div>
+
+          <div style={{ display: 'grid', gridTemplateColumns: 'repeat(3, 1fr)', gap: 16 }} className="arch-grid">
+            {/* Box 1: Farm Health */}
+            <div style={{ background: '#FFFFFF', borderRadius: 12, padding: 16, border: '1px solid #E5E7EB', boxShadow: '0 1px 3px rgba(0,0,0,0.05)' }}>
+              <div style={{ display: 'flex', alignItems: 'center', gap: 8, marginBottom: 12 }}>
+                <span style={{ fontSize: '1.1rem' }}>🩺</span>
+                <h3 style={{ fontSize: '0.9rem', fontWeight: 700, color: 'var(--ff-text)' }}>Farm Health Snapshot</h3>
+              </div>
+              <div style={{ display: 'flex', flexDirection: 'column', gap: 8, fontSize: '0.78rem' }}>
+                <div style={{ display: 'flex', justifyContent: 'space-between', padding: '6px 8px', background: '#F9FAFB', borderRadius: 6 }}>
+                  <span style={{ color: 'var(--ff-text-secondary)' }}>Soil Health (12 SHC Params)</span>
+                  <span style={{ color: '#059669', fontWeight: 600 }}>Active</span>
+                </div>
+                <div style={{ display: 'flex', justifyContent: 'space-between', padding: '6px 8px', background: '#F9FAFB', borderRadius: 6 }}>
+                  <span style={{ color: 'var(--ff-text-secondary)' }}>Live Weather & Climatology</span>
+                  <span style={{ color: '#059669', fontWeight: 600 }}>Active</span>
+                </div>
+                <div style={{ display: 'flex', justifyContent: 'space-between', padding: '6px 8px', background: '#F9FAFB', borderRadius: 6 }}>
+                  <span style={{ color: 'var(--ff-text-secondary)' }}>Water & Irrigation Balance</span>
+                  <span style={{ color: '#059669', fontWeight: 600 }}>Active</span>
+                </div>
+                <div style={{ display: 'flex', justifyContent: 'space-between', padding: '6px 8px', background: '#FFFBEB', borderRadius: 6 }}>
+                  <span style={{ color: 'var(--ff-text-secondary)' }}>Vegetation (Sentinel-2 NDVI)</span>
+                  <span style={{ color: '#D97706', fontWeight: 600 }}>Coming Soon (No Fake Data)</span>
+                </div>
+                <div style={{ display: 'flex', justifyContent: 'space-between', padding: '6px 8px', background: '#FFFBEB', borderRadius: 6 }}>
+                  <span style={{ color: 'var(--ff-text-secondary)' }}>Disease Risk Diagnosis</span>
+                  <span style={{ color: '#D97706', fontWeight: 600 }}>Data Unavailable</span>
+                </div>
+              </div>
+            </div>
+
+            {/* Box 2: AI Agro-Advisories */}
+            <div style={{ background: '#FFFFFF', borderRadius: 12, padding: 16, border: '1px solid #E5E7EB', boxShadow: '0 1px 3px rgba(0,0,0,0.05)' }}>
+              <div style={{ display: 'flex', alignItems: 'center', gap: 8, marginBottom: 12 }}>
+                <span style={{ fontSize: '1.1rem' }}>🤖</span>
+                <h3 style={{ fontSize: '0.9rem', fontWeight: 700, color: 'var(--ff-text)' }}>AI Agro-Advisories</h3>
+              </div>
+              <div style={{ display: 'flex', flexDirection: 'column', gap: 8, fontSize: '0.78rem' }}>
+                <div style={{ padding: '8px', background: '#F0FDF4', borderRadius: 6, borderLeft: '3px solid #10B981' }}>
+                  <strong style={{ color: '#065F46' }}>Crop Selection Advisory</strong>
+                  <p style={{ margin: '2px 0 0 0', color: 'var(--ff-text-secondary)' }}>Blends ML statistical probability with regional calendar and hard gates.</p>
+                </div>
+                <div style={{ padding: '8px', background: '#EFF6FF', borderRadius: 6, borderLeft: '3px solid #3B82F6' }}>
+                  <strong style={{ color: '#1E40AF' }}>Soil Nutrient Balancing</strong>
+                  <p style={{ margin: '2px 0 0 0', color: 'var(--ff-text-secondary)' }}>Actionable corrections for soil pH, organic carbon, and micronutrients.</p>
+                </div>
+                <div style={{ padding: '8px', background: '#FEF3C7', borderRadius: 6, borderLeft: '3px solid #F59E0B' }}>
+                  <strong style={{ color: '#92400E' }}>Extreme Weather Alerts</strong>
+                  <p style={{ margin: '2px 0 0 0', color: 'var(--ff-text-secondary)' }}>Real-time heat stress and precipitation anomaly warnings.</p>
+                </div>
+              </div>
+            </div>
+
+            {/* Box 3: Regenerative Agriculture */}
+            <div style={{ background: '#FFFFFF', borderRadius: 12, padding: 16, border: '1px solid #E5E7EB', boxShadow: '0 1px 3px rgba(0,0,0,0.05)' }}>
+              <div style={{ display: 'flex', alignItems: 'center', gap: 8, marginBottom: 12 }}>
+                <span style={{ fontSize: '1.1rem' }}>♻️</span>
+                <h3 style={{ fontSize: '0.9rem', fontWeight: 700, color: 'var(--ff-text)' }}>Regenerative Agriculture</h3>
+              </div>
+              <div style={{ display: 'flex', flexDirection: 'column', gap: 8, fontSize: '0.78rem' }}>
+                <div style={{ padding: '8px', background: '#F5F3FF', borderRadius: 6, borderLeft: '3px solid #8B5CF6' }}>
+                  <strong style={{ color: '#5B21B6' }}>10+ Codified Practices</strong>
+                  <p style={{ margin: '2px 0 0 0', color: 'var(--ff-text-secondary)' }}>Legume rotation, cover crops, biochar, minimum tillage, Broad Bed Furrow.</p>
+                </div>
+                <div style={{ padding: '8px', background: '#ECFDF5', borderRadius: 6, borderLeft: '3px solid #10B981' }}>
+                  <strong style={{ color: '#065F46' }}>Carbon Deficit Targeting</strong>
+                  <p style={{ margin: '2px 0 0 0', color: 'var(--ff-text-secondary)' }}>Prioritizes organic carbon restoration when soil OC is below 0.75%.</p>
+                </div>
+                <div style={{ padding: '8px', background: '#F8FAFC', borderRadius: 6, borderLeft: '3px solid #64748B' }}>
+                  <strong style={{ color: '#334155' }}>Component Readiness Metrics</strong>
+                  <p style={{ margin: '2px 0 0 0', color: 'var(--ff-text-secondary)' }}>Clear indicators across 7 dimensions without fabricated composite scores.</p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
         <p style={{ textAlign: 'center', fontSize: '0.75rem', color: 'var(--ff-text-muted)' }}>
-          FarmFriend AI · Maharashtra Pilot · ML model trained on synthetic/augmented data (ICAR/TNAU/FAO sourced) · Results are decision support estimates only
+          AgriN — Pan-India Regenerative Agricultural Intelligence Platform · All 28 States & 8 UTs Supported · Results are scientific decision support estimates only
         </p>
+
       </div>
 
       <style>{`

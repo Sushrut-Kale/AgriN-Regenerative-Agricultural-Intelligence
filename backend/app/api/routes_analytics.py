@@ -1,6 +1,7 @@
 """FarmFriend AI — Analytics Dashboard Routes"""
 
 import json, os
+from typing import Optional
 from fastapi import APIRouter, Depends
 from sqlalchemy.orm import Session
 from sqlalchemy import func, text
@@ -75,19 +76,79 @@ def get_analytics(db: Session = Depends(get_db)):
 
 
 @router.get("/reference-data")
-def get_reference_data():
-    """Return knowledge base reference data for frontend dropdowns."""
+def get_reference_data(state: Optional[str] = None):
+    """Return knowledge base reference data for frontend dropdowns across India."""
     try:
+        from backend.app.services.geo_service import get_all_states, get_districts_for_state
+        target_state = state or "Maharashtra"
+        all_states = get_all_states()
+        districts = get_districts_for_state(target_state)
+
+        # Fallback seasons & soil types from MH data or generic standard
         mh_path = os.path.join(BASE_DIR, "knowledge", "maharashtra_data.json")
-        with open(mh_path) as f:
-            mh_data = json.load(f)
+        seasons = [
+            {"id": "kharif", "name": "Kharif", "period": "June – October (Monsoon)"},
+            {"id": "rabi", "name": "Rabi", "period": "October – March (Winter)"},
+            {"id": "summer", "name": "Summer (Zaid)", "period": "March – June"},
+            {"id": "perennial", "name": "Perennial", "period": "Year-round (Orchards/Plantations)"}
+        ]
+        soil_types = [
+            {"id": "black", "name": "Black Soil (Vertisol / Regur)", "desc": "High clay, moisture retentive, excellent for cotton and soybean"},
+            {"id": "alluvial", "name": "Alluvial Soil", "desc": "Fertile loam/sandy loam formed by river plains"},
+            {"id": "red", "name": "Red & Yellow Soil", "desc": "Porous, rich in iron, responsive to irrigation"},
+            {"id": "laterite", "name": "Laterite Soil", "desc": "Acidic, porous, typical of high-rainfall coastal/ghat regions"},
+            {"id": "sandy_loam", "name": "Sandy Loam", "desc": "Light, well-drained, ideal for horticulture and vegetables"},
+            {"id": "clay_loam", "name": "Clay Loam", "desc": "Balanced texture, good water and nutrient retention"},
+            {"id": "sandy", "name": "Sandy / Desert Soil", "desc": "Low water retention, suited for arid pulses like mothbeans"},
+            {"id": "unknown", "name": "Not Sure / Mixed", "desc": "General agricultural analysis"}
+        ]
+        water_sources = [
+            {"id": "canal", "name": "Canal"},
+            {"id": "borewell", "name": "Borewell / Tube well"},
+            {"id": "open_well", "name": "Open Well"},
+            {"id": "farm_pond", "name": "Farm Pond / Check Dam"},
+            {"id": "river_lift", "name": "River / Stream Lift"},
+            {"id": "rainfed_only", "name": "Rainfed Only (No irrigation source)"}
+        ]
+        drainage_conditions = [
+            {"id": "good", "name": "Good (No waterlogging, water drains within 24h)"},
+            {"id": "moderate", "name": "Moderate (Temporary pooling after heavy rain)"},
+            {"id": "poor", "name": "Poor (Prone to waterlogging / high clay subsoil)"},
+            {"id": "unknown", "name": "Unknown"}
+        ]
+        previous_crops = [
+            {"id": "none", "name": "Fallow / None"},
+            {"id": "cotton", "name": "Cotton"},
+            {"id": "soybean", "name": "Soybean"},
+            {"id": "pigeonpeas", "name": "Pigeonpeas (Tur)"},
+            {"id": "chickpea", "name": "Chickpea (Gram)"},
+            {"id": "wheat", "name": "Wheat"},
+            {"id": "rice", "name": "Rice (Paddy)"},
+            {"id": "maize", "name": "Maize"},
+            {"id": "vegetables", "name": "Vegetables"},
+            {"id": "sugarcane", "name": "Sugarcane"},
+            {"id": "other", "name": "Other"}
+        ]
+
+        if os.path.exists(mh_path):
+            with open(mh_path) as f:
+                mh_data = json.load(f)
+                if mh_data.get("seasons"): seasons = mh_data["seasons"]
+                if mh_data.get("soil_types_ui"): soil_types = mh_data["soil_types_ui"]
+                if mh_data.get("water_sources"): water_sources = mh_data["water_sources"]
+                if mh_data.get("drainage_conditions"): drainage_conditions = mh_data["drainage_conditions"]
+                if mh_data.get("previous_crops"): previous_crops = mh_data["previous_crops"]
+
         return {
-            "districts": mh_data.get("districts", []),
-            "seasons": mh_data.get("seasons", []),
-            "soil_types": mh_data.get("soil_types_ui", []),
-            "water_sources": mh_data.get("water_sources", []),
-            "drainage_conditions": mh_data.get("drainage_conditions", []),
-            "previous_crops": mh_data.get("previous_crops", [])
+            "country": "India",
+            "selected_state": target_state,
+            "states": all_states,
+            "districts": districts,
+            "seasons": seasons,
+            "soil_types": soil_types,
+            "water_sources": water_sources,
+            "drainage_conditions": drainage_conditions,
+            "previous_crops": previous_crops
         }
     except Exception as e:
         return {"error": str(e)}

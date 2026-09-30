@@ -1,0 +1,337 @@
+{
+  "system": "AgriN Pan-India Location-Aware Crop Calendar Registry",
+  "version": "2.0.0",
+  "crops": {
+    "rice": {
+      "national_seasons": ["kharif", "rabi", "summer"],
+      "regional_seasons": {
+        "maharashtra": ["kharif"],
+        "punjab": ["kharif"],
+        "haryana": ["kharif"],
+        "west_bengal": ["kharif", "rabi", "summer"],
+        "tamil_nadu": ["kharif", "rabi", "summer"],
+        "kerala": ["kharif", "rabi"],
+        "assam": ["kharif", "summer"],
+        "andhra_pradesh": ["kharif", "rabi"],
+        "odisha": ["kharif", "rabi"]
+      },
+      "sowing_window": {"kharif": "June - July", "rabi": "November - December", "summer": "January - February"},
+      "harvest_window": {"kharif": "October - November", "rabi": "March - April", "summer": "April - May"},
+      "duration_days": "110-150",
+      "water_profile": "High (Flooded / Continuous Submergence / SRI)"
+    },
+    "cotton": {
+      "national_seasons": ["kharif"],
+      "regional_seasons": {
+        "maharashtra": ["kharif"],
+        "gujarat": ["kharif"],
+        "punjab": ["kharif"],
+        "haryana": ["kharif"],
+        "telangana": ["kharif"],
+        "andhra_pradesh": ["kharif"],
+        "karnataka": ["kharif"],
+        "tamil_nadu": ["kharif", "rabi"]
+      },
+      "sowing_window": {"kharif": "May - June (North India), June - July (Central/South)"},
+      "harvest_window": {"kharif": "October - January (multi-picking)"},
+      "duration_days": "150-180",
+      "water_profile": "Moderate to High (Supplemental irrigation critical if rainfall < 700mm)"
+    },
+    "soybean": {
+      "national_seasons": ["kharif"],
+      "regional_seasons": {
+        "maharashtra": ["kharif"],
+        "madhya_pradesh": ["kharif"],
+        "rajasthan": ["kharif"],
+        "karnataka": ["kharif"],
+        "telangana": ["kharif"]
+      },
+      "sowing_window": {"kharif": "June 15 - July 15 (onset of monsoon)"},
+      "harvest_window": {"kharif": "September 25 - October 20"},
+      "duration_days": "90-105",
+      "water_profile": "Moderate (Sensitive to waterlogging and moisture stress at pod filling)"
+    },
+    "chickpea": {
+      "national_seasons": ["rabi"],
+      "regional_seasons": {
+        "maharashtra": ["rabi"],
+        "madhya_pradesh": ["rabi"],
+        "rajasthan": ["rabi"],
+        "uttar_pradesh": ["rabi"],
+        "karnataka": ["rabi"],
+        "andhra_pradesh": ["rabi"]
+      },
+      "sowing_window": {"rabi": "October - November"},
+      "harvest_window": {"rabi": "February - March"},
+      "duration_days": "95-120",
+      "water_profile": "Low (Thrives on residual soil moisture after Kharif harvest)"
+    },
+    "maize": {
+      "national_seasons": ["kharif", "rabi", "summer"],
+      "regional_seasons": {
+        "maharashtra": ["kharif", "rabi"],
+        "karnataka": ["kharif", "rabi"],
+        "bihar": ["rabi", "kharif"],
+        "andhra_pradesh": ["kharif", "rabi"],
+        "telangana": ["kharif", "rabi"],
+        "punjab": ["kharif"],
+        "rajasthan": ["kharif"]
+      },
+      "sowing_window": {"kharif": "June - July", "rabi": "October - November"},
+      "harvest_window": {"kharif": "September - October", "rabi": "February - March"},
+      "duration_days": "90-110",
+      "water_profile": "Moderate (Sensitive to water stagnation in early vegetative phase)"
+    },
+    "pigeonpeas": {
+      "national_seasons": ["kharif"],
+      "regional_seasons": {
+        "maharashtra": ["kharif"],
+        "karnataka": ["kharif"],
+        "madhya_pradesh": ["kharif"],
+        "uttar_pradesh": ["kharif"],
+        "gujarat": ["kharif"]
+      },
+      "sowing_window": {"kharif": "June - July"},
+      "harvest_window": {"kharif": "December - February"},
+      "duration_days": "150-200",
+      "water_profile": "Low to Moderate (Deep taproot grants drought tolerance)"
+    },
+    "kidneybeans": {
+      "national_seasons": ["kharif", "rabi"],
+      "regional_seasons": {
+        "jammu_and_kashmir": ["kharif"],
+        "himachal_pradesh": ["kharif"],
+        "uttarakhand": ["kharif"],
+        "maharashtra": ["rabi"]
+      },
+      "sowing_window": {"kharif": "May - June (Hills)", "rabi": "October - November (Plains)"},
+      "harvest_window": {"kharif": "September - October", "rabi": "February - March"},
+      "duration_days": "90-120",
+      "water_profile": "Moderate (Cool temperate preference)"
+    },
+    "mungbean": {
+      "national_seasons": ["kharif", "summer"],
+      "regional_seasons": {
+        "maharashtra": ["kharif", "summer"],
+        "rajasthan": ["kharif"],
+        "punjab": ["summer"],
+        "haryana": ["summer"],
+        "andhra_pradesh": ["kharif", "rabi"]
+      },
+      "sowing_window": {"kharif": "June - July", "summer": "March - April"},
+      "harvest_window": {"kharif": "August - September", "summer": "May - June"},
+      "duration_days": "65-75",
+      "water_profile": "Low (Short duration drought-hardy pulse)"
+    },
+    "blackgram": {
+      "national_seasons": ["kharif", "rabi", "summer"],
+      "regional_seasons": {
+        "maharashtra": ["kharif"],
+        "andhra_pradesh": ["rabi"],
+        "tamil_nadu": ["rabi", "summer"],
+        "madhya_pradesh": ["kharif"]
+      },
+      "sowing_window": {"kharif": "June - July", "rabi": "October - November"},
+      "harvest_window": {"kharif": "September - October", "rabi": "January - February"},
+      "duration_days": "70-85",
+      "water_profile": "Low to Moderate"
+    },
+    "lentil": {
+      "national_seasons": ["rabi"],
+      "regional_seasons": {
+        "uttar_pradesh": ["rabi"],
+        "madhya_pradesh": ["rabi"],
+        "bihar": ["rabi"],
+        "west_bengal": ["rabi"],
+        "maharashtra": ["rabi"]
+      },
+      "sowing_window": {"rabi": "October - November"},
+      "harvest_window": {"rabi": "February - March"},
+      "duration_days": "110-130",
+      "water_profile": "Low"
+    },
+    "pomegranate": {
+      "national_seasons": ["perennial", "kharif", "rabi", "summer"],
+      "regional_seasons": {
+        "maharashtra": ["perennial", "kharif", "rabi", "summer"],
+        "gujarat": ["perennial", "kharif", "rabi", "summer"],
+        "karnataka": ["perennial", "kharif", "rabi", "summer"],
+        "rajasthan": ["perennial", "kharif", "rabi", "summer"],
+        "andhra_pradesh": ["perennial", "kharif", "rabi", "summer"]
+      },
+      "sowing_window": {"perennial": "Mrug Bahar (June-July), Hasta Bahar (Sept-Oct), Ambe Bahar (Jan-Feb)"},
+      "harvest_window": {"perennial": "150-180 days after flowering/treatment"},
+      "duration_days": "Perennial Orchard (25+ years)",
+      "water_profile": "Moderate (Drip irrigation with regulated deficit watering)"
+    },
+    "banana": {
+      "national_seasons": ["perennial", "kharif", "rabi", "summer"],
+      "regional_seasons": {
+        "maharashtra": ["perennial", "kharif", "rabi", "summer"],
+        "tamil_nadu": ["perennial", "kharif", "rabi", "summer"],
+        "gujarat": ["perennial", "kharif", "rabi", "summer"],
+        "andhra_pradesh": ["perennial", "kharif", "rabi", "summer"],
+        "kerala": ["perennial", "kharif", "rabi", "summer"]
+      },
+      "sowing_window": {"perennial": "June - July or October - November (Tissue Culture)"},
+      "harvest_window": {"perennial": "11-13 months after planting"},
+      "duration_days": "330-380",
+      "water_profile": "High (Continuous moisture via drip fertigation)"
+    },
+    "mango": {
+      "national_seasons": ["perennial"],
+      "regional_seasons": {
+        "maharashtra": ["perennial"],
+        "uttar_pradesh": ["perennial"],
+        "andhra_pradesh": ["perennial"],
+        "karnataka": ["perennial"],
+        "gujarat": ["perennial"],
+        "bihar": ["perennial"],
+        "west_bengal": ["perennial"]
+      },
+      "sowing_window": {"perennial": "July - August (monsoon planting of grafts)"},
+      "harvest_window": {"perennial": "March - June (flowering Nov-Jan)"},
+      "duration_days": "Perennial Orchard",
+      "water_profile": "Moderate (Deep root, stress required prior to flowering)"
+    },
+    "grapes": {
+      "national_seasons": ["perennial", "rabi", "kharif"],
+      "regional_seasons": {
+        "maharashtra": ["perennial", "rabi", "kharif"],
+        "karnataka": ["perennial", "rabi", "kharif"],
+        "tamil_nadu": ["perennial", "rabi", "kharif"],
+        "andhra_pradesh": ["perennial", "rabi", "kharif"]
+      },
+      "sowing_window": {"perennial": "Foundation pruning in April, Forward pruning in Oct"},
+      "harvest_window": {"perennial": "January - April"},
+      "duration_days": "Perennial Vine",
+      "water_profile": "High to Moderate (Strict drip schedule)"
+    },
+    "watermelon": {
+      "national_seasons": ["summer", "zaid", "rabi"],
+      "regional_seasons": {
+        "maharashtra": ["summer", "rabi"],
+        "uttar_pradesh": ["summer"],
+        "punjab": ["summer"],
+        "rajasthan": ["summer"],
+        "andhra_pradesh": ["summer", "rabi"],
+        "tamil_nadu": ["rabi", "summer"]
+      },
+      "sowing_window": {"summer": "January - February"},
+      "harvest_window": {"summer": "April - May"},
+      "duration_days": "75-95",
+      "water_profile": "Moderate (Sandy loam beds, drip irrigation)"
+    },
+    "muskmelon": {
+      "national_seasons": ["summer", "zaid"],
+      "regional_seasons": {
+        "punjab": ["summer"],
+        "haryana": ["summer"],
+        "uttar_pradesh": ["summer"],
+        "rajasthan": ["summer"],
+        "maharashtra": ["summer"]
+      },
+      "sowing_window": {"summer": "February - March"},
+      "harvest_window": {"summer": "May - June"},
+      "duration_days": "70-85",
+      "water_profile": "Moderate"
+    },
+    "apple": {
+      "national_seasons": ["perennial"],
+      "regional_seasons": {
+        "jammu_and_kashmir": ["perennial"],
+        "himachal_pradesh": ["perennial"],
+        "uttarakhand": ["perennial"]
+      },
+      "sowing_window": {"perennial": "December - February (dormant season planting)"},
+      "harvest_window": {"perennial": "July - October"},
+      "duration_days": "Perennial Deciduous Tree (Requires 800-1200 chilling hours < 7°C)",
+      "water_profile": "Moderate"
+    },
+    "orange": {
+      "national_seasons": ["perennial", "kharif", "rabi", "summer"],
+      "regional_seasons": {
+        "maharashtra": ["perennial", "kharif", "rabi", "summer"],
+        "punjab": ["perennial"],
+        "rajasthan": ["perennial"],
+        "madhya_pradesh": ["perennial"],
+        "assam": ["perennial"]
+      },
+      "sowing_window": {"perennial": "Mrug bahar (June-July) or Ambia bahar (Jan-Feb)"},
+      "harvest_window": {"perennial": "October - March"},
+      "duration_days": "Perennial Orchard",
+      "water_profile": "Moderate (Sensitive to drainage and root rot)"
+    },
+    "papaya": {
+      "national_seasons": ["perennial", "kharif", "summer"],
+      "regional_seasons": {
+        "maharashtra": ["perennial", "kharif", "summer"],
+        "gujarat": ["perennial", "kharif", "summer"],
+        "andhra_pradesh": ["perennial", "kharif", "summer"],
+        "karnataka": ["perennial", "kharif", "summer"],
+        "madhya_pradesh": ["perennial", "kharif", "summer"]
+      },
+      "sowing_window": {"perennial": "June - July or September - October"},
+      "harvest_window": {"perennial": "9-11 months after transplanting"},
+      "duration_days": "1-2 Year Short Perennial",
+      "water_profile": "Moderate (Zero tolerance for waterlogging)"
+    },
+    "coconut": {
+      "national_seasons": ["perennial"],
+      "regional_seasons": {
+        "kerala": ["perennial"],
+        "tamil_nadu": ["perennial"],
+        "karnataka": ["perennial"],
+        "andhra_pradesh": ["perennial"],
+        "odisha": ["perennial"],
+        "goa": ["perennial"],
+        "maharashtra": ["perennial"],
+        "west_bengal": ["perennial"]
+      },
+      "sowing_window": {"perennial": "May - June (onset of monsoon)"},
+      "harvest_window": {"perennial": "Year-round (monthly harvests)"},
+      "duration_days": "Perennial Palm (60+ years)",
+      "water_profile": "High (Coastal humid or well-irrigated groves)"
+    },
+    "jute": {
+      "national_seasons": ["kharif", "summer"],
+      "regional_seasons": {
+        "west_bengal": ["kharif", "summer"],
+        "bihar": ["kharif", "summer"],
+        "assam": ["kharif", "summer"],
+        "odisha": ["kharif", "summer"]
+      },
+      "sowing_window": {"kharif": "March - May"},
+      "harvest_window": {"kharif": "July - September"},
+      "duration_days": "100-120",
+      "water_profile": "High (Abundant moisture + retting water required)"
+    },
+    "coffee": {
+      "national_seasons": ["perennial"],
+      "regional_seasons": {
+        "karnataka": ["perennial"],
+        "kerala": ["perennial"],
+        "tamil_nadu": ["perennial"],
+        "andhra_pradesh": ["perennial"]
+      },
+      "sowing_window": {"perennial": "June - August"},
+      "harvest_window": {"perennial": "November - February"},
+      "duration_days": "Perennial Shade Plantation",
+      "water_profile": "Moderate to High (Elevation 800-1800m, high humidity, blossom showers)"
+    },
+    "mothbeans": {
+      "national_seasons": ["kharif"],
+      "regional_seasons": {
+        "rajasthan": ["kharif"],
+        "gujarat": ["kharif"],
+        "maharashtra": ["kharif"],
+        "haryana": ["kharif"],
+        "punjab": ["kharif"]
+      },
+      "sowing_window": {"kharif": "July (with first rain)"},
+      "harvest_window": {"kharif": "September - October"},
+      "duration_days": "60-75",
+      "water_profile": "Extremely Low (Most drought-tolerant legume in India, thrives on 200-400mm)"
+    }
+  }
+}

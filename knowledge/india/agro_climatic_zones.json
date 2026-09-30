@@ -1,0 +1,141 @@
+{
+  "classification_system": "Planning Commission / ICAR National Agro-Climatic Zones of India",
+  "total_zones": 15,
+  "zones": {
+    "Western Himalayan Region": {
+      "id": "ACZ-01",
+      "states": ["Jammu and Kashmir", "Himachal Pradesh", "Uttarakhand", "Ladakh"],
+      "soil_types": ["mountain", "submontane", "brown_hill", "alluvial"],
+      "annual_rainfall_mm": [150, 2500],
+      "thermal_regime": "Cold temperate to sub-tropical in lower valleys",
+      "primary_crops": ["apple", "maize", "rice", "kidneybeans", "lentil", "orange"],
+      "characteristics": "High topographic variation, cold winters, valley irrigation, terraced slopes."
+    },
+    "Eastern Himalayan Region": {
+      "id": "ACZ-02",
+      "states": ["Assam", "Sikkim", "Arunachal Pradesh", "Meghalaya", "Nagaland", "Manipur", "Mizoram", "Tripura", "West Bengal"],
+      "soil_types": ["red_loam", "laterite", "alluvial", "acidic"],
+      "annual_rainfall_mm": [1800, 4500],
+      "thermal_regime": "Warm per-humid to humid",
+      "primary_crops": ["rice", "tea", "jute", "banana", "orange", "papaya"],
+      "characteristics": "High rainfall, acidic soils, flood-prone river basins, extensive biodiversity."
+    },
+    "Lower Gangetic Plain Region": {
+      "id": "ACZ-03",
+      "states": ["West Bengal"],
+      "soil_types": ["alluvial", "deltaic", "coastal_saline"],
+      "annual_rainfall_mm": [1400, 2000],
+      "thermal_regime": "Hot and humid summers, mild winters",
+      "primary_crops": ["rice", "jute", "lentil", "mango", "banana"],
+      "characteristics": "High soil fertility, high water table, multiple paddy cycles (Aman, Aus, Boro)."
+    },
+    "Middle Gangetic Plain Region": {
+      "id": "ACZ-04",
+      "states": ["Bihar", "Uttar Pradesh"],
+      "soil_types": ["alluvial", "sandy_loam", "clay_loam"],
+      "annual_rainfall_mm": [1000, 1400],
+      "thermal_regime": "Sub-tropical monsoon, hot summers, cool winters",
+      "primary_crops": ["rice", "maize", "chickpea", "pigeonpeas", "lentil", "mango", "banana"],
+      "characteristics": "Deep fertile alluvium, canal and tube-well irrigation, intense cropping intensity."
+    },
+    "Upper Gangetic Plain Region": {
+      "id": "ACZ-05",
+      "states": ["Uttar Pradesh", "Uttarakhand"],
+      "soil_types": ["alluvial", "loam", "sandy_loam"],
+      "annual_rainfall_mm": [700, 1000],
+      "thermal_regime": "Semi-arid to sub-humid, hot summer, cold winter",
+      "primary_crops": ["rice", "maize", "chickpea", "pigeonpeas", "mango", "lentil"],
+      "characteristics": "Extensive irrigation infrastructure, intensive green revolution agriculture."
+    },
+    "Trans-Gangetic Plain Region": {
+      "id": "ACZ-06",
+      "states": ["Punjab", "Haryana", "Delhi", "Chandigarh", "Rajasthan"],
+      "soil_types": ["alluvial", "sandy_loam", "calcareous"],
+      "annual_rainfall_mm": [300, 800],
+      "thermal_regime": "Semi-arid continental, extreme summer heat, chilly winters",
+      "primary_crops": ["rice", "cotton", "maize", "chickpea", "mungbean"],
+      "characteristics": "Highest tube-well and canal irrigation coverage in India, high yield productivity."
+    },
+    "Eastern Plateau and Hills": {
+      "id": "ACZ-07",
+      "states": ["Jharkhand", "Chhattisgarh", "Odisha", "Madhya Pradesh", "West Bengal"],
+      "soil_types": ["red_and_yellow", "laterite", "mixed_red_and_black"],
+      "annual_rainfall_mm": [1200, 1600],
+      "thermal_regime": "Tropical sub-humid",
+      "primary_crops": ["rice", "pigeonpeas", "blackgram", "soybean", "maize"],
+      "characteristics": "Undulating terrain, predominantly rainfed agriculture, tribal farming, iron/aluminum rich soils."
+    },
+    "Central Plateau and Hills": {
+      "id": "ACZ-08",
+      "states": ["Madhya Pradesh", "Rajasthan", "Uttar Pradesh"],
+      "soil_types": ["mixed_red_and_black", "black", "alluvial"],
+      "annual_rainfall_mm": [600, 1100],
+      "thermal_regime": "Semi-arid to sub-humid, hot dry summer",
+      "primary_crops": ["soybean", "chickpea", "pigeonpeas", "cotton", "maize", "orange"],
+      "characteristics": "Malwa and Bundelkhand plateaus, pulses and oilseed heartland of India."
+    },
+    "Western Plateau and Hills": {
+      "id": "ACZ-09",
+      "states": ["Maharashtra", "Madhya Pradesh"],
+      "soil_types": ["black", "clay_loam", "shallow_black"],
+      "annual_rainfall_mm": [600, 1100],
+      "thermal_regime": "Semi-arid tropical, high summer temperature",
+      "primary_crops": ["cotton", "soybean", "pigeonpeas", "chickpea", "pomegranate", "grapes", "orange", "maize"],
+      "characteristics": "Deccan basalt trap (Vertisols), high moisture-retentive capacity, drought vulnerability in rainfed pockets."
+    },
+    "Southern Plateau and Hills": {
+      "id": "ACZ-10",
+      "states": ["Andhra Pradesh", "Telangana", "Karnataka", "Tamil Nadu"],
+      "soil_types": ["red_loam", "black", "mixed_red_and_black"],
+      "annual_rainfall_mm": [600, 1000],
+      "thermal_regime": "Semi-arid tropical, hot summer, mild dry winter",
+      "primary_crops": ["cotton", "maize", "chickpea", "pigeonpeas", "coffee", "banana", "mango", "pomegranate"],
+      "characteristics": "Tank and borewell irrigation, red sandy soils requiring regular organic carbon replenishment."
+    },
+    "East Coast Plains and Hills": {
+      "id": "ACZ-11",
+      "states": ["Odisha", "Andhra Pradesh", "Tamil Nadu", "Puducherry"],
+      "soil_types": ["coastal_alluvial", "deltaic", "red_loam", "saline"],
+      "annual_rainfall_mm": [900, 1400],
+      "thermal_regime": "Maritime tropical, high humidity, cyclonic depressions",
+      "primary_crops": ["rice", "blackgram", "banana", "coconut", "mango", "watermelon"],
+      "characteristics": "Delta systems of Mahanadi, Godavari, Krishna, Cauvery; northeast monsoon precipitation."
+    },
+    "West Coast Plains and Ghats": {
+      "id": "ACZ-12",
+      "states": ["Maharashtra", "Goa", "Karnataka", "Kerala", "Tamil Nadu"],
+      "soil_types": ["laterite", "coastal_alluvial", "red_loam"],
+      "annual_rainfall_mm": [2000, 4000],
+      "thermal_regime": "Humid maritime tropical, heavy southwest monsoon",
+      "primary_crops": ["rice", "coconut", "coffee", "banana", "mango", "papaya"],
+      "characteristics": "Steep rainfall gradient, plantation agriculture, acidic laterites, high organic matter in ghats."
+    },
+    "Gujarat Plains and Hills": {
+      "id": "ACZ-13",
+      "states": ["Gujarat", "Dadra and Nagar Haveli and Daman and Diu"],
+      "soil_types": ["black", "alluvial", "sandy_loam", "saline"],
+      "annual_rainfall_mm": [350, 1200],
+      "thermal_regime": "Arid to semi-arid tropical",
+      "primary_crops": ["cotton", "soybean", "chickpea", "mothbeans", "pomegranate", "mango"],
+      "characteristics": "High commercial cotton and oilseed production, drip irrigation adoption, salinity in coastal/Rann zones."
+    },
+    "Western Dry Region": {
+      "id": "ACZ-14",
+      "states": ["Rajasthan"],
+      "soil_types": ["desert_sand", "sandy_loam", "calcareous"],
+      "annual_rainfall_mm": [100, 450],
+      "thermal_regime": "Arid, intense solar radiation, extreme diurnal temp fluctuation",
+      "primary_crops": ["mothbeans", "mungbean", "chickpea", "pomegranate", "watermelon"],
+      "characteristics": "Thar desert ecosystem, drought-hardy pulses, Indira Gandhi Canal irrigated corridors."
+    },
+    "Islands Region": {
+      "id": "ACZ-15",
+      "states": ["Andaman and Nicobar Islands", "Lakshadweep"],
+      "soil_types": ["coastal_alluvial", "coral_sand", "marine_clay"],
+      "annual_rainfall_mm": [1600, 3200],
+      "thermal_regime": "Equatorial maritime, warm and humid throughout year",
+      "primary_crops": ["coconut", "banana", "rice", "papaya", "mango"],
+      "characteristics": "Island ecology, coconut and plantation dominance, coastal fishing and agroforestry."
+    }
+  }
+}

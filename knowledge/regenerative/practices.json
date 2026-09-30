@@ -1,0 +1,300 @@
+{
+  "version": "1.0.0",
+  "authority": "AgriN Regenerative Agronomy Knowledge Base (ICAR / CRIDA / FAO Aligned)",
+  "last_updated": "2026-09-30",
+  "practices": [
+    {
+      "practice_id": "PRACTICE_CROP_ROTATION",
+      "name": "Legume-Inclusive Crop Rotation",
+      "description": "Systematic succession of deep-rooted legumes (e.g., Chickpea, Pigeonpea, Green Gram) alternating with exhaustive cereal crops (Wheat, Maize, Sorghum) to break weed/pest cycles and replenish soil nitrogen.",
+      "target_soil_conditions": {
+        "nitrogen_status": ["low", "medium"],
+        "organic_carbon_percent_max": 0.75,
+        "soil_types": ["black_cotton", "alluvial", "red_loamy", "laterite"]
+      },
+      "target_climate_conditions": {
+        "zones": ["All", "Semi-Arid", "Sub-Humid"],
+        "min_rainfall_mm": 400,
+        "max_rainfall_mm": 1800
+      },
+      "compatible_crops": ["cotton", "maize", "wheat", "rice", "sorghum", "sugarcane"],
+      "water_requirement": "LOW_TO_MODERATE",
+      "implementation_complexity": "LOW",
+      "expected_benefits": [
+        "Biological nitrogen fixation (30-60 kg N/ha equivalent)",
+        "Breaks soil-borne pathogen cycles and root nematode pressure",
+        "Improves sub-soil porosity and water infiltration"
+      ],
+      "potential_tradeoffs": [
+        "Requires market access or farm storage for secondary pulse crops",
+        "Short-term gross revenue might differ from mono-cropping cash crops"
+      ],
+      "applicability_regions": ["Maharashtra", "Madhya Pradesh", "Karnataka", "Punjab", "Haryana", "Gujarat", "Andhra Pradesh", "Telangana", "Uttar Pradesh", "Rajasthan"],
+      "evidence_level": "PEER_REVIEWED",
+      "source_reference": "ICAR-Indian Institute of Farming Systems Research (IIFSR) Long-Term Crop Rotation Trials"
+    },
+    {
+      "practice_id": "PRACTICE_COVER_CROPS",
+      "name": "Multi-Species Cover Cropping",
+      "description": "Planting fast-growing herbaceous vegetative cover (e.g., Sunnhemp / Crotalaria juncea, Dhaincha / Sesbania bispinosa, Cowpea) during fallow intervals to prevent erosion and suppress weeds.",
+      "target_soil_conditions": {
+        "organic_carbon_percent_max": 0.60,
+        "erosion_risk": ["moderate", "high"],
+        "soil_types": ["alluvial", "red_loamy", "sandy_loam", "black_cotton"]
+      },
+      "target_climate_conditions": {
+        "zones": ["Tropical Wet", "Sub-Humid", "Semi-Arid with Pre-Monsoon Moisture"],
+        "min_rainfall_mm": 600,
+        "max_rainfall_mm": 2500
+      },
+      "compatible_crops": ["cotton", "sugarcane", "banana", "mango", "vegetables", "maize"],
+      "water_requirement": "MODERATE",
+      "implementation_complexity": "MEDIUM",
+      "expected_benefits": [
+        "Adds 15-25 tonnes/ha fresh biomass for green manuring",
+        "Reduces topsoil erosion during intense onset monsoons by up to 70%",
+        "Feeds mycorrhizal fungi and beneficial soil microbiota"
+      ],
+      "potential_tradeoffs": [
+        "Consumes residual soil moisture if terminated late in dryland systems",
+        "Requires seed availability and timely termination equipment"
+      ],
+      "applicability_regions": ["Maharashtra", "Tamil Nadu", "Kerala", "West Bengal", "Odisha", "Bihar", "Assam", "Punjab", "Gujarat"],
+      "evidence_level": "PEER_REVIEWED",
+      "source_reference": "CRIDA (Central Research Institute for Dryland Agriculture) Green Manuring Protocols"
+    },
+    {
+      "practice_id": "PRACTICE_INTERCROPPING",
+      "name": "Strip Intercropping & Canopy Stratification",
+      "description": "Growing two or more crops simultaneously in proximity (e.g., Pigeonpea + Soybean in 1:4 ratio, or Maize + Cowpea) to maximize land equivalent ratio (LER) and photosynthetic canopy capture.",
+      "target_soil_conditions": {
+        "depth": ["medium", "deep"],
+        "soil_types": ["black_cotton", "alluvial", "red_loamy"]
+      },
+      "target_climate_conditions": {
+        "zones": ["Semi-Arid", "Sub-Humid"],
+        "min_rainfall_mm": 500,
+        "max_rainfall_mm": 1200
+      },
+      "compatible_crops": ["cotton", "soybean", "pigeonpea", "sorghum", "maize", "groundnut"],
+      "water_requirement": "LOW_TO_MODERATE",
+      "implementation_complexity": "LOW",
+      "expected_benefits": [
+        "Land Equivalent Ratio (LER) typically between 1.25 and 1.45",
+        "Insurance against total crop failure under erratic monsoon rainfall",
+        "Micro-climate moderation reducing evapotranspiration"
+      ],
+      "potential_tradeoffs": [
+        "Mechanical harvesting is more complex compared to sole cropping",
+        "Inter-species light competition if planting geometry is misaligned"
+      ],
+      "applicability_regions": ["Maharashtra", "Madhya Pradesh", "Karnataka", "Telangana", "Andhra Pradesh", "Gujarat", "Rajasthan"],
+      "evidence_level": "FIELD_VALIDATED",
+      "source_reference": "ICRISAT / ICAR Intercropping Benchmarks for Rainfed Semi-Arid Tropics"
+    },
+    {
+      "practice_id": "PRACTICE_REDUCED_TILLAGE",
+      "name": "Conservation / Minimum Tillage",
+      "description": "Minimizing mechanical soil disturbance and leaving at least 30% crop residue cover on the soil surface, preserving fungal hyphae networks and soil aggregate stability.",
+      "target_soil_conditions": {
+        "compaction_risk": ["low", "moderate"],
+        "soil_types": ["alluvial", "black_cotton", "sandy_loam"]
+      },
+      "target_climate_conditions": {
+        "zones": ["All", "Semi-Arid", "Arid"],
+        "min_rainfall_mm": 300,
+        "max_rainfall_mm": 2000
+      },
+      "compatible_crops": ["wheat", "maize", "rice", "cotton", "soybean", "mustard"],
+      "water_requirement": "LOW",
+      "implementation_complexity": "MEDIUM",
+      "expected_benefits": [
+        "Reduces tractor diesel consumption by 40-60 liters/ha",
+        "Maintains stable soil macro-aggregates and macro-pores",
+        "Decreases soil carbon oxidation loss"
+      ],
+      "potential_tradeoffs": [
+        "May require specialized direct-seed drill (e.g., Happy Seeder / Super Seeder)",
+        "Early-stage perennial weed management requires careful attention"
+      ],
+      "applicability_regions": ["Punjab", "Haryana", "Uttar Pradesh", "Madhya Pradesh", "Maharashtra", "Bihar", "Rajasthan"],
+      "evidence_level": "PEER_REVIEWED",
+      "source_reference": "Borlaug Institute for South Asia (BISA) Conservation Agriculture Studies"
+    },
+    {
+      "practice_id": "PRACTICE_RESIDUE_RETENTION",
+      "name": "In-Situ Crop Residue Retention & Mulching",
+      "description": "Retention of crop stubble, straw, and harvest residues on the field rather than burning or removing, creating a protective mulch blanket.",
+      "target_soil_conditions": {
+        "organic_carbon_percent_max": 0.80,
+        "soil_types": ["alluvial", "black_cotton", "red_loamy", "laterite", "sandy_loam"]
+      },
+      "target_climate_conditions": {
+        "zones": ["All", "Semi-Arid", "High-Temperature Summer"],
+        "min_rainfall_mm": 350,
+        "max_rainfall_mm": 2200
+      },
+      "compatible_crops": ["wheat", "rice", "sugarcane", "cotton", "maize", "horticulture_orchards"],
+      "water_requirement": "LOW",
+      "implementation_complexity": "LOW",
+      "expected_benefits": [
+        "Lowers peak summer soil temperature by 4°C to 8°C",
+        "Reduces surface evaporation, conserving 15-25% irrigation water",
+        "Eliminates particulate smog from open field burning"
+      ],
+      "potential_tradeoffs": [
+        "Risk of harboring insect pests (e.g., stem borers) if residue is not managed properly",
+        "Slow decomposition in arid conditions without adequate microbial moisture"
+      ],
+      "applicability_regions": ["Punjab", "Haryana", "Uttar Pradesh", "Maharashtra", "Tamil Nadu", "Karnataka", "West Bengal", "Gujarat"],
+      "evidence_level": "PEER_REVIEWED",
+      "source_reference": "National Academy of Agricultural Sciences (NAAS) Residue Management Directives"
+    },
+    {
+      "practice_id": "PRACTICE_INM",
+      "name": "Integrated Nutrient Management (INM)",
+      "description": "Synergistic combination of organic manures (FYM, vermicompost, biochar), biofertilizers (Rhizobium, Azotobacter, PSB), and precision synthetic fertilizers based on soil test card deficits.",
+      "target_soil_conditions": {
+        "nutrient_imbalance": true,
+        "organic_carbon_percent_max": 0.70,
+        "soil_types": ["all"]
+      },
+      "target_climate_conditions": {
+        "zones": ["All"],
+        "min_rainfall_mm": 300,
+        "max_rainfall_mm": 3000
+      },
+      "compatible_crops": ["all"],
+      "water_requirement": "MODERATE",
+      "implementation_complexity": "LOW",
+      "expected_benefits": [
+        "Improves nutrient use efficiency (NUE) by 20-35%",
+        "Gradually restores active fraction of soil organic carbon",
+        "Supplies essential secondary and micronutrients (S, Zn, Fe, B)"
+      ],
+      "potential_tradeoffs": [
+        "Bulkiness of farmyard manure requires transport logistics",
+        "Quality standardization of commercial compost and bio-inoculants varies"
+      ],
+      "applicability_regions": ["All States and Union Territories"],
+      "evidence_level": "PEER_REVIEWED",
+      "source_reference": "ICAR-Indian Institute of Soil Science (IISS) INM Guidelines"
+    },
+    {
+      "practice_id": "PRACTICE_WATER_CONSERVATION",
+      "name": "Micro-Irrigation & Broad Bed Furrow (BBF)",
+      "description": "Combining land configuration (Broad Bed Furrow or Ridge & Furrow) with drip/micro-sprinkler systems to manage excess drainage in monsoons and conserve moisture during dry spells.",
+      "target_soil_conditions": {
+        "drainage": ["poor", "moderate", "good"],
+        "soil_types": ["black_cotton", "alluvial", "red_loamy"]
+      },
+      "target_climate_conditions": {
+        "zones": ["Semi-Arid", "Sub-Humid", "Arid"],
+        "min_rainfall_mm": 300,
+        "max_rainfall_mm": 1400
+      },
+      "compatible_crops": ["cotton", "soybean", "groundnut", "chickpea", "sugarcane", "pomegranate", "banana", "grapes"],
+      "water_requirement": "LOW",
+      "implementation_complexity": "MEDIUM",
+      "expected_benefits": [
+        "Water savings of 30-50% compared to conventional flood irrigation",
+        "Prevents root waterlogging in heavy Vertisols during cloudburst events",
+        "Enhances crop yield by 15-25% via uniform aeration"
+      ],
+      "potential_tradeoffs": [
+        "Initial capital expenditure for drip lines and filters (partially offset by PMKSY subsidy)",
+        "Requires maintenance to prevent emitter clogging from hard water salts"
+      ],
+      "applicability_regions": ["Maharashtra", "Gujarat", "Rajasthan", "Karnataka", "Tamil Nadu", "Andhra Pradesh", "Telangana", "Madhya Pradesh"],
+      "evidence_level": "FIELD_VALIDATED",
+      "source_reference": "CRIDA / VNMKV Broad Bed Furrow Technology Validation for Rainfed Vertisols"
+    },
+    {
+      "practice_id": "PRACTICE_IPM",
+      "name": "Ecological & Integrated Pest Management (IPM)",
+      "description": "Biological control utilizing pheromone traps, yellow sticky traps, border trap crops (Marigold in Cotton/Tomato), Trichoderma, and parasitoids to keep pest populations below Economic Injury Level (EIL).",
+      "target_soil_conditions": {
+        "soil_types": ["all"]
+      },
+      "target_climate_conditions": {
+        "zones": ["All"],
+        "min_rainfall_mm": 300,
+        "max_rainfall_mm": 3000
+      },
+      "compatible_crops": ["cotton", "soybean", "rice", "maize", "pulses", "vegetables", "orchards"],
+      "water_requirement": "LOW",
+      "implementation_complexity": "LOW",
+      "expected_benefits": [
+        "Reduces toxic chemical pesticide sprays by 50-80%",
+        "Prevents secondary pest resurgence and pesticide resistance",
+        "Protects native honeybees and beneficial pollinator populations"
+      ],
+      "potential_tradeoffs": [
+        "Requires routine field scouting rather than calendar-based spraying",
+        "Biological agents have narrower environmental windows than broad-spectrum chemicals"
+      ],
+      "applicability_regions": ["All States and Union Territories"],
+      "evidence_level": "PEER_REVIEWED",
+      "source_reference": "ICAR-National Research Centre for Integrated Pest Management (NCIPM)"
+    },
+    {
+      "practice_id": "PRACTICE_AGROFORESTRY",
+      "name": "Agroforestry & Field Bund Plantation",
+      "description": "Integrating multipurpose perennial trees (Subabul / Leucaena, Neem, Moringa, Gliricidia) along farm boundaries or windbreaks to provide leaf fodder, microclimate moderation, and deep nutrient pumping.",
+      "target_soil_conditions": {
+        "depth": ["shallow", "medium", "deep"],
+        "soil_types": ["all"]
+      },
+      "target_climate_conditions": {
+        "zones": ["All", "Arid", "Semi-Arid", "Coastal"],
+        "min_rainfall_mm": 350,
+        "max_rainfall_mm": 2500
+      },
+      "compatible_crops": ["all"],
+      "water_requirement": "LOW",
+      "implementation_complexity": "MEDIUM",
+      "expected_benefits": [
+        "Long-term biological carbon sequestration in tree woody biomass",
+        "Windbreak effect reducing mechanical crop lodging and desiccating winds",
+        "Supplementary farmer income from pruned timber, fruit, or high-protein fodder"
+      ],
+      "potential_tradeoffs": [
+        "Can cause border shading on adjacent row crops if canopies are not pollarded",
+        "Multi-year gestation period before tree economic benefits realize"
+      ],
+      "applicability_regions": ["All States and Union Territories"],
+      "evidence_level": "PEER_REVIEWED",
+      "source_reference": "Central Agroforestry Research Institute (CAFRI) Bund Agroforestry Systems"
+    },
+    {
+      "practice_id": "PRACTICE_SOIL_CARBON_BIOCHAR",
+      "name": "Biochar & Stable Carbon Pyrolysis Amendment",
+      "description": "Application of pyrolyzed farm bio-residues (cotton stalks, pigeonpea stalks) converted into stable porous recalcitrant black carbon to permanently augment soil water holding capacity and cation exchange.",
+      "target_soil_conditions": {
+        "organic_carbon_percent_max": 0.50,
+        "cation_exchange": ["low", "moderate"],
+        "soil_types": ["sandy_loam", "red_loamy", "laterite", "degraded_black_cotton"]
+      },
+      "target_climate_conditions": {
+        "zones": ["Semi-Arid", "Arid", "Humid Tropics"],
+        "min_rainfall_mm": 300,
+        "max_rainfall_mm": 2000
+      },
+      "compatible_crops": ["cotton", "maize", "pulses", "groundnut", "vegetables"],
+      "water_requirement": "LOW",
+      "implementation_complexity": "HIGH",
+      "expected_benefits": [
+        "High persistence carbon sequestered with hundreds of years half-life",
+        "Boosts soil water retention in sandy or degraded soils by 15-30%",
+        "Reduces nutrient leaching in high-rainfall zones"
+      ],
+      "potential_tradeoffs": [
+        "Requires on-farm low-emission pyrolysis kiln or centralized biochar producer",
+        "Must be co-composted with manure/urine prior to application to avoid initial nitrogen draw-down"
+      ],
+      "applicability_regions": ["Maharashtra", "Gujarat", "Telangana", "Andhra Pradesh", "Karnataka", "Tamil Nadu", "Madhya Pradesh", "Rajasthan"],
+      "evidence_level": "FIELD_VALIDATED",
+      "source_reference": "CRIDA / ICAR-IISS Biochar Field Application Assessments"
+    }
+  ]
+}

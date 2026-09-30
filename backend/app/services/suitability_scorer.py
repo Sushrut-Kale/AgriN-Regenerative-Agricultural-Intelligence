@@ -247,7 +247,9 @@ def _check_context(crop_req: dict, farm_data: dict, crop_name: str) -> Tuple[flo
     season_gate = 1.0
 
     season = farm_data.get("season")
-    crop_seasons = crop_req.get("seasons", {}).get("maharashtra", [])
+    state = farm_data.get("state", "Maharashtra")
+    from backend.app.services.geo_service import get_crop_seasons_for_region
+    crop_seasons = get_crop_seasons_for_region(crop_name, state)
     category_type = crop_req.get("category_type", "seasonal_field_crop")
 
     if category_type == "perennial_horticulture":

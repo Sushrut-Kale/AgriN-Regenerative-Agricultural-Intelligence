@@ -10,7 +10,7 @@ for Maharashtra districts with graceful fallback to district climatology benchma
 import json
 import urllib.request
 import urllib.parse
-from typing import Dict, Any
+from typing import Dict, Any, Optional
 
 # Representative coordinates for Maharashtra districts
 DISTRICT_COORDINATES = {
@@ -42,28 +42,65 @@ DEFAULT_FALLBACK = {
 }
 
 
-def get_district_info(district_name: str) -> dict:
+def get_district_info(district_name: str, state_name: Optional[str] = None) -> dict:
+    """Find district coordinates and climatology benchmarks across India with MH fallback."""
     d_clean = district_name.strip().lower()
     for key, info in DISTRICT_COORDINATES.items():
         if key in d_clean or d_clean in key or d_clean in info["name"].lower():
-            return info
-    return DEFAULT_FALLBACK
+            return {**info, "state": "Maharashtra"}
+
+    from backend.app.services.geo_service import find_district_by_name
+    match = find_district_by_name(district_name, state_name)
+    if match:
+        return {
+            "lat": match["lat"],
+            "lon": match["lon"],
+            "name": match["name"],
+            "state": match.get("state", state_name or "Maharashtra"),
+            "region": match.get("zone", "General India"),
+            "default_rainfall": match.get("annual_rainfall", 800),
+            "default_temp": match.get("default_temp", 26.5),
+            "default_humidity": match.get("default_humidity", 60.0)
+        }
+
+    return {**DEFAULT_FALLBACK, "state": "Maharashtra"}
 
 
-def fetch_live_weather(district_name: str) -> Dict[str, Any]:
+def fetch_live_weather(
+    district_name: str = "Parbhani",
+    state_name: Optional[str] = None,
+    lat: Optional[float] = None,
+    lon: Optional[float] = None
+) -> Dict[str, Any]:
     """
-    Fetch real-time current weather parameters for a given district.
-    Queries Open-Meteo API and falls back gracefully if connection is unavailable.
+    Fetch real-time current weather parameters for any location in India.
+    Accepts explicit coordinates (lat, lon) or district/state name.
+    Queries Open-Meteo API with graceful fallback to regional climatology.
     """
-    info = get_district_info(district_name)
-    lat, lon = info["lat"], info["lon"]
+    from backend.app.services.geo_service import find_nearest_district
+
+    if lat is not None and lon is not None:
+        nearest_d, resolved_state = find_nearest_district(lat, lon)
+        info = {
+            "lat": lat,
+            "lon": lon,
+            "name": nearest_d["name"],
+            "state": resolved_state,
+            "region": nearest_d.get("zone", "Regional Agro-Climatic Zone"),
+            "default_rainfall": nearest_d.get("annual_rainfall", 800),
+            "default_temp": nearest_d.get("default_temp", 26.5),
+            "default_humidity": nearest_d.get("default_humidity", 60.0)
+        }
+    else:
+        info = get_district_info(district_name, state_name)
+        lat, lon = info["lat"], info["lon"]
 
     url = f"https://api.open-meteo.com/v1/forecast?latitude={lat}&longitude={lon}&current=temperature_2m,relative_humidity_2m,precipitation&daily=precipitation_sum&timezone=Asia%2FKolkata"
 
     try:
         req = urllib.request.Request(
             url,
-            headers={"User-Agent": "FarmFriendAI/2.0 (Agricultural Decision Support)"}
+            headers={"User-Agent": "AgriN/2.0 (Agricultural Decision Support)"}
         )
         with urllib.request.urlopen(req, timeout=4) as resp:
             if resp.status == 200:
@@ -81,13 +118,14 @@ def fetch_live_weather(district_name: str) -> Dict[str, Any]:
                     "is_live_data": True,
                     "source": "Open-Meteo Real-Time Weather API",
                     "district": info["name"],
+                    "state": info.get("state", "India"),
                     "region": info["region"],
                     "coordinates": {"lat": lat, "lon": lon},
                     "temperature": round(float(temp), 1) if temp is not None else info["default_temp"],
                     "humidity": round(float(humidity), 1) if humidity is not None else info["default_humidity"],
                     "rainfall": info["default_rainfall"],
                     "recent_7day_precipitation_mm": round(recent_precip_est, 1),
-                    "note": f"Live weather fetched successfully for {info['name']}."
+                    "note": f"Live weather fetched successfully for {info['name']}, {info.get('state', '')}."
                 }
     except Exception as err:
         print(f"Notice: Live weather fetch using fallback climatology for {district_name}: {err}")
@@ -95,13 +133,14 @@ def fetch_live_weather(district_name: str) -> Dict[str, Any]:
     # Fallback response
     return {
         "is_live_data": False,
-        "source": "Maharashtra Regional Climatology Database",
+        "source": "Indian Regional Climatology Database",
         "district": info["name"],
+        "state": info.get("state", "India"),
         "region": info["region"],
         "coordinates": {"lat": lat, "lon": lon},
         "temperature": info["default_temp"],
         "humidity": info["default_humidity"],
         "rainfall": info["default_rainfall"],
         "recent_7day_precipitation_mm": 0.0,
-        "note": f"Using benchmark regional climatology values for {info['name']}."
+        "note": f"Using benchmark regional climatology values for {info['name']}, {info.get('state', '')}."
     }

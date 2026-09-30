@@ -13,11 +13,18 @@ from datetime import datetime
 # ── Input Schemas ─────────────────────────────────────────────────────────────
 
 class FarmDataInput(BaseModel):
+    country: Optional[str] = "India"
     state: str = "Maharashtra"
     district: Optional[str] = "Parbhani"
+    sub_district: Optional[str] = None  # Taluka / Tehsil / Block
     village: Optional[str] = None
+    latitude: Optional[float] = None
+    longitude: Optional[float] = None
+    agro_climatic_zone: Optional[str] = None
     season: Optional[str] = "kharif"  # kharif | rabi | summer | perennial
     farm_area: Optional[float] = None
+    area_hectares: Optional[float] = None
+    boundary_geojson: Optional[Dict[str, Any]] = None
     soil_type: Optional[str] = None
     irrigation_available: Optional[str] = "no"  # yes | no
     water_source: Optional[str] = None
@@ -216,3 +223,29 @@ class ErrorResponse(BaseModel):
     success: bool = False
     error: str
     detail: Optional[str] = None
+
+
+# ── Phase 2.5 Intelligence Schemas Re-Export ──────────────────────────────────
+from backend.app.models.intelligence_schemas import (
+    DataCoverage,
+    DataConfidenceLevel,
+    DataResolution,
+    DataSourceType,
+    ObservationType,
+    AdvisoryCategory,
+    AdvisoryPriority,
+    SpectralIndex,
+    DiagnosisStatus,
+    FeedbackActionStatus,
+    FeedbackOutcome,
+    DataSourceMetadata,
+    ConfidenceMetadata,
+    FarmBoundary,
+    FarmObservationCreate,
+    FarmObservationResponse,
+    SatelliteObservation,
+    DiseaseObservation,
+    FarmHealthSnapshot,
+    AgriculturalAdvisory,
+    AdvisoryFeedbackInput,
+)
