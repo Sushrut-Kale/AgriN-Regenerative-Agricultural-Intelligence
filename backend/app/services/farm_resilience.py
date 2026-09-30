@@ -176,6 +176,43 @@ def calculate_farm_resilience(
     strengths = [k.replace("_", " ").title() for k, v in components_dict.items() if v >= 75.0]
     vulnerabilities = [k.replace("_", " ").title() for k, v in components_dict.items() if v < 60.0]
 
+    # Documented Component Rationales
+    component_rationales = {
+        "soil_health": "Buffers root system against nutrient depletion, erosion, and extreme soil moisture swings (Weight: 25%).",
+        "water_context": "Evaluates irrigation assurance and seasonal precipitation adequacy against drought vulnerability (Weight: 25%).",
+        "climate_context": "Assesses thermal and hygrometric stress factors, heatwaves, frost, and high-humidity disease windows (Weight: 20%).",
+        "crop_diversity": "Spatial polyculture and legume rotation reduce pest outbreaks and hedge against monoculture crop failure (Weight: 15%).",
+        "crop_suitability": "Ensures the selected crop's biophysical requirements match the farm's ambient agro-ecological realities (Weight: 15%)."
+    }
+
+    agri_resilience_block = {
+        "score": composite_resilience,
+        "resilience_tier": resilience_tier,
+        "tier_description": tier_description,
+        "components": components_dict,
+        "weights": {
+            "soil_health": 0.25,
+            "water_context": 0.25,
+            "climate_context": 0.20,
+            "crop_diversity": 0.15,
+            "crop_suitability": 0.15
+        },
+        "component_rationales": component_rationales,
+        "strengths": strengths,
+        "vulnerabilities": vulnerabilities,
+        "water_assessment": water_desc,
+        "climate_notes": climate_notes,
+        "diversity_notes": diversity_notes
+    }
+
+    data_confidence_block = {
+        "score": confidence_val,
+        "confidence_level": conf_assessment["confidence_level"],
+        "rationale": "Measures data completeness, sensor freshness, and geographic resolution independently of biophysical farm health.",
+        "dimensions": conf_assessment.get("dimensions", {}),
+        "missing_fields": conf_assessment.get("metadata", {}).get("missing_core_fields", [])
+    }
+
     return {
         "index_name": "AgriN Farm Resilience Index — prototype",
         "score": composite_resilience,
@@ -196,5 +233,8 @@ def calculate_farm_resilience(
         "water_assessment": water_desc,
         "climate_notes": climate_notes,
         "diversity_notes": diversity_notes,
+        # Phase 7: Explicit Separation of Agricultural Resilience and Data Confidence
+        "agricultural_resilience": agri_resilience_block,
+        "data_confidence": data_confidence_block,
         "evaluated_at": datetime.now(timezone.utc).isoformat()
     }

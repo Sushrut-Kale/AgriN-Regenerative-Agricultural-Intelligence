@@ -4,14 +4,13 @@
 [![React](https://img.shields.io/badge/Frontend-React_19_+_Vite-61DAFB.svg?style=flat&logo=react)](https://reactjs.org/)
 [![Python](https://img.shields.io/badge/Python-3.11+-3776AB.svg?style=flat&logo=python)](https://python.org)
 [![scikit-learn](https://img.shields.io/badge/ML-scikit--learn-F7931E.svg?style=flat&logo=scikit-learn)](https://scikit-learn.org/)
-[![Tests](https://img.shields.io/badge/Tests-58%20Passed-brightgreen.svg)]()
-[![QA](https://img.shields.io/badge/Master%20QA-68%2F68%20Passed-brightgreen.svg)]()
+[![Tests](https://img.shields.io/badge/Tests-134%20Passed-brightgreen.svg)]()
+[![BRICS Interoperability](https://img.shields.io/badge/BRICS_Track_4-Hardened-blueviolet.svg)]()
 [![Pan-India](https://img.shields.io/badge/Coverage-28%20States%20%2B%208%20UTs-orange.svg)]()
-[![Phase](https://img.shields.io/badge/Phase-2.5%20Hardened-blueviolet.svg)]()
 [![License](https://img.shields.io/badge/License-MIT-blue.svg)]()
 
-> **"Pan-India AI-powered agricultural intelligence and regenerative decision support."**  
-> An end-to-end agronomic decision-support platform designed to help farmers, agricultural extension workers, and agronomists make data-driven crop suitability and regenerative agriculture choices backed by transparent, explainable machine learning, 15 ICAR National Agro-Climatic Zones, time-series observations, and canonical multi-category advisories across all 28 Indian States and 8 Union Territories.
+> **"BRICS Track 4 — AgriN & Regenerative Agricultural Intelligence Network."**  
+> An end-to-end, scientifically honest agronomic decision-support platform designed for localized agricultural intelligence across all 28 Indian States and 8 Union Territories (15 ICAR Agro-Climatic Zones), integrating satellite-derived vegetation indicators, Soil Health Card diagnostics, multi-source weather telemetry, plant pathology triage, and multi-horizon regenerative practices with a canonical country-neutral data exchange architecture for BRICS agricultural cooperation.
 
 ---
 
@@ -273,51 +272,49 @@ FarmFriend AI uses a **Random Forest Classifier** trained on multi-source verifi
 Run the test suite across all services and endpoints:
 
 ```bash
-# Run all 58 automated unit & integration tests
-pytest
+# Run all 134 automated unit & integration tests
+pytest tests/ -q
 
-# Run tests with verbose output
-pytest -v
+# Run end-to-end multi-state validation suite (18 scenarios)
+python scripts/final_system_validation.py
 
-# Run Master 68-Point QA Audit
-python tests/test_qa_master.py
+# Build frontend production bundle
+cd frontend && npm run build
 ```
 
 **Test Coverage Summary:**
-- `test_phase_2_5.py`: Data confidence, observations, farm health snapshots, decoupled advisories, regenerative engine, feedback loop.
-- `test_pan_india_regions.py`: Regional agro-climatic tests across Punjab, Karnataka, West Bengal, Gujarat, Assam, and MH.
-- `test_agricultural_validation.py`: SHC threshold validity, toxic limits, and agronomic bounds.
-- `test_api.py`: FastAPI endpoints and response schemas.
-- `test_services.py`: Scoring algorithms, feasibility calculators, and what-if simulation logic.
-- `test_weather_service.py`: Open-Meteo fallback handling and live API fetchers.
-- `test_parbhani_case.py`: Real-world end-to-end case study on Marathwada Vertisol soil.
-- `test_feedback.py`: Feedback persistence and database verification.
+- `tests/test_phase4_real_activation.py`: Satellite provider honesty, disease validation, unit normalizer, canonical data model, knowledge graph citations.
+- `tests/test_phase3_maturity.py`: Agricultural risk engine, farm resilience decoupling, BRICS adapters, data quality metrics.
+- `tests/test_phase_2_5.py`: Data confidence, observations, farm health snapshots, decoupled advisories, regenerative engine, feedback loop.
+- `tests/test_pan_india_regions.py`: Regional agro-climatic tests across Punjab, Karnataka, West Bengal, Gujarat, Assam, and MH.
+- `tests/test_agricultural_validation.py`: SHC threshold validity, toxic limits, and agronomic bounds.
+- `tests/test_api.py`: FastAPI endpoints and response schemas.
+- `tests/test_services.py`: Scoring algorithms, feasibility calculators, and what-if simulation logic.
+- `tests/test_weather_service.py`: Open-Meteo fallback handling and live API fetchers.
+- `tests/test_parbhani_case.py`: Real-world end-to-end case study on Marathwada Vertisol soil.
+- `tests/test_feedback.py`: Feedback persistence and database verification.
 
 ---
 
 ## 📚 Documentation Directory
 
-Detailed technical and research documents are available in the [`docs/`](./docs) directory:
+Detailed technical and research documents are available in the repository root and [`docs/`](./docs) directory:
+- [Final Production Readiness Report](./FINAL_PRODUCTION_READINESS_REPORT.md)
+- [Final System Audit & Capability Matrix](./FINAL_SYSTEM_AUDIT.md)
+- [Final Validation Results (18/18 Scenarios)](./FINAL_VALIDATION_RESULTS.json)
+- [Track 4 Alignment Matrix](./TRACK_4_ALIGNMENT.md)
 - [Phase 2.5 Architecture Specification](./docs/PHASE_2_5_ARCHITECTURE.md)
 - [Data Confidence & Provenance Framework](./docs/DATA_CONFIDENCE.md)
-- [Time-Series Farm Observation Model](./docs/OBSERVATION_MODEL.md)
 - [Advisory Engine & Decoupled Intelligence](./docs/ADVISORY_ENGINE.md)
 - [Satellite Intelligence Architecture](./docs/SATELLITE_INTELLIGENCE_ARCHITECTURE.md)
 - [Crop Disease Intelligence Architecture](./docs/DISEASE_INTELLIGENCE_ARCHITECTURE.md)
 - [Regenerative Agriculture Intelligence Architecture](./docs/REGENERATIVE_INTELLIGENCE_ARCHITECTURE.md)
-- [Multilingual & Localization Architecture](./docs/MULTILINGUAL_ARCHITECTURE.md)
 - [BRICS Interoperability Architecture](./docs/BRICS_INTEROPERABILITY_ARCHITECTURE.md)
-- [Track 4 Alignment Matrix](./TRACK_4_ALIGNMENT.md)
-- [Phase 2.5 Audit Report](./PHASE_2_5_AUDIT.md)
 - [Pan-India Agricultural Coverage](./INDIA_AGRICULTURAL_COVERAGE.md)
-- [Product Handover & Architecture Document](./docs/PRODUCT_HANDOVER.md)
-- [Dataset Provenance & Dataset Card](./docs/dataset_card.md)
-- [ML Model Card](./docs/model_card.md)
 - [Agricultural Knowledge Sources](./docs/agricultural_knowledge_sources.md)
-- [Final QA & Validation Report](./docs/FINAL_QA_REPORT.md)
 
 ---
 
-## ⚠️ Disclaimer
+## ⚠️ Scientific Honesty & Responsible AI Notice
 
-> *FarmFriend AI is designed as a data-driven agricultural decision-support tool. Crop recommendations are estimates derived from machine learning models and published agronomic guidelines. Users should combine these insights with local agronomist counsel and real-world farm conditions.*
+> *AgriN is designed as an evidence-backed agronomic decision-support platform. All recommendations are derived from empirical Soil Health Card parameters, validated meteorological models, and published ICAR/FAO guidelines. Satellite and vision components fail honestly (`NOT_CONNECTED`, `MODEL_NOT_DEPLOYED`) when external credentials or models are absent. Advisories provide guidance only; final crop management decisions should account for local Krishi Vigyan Kendra (KVK) guidance and uncontrollable micro-climatic variations.*

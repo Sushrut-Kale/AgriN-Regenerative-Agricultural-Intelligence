@@ -44,14 +44,31 @@ def assess_soil_health(
     nutrients_spec = standards.get("nutrients", {})
     constraints_rules = standards.get("constraints_rules", [])
 
-    # Extract parameters safely
+    # Extract parameters safely with physical validity bounds checking
     def _get_float(key: str) -> Optional[float]:
         v = soil_data.get(key)
-        if v is None:
+        if v is None and key == "pH":
+            v = soil_data.get("ph")
+        if v is None or v == "" or v == "unknown":
             return None
         try:
             val = float(v)
-            return val if val >= 0 or key == "pH" else None
+            # Physical validity boundaries
+            if key == "pH":
+                if val < 0.0 or val > 14.0:
+                    return None  # Discard physically impossible pH
+                return val
+            if key == "EC":
+                if val < 0.0 or val > 50.0:
+                    return None
+                return val
+            if key == "OC":
+                if val < 0.0 or val > 15.0:
+                    return None
+                return val
+            if val < 0.0:
+                return None  # Negative nutrient values are physically invalid
+            return val
         except (ValueError, TypeError):
             return None
 
@@ -73,6 +90,7 @@ def assess_soil_health(
     core_params = {"N": n_val, "P": p_val, "K": k_val, "pH": ph_val, "EC": ec_val, "OC": oc_val}
     provided_core = sum(1 for v in core_params.values() if v is not None)
     total_core = len(core_params)
+
 
     if provided_core == 0:
         return {

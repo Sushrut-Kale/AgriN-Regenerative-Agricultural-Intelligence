@@ -1,0 +1,102 @@
+{
+  "1_maharashtra": {
+    "status": "success",
+    "top_crop": "cotton",
+    "soil_score": null,
+    "resilience_score": null,
+    "satellite_status": "NOT_CONNECTED",
+    "crop_health_status": "NOT_ASSESSED"
+  },
+  "2_punjab": {
+    "status": "success",
+    "top_crop": "blackgram",
+    "soil_score": null,
+    "resilience_score": null
+  },
+  "3_rajasthan": {
+    "status": "success",
+    "top_crop": "mothbeans",
+    "soil_score": null,
+    "resilience_score": null
+  },
+  "4_kerala": {
+    "status": "success",
+    "top_crop": "pigeonpeas",
+    "soil_score": null,
+    "resilience_score": null
+  },
+  "5_tamil_nadu": {
+    "status": "success",
+    "top_crop": "orange",
+    "soil_score": null,
+    "resilience_score": null
+  },
+  "6_satellite_unavailable": {
+    "status": "NOT_CONNECTED",
+    "ndvi": null,
+    "message": "Sentinel-2 STAC API credentials not configured. Live Earth observation disconnected and unlinked; zero synthetic vegetation values fabricated."
+  },
+  "7_satellite_demo_mode": {
+    "status": "CONNECTED",
+    "ndvi": 0.43,
+    "vegetation_status": "MODERATE",
+    "is_synthetic": true,
+    "notice": "DEMONSTRATION DATA \u2014 NOT REAL SATELLITE RASTER MEASUREMENT"
+  },
+  "8_disease_unavailable": {
+    "status": "MODEL_NOT_DEPLOYED",
+    "diagnosis_status": "NOT_ASSESSED",
+    "confidence": 0.0,
+    "explainability": "Responsible AI safety guardrail: Refuses to hallucinate plant pathology when model weights are unlinked."
+  },
+  "9_disease_demo_mode": {
+    "status": "ASSESSED",
+    "diagnosis_status": "SCREENING_COMPLETED",
+    "condition": "Cotton Leaf Curl Virus (CLCuV)",
+    "confidence": 0.88,
+    "advisory_status": "CONFIRMED_SCREENING",
+    "is_synthetic": true
+  },
+  "10_india_interoperability": {
+    "status": "NORMALIZATION_SUCCESS",
+    "country_code": "IND",
+    "partner_agency": "ICAR-DAC&FW (India Reference)"
+  },
+  "11_brazil_interoperability": {
+    "status": "NORMALIZATION_SUCCESS",
+    "country_code": "BRA",
+    "normalized_oc": 1.624,
+    "partner_agency": "Brazil Agricultural Partner"
+  },
+  "12_south_africa_interoperability": {
+    "status": "NORMALIZATION_SUCCESS",
+    "country_code": "ZAF",
+    "normalized_temp": 24.0,
+    "normalized_rainfall": 25.4,
+    "partner_agency": "South Africa Agricultural Partner"
+  },
+  "13_combined_analysis": {
+    "fusion_type": "SOIL_WEATHER_SATELLITE_FUSION",
+    "evidence_count": 5,
+    "interpretation": "High atmospheric vapor pressure deficit combined with low canopy NDVI indicates acute crop water stress risk.",
+    "confidence": "HIGH"
+  },
+  "14_low_confidence": {
+    "data_quality_score": 0.46,
+    "data_quality_level": "MEDIUM",
+    "missing_parameters": [
+      "Soil Reaction (pH): Essential for evaluating nutrient availability and acidity/alkalinity hazards.",
+      "Soil organic carbon: Critical for determining biological soil health and manure requirements.",
+      "Nitrogen (N): Essential for vegetative growth and balanced basal fertilization.",
+      "Phosphorus (P): Required for root development and energy transfer.",
+      "Potassium (K): Necessary for drought stress tolerance and disease resistance.",
+      "Electrical Conductivity (EC): Required to detect rootzone salinity constraints.",
+      "Irrigation source: Critical for gating high-water-demand crops."
+    ]
+  },
+  "15_missing_data": {
+    "missing_parameters_count": 7,
+    "actionable_guidance": "Complete missing soil parameters by conducting a standard 12-parameter Soil Health Card (SHC) test at your nearest Krishi Vigyan Kendra (KVK) or district agricultural laboratory to upgrade advisory precision to HIGH.",
+    "impact_statement": "Providing missing laboratory soil test readings (especially Organic Carbon and NPK) will unlock calibrated fertilizer recommendations and improve crop suitability confidence from preliminary agro-climatic baseline to field-specific precision."
+  }
+}

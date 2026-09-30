@@ -129,3 +129,14 @@ export const getNationalOverview = () =>
 export const getInteroperabilityAdapters = () =>
   apiCall('/interoperability/adapters');
 
+// ── Phase 3 Maturity Endpoints ──────────────────────────────────────────────
+export const compareCrops = (payload) =>
+  apiCall('/crops/compare', { method: 'POST', body: JSON.stringify(payload) });
+
+export const getKnowledgeSources = () =>
+  apiCall('/knowledge/sources');
+
+export const getDemoFarms = () =>
+  apiCall('/demo/farms');
+
+

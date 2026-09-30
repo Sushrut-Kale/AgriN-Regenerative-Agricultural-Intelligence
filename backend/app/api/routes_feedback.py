@@ -26,6 +26,31 @@ def submit_feedback(request: FeedbackInput, db: Session = Depends(get_db)):
     """
     try:
         feedback_id = str(uuid.uuid4())
+
+        # Map Phase 12 feedback responses to structured rating & outcome
+        rating_val = request.rating or "helpful"
+        if request.outcome:
+            if request.outcome == "Successful":
+                rating_val = "helpful"
+            elif request.outcome == "Poor outcome":
+                rating_val = "not_helpful"
+            elif request.outcome == "Neutral":
+                rating_val = "partially"
+
+        notes_parts = []
+        if request.did_you_follow:
+            notes_parts.append(f"Followed: {request.did_you_follow}")
+        if request.outcome:
+            notes_parts.append(f"Outcome: {request.outcome}")
+        if request.yield_observation:
+            notes_parts.append(f"Yield Obs: {request.yield_observation}")
+        if request.disease_observation:
+            notes_parts.append(f"Disease Obs: {request.disease_observation}")
+        if request.free_text:
+            notes_parts.append(f"Comment: {request.free_text}")
+
+        combined_text = " | ".join(notes_parts) if notes_parts else request.free_text
+
         rec = FeedbackRecord(
             feedback_id=feedback_id,
             session_id=request.session_id,
@@ -33,11 +58,11 @@ def submit_feedback(request: FeedbackInput, db: Session = Depends(get_db)):
             recommended_crop=request.recommended_crop,
             selected_crop=request.selected_crop or request.recommended_crop,
             suitability_score=request.suitability_score,
-            rating=request.rating,
-            reason=request.reason,
-            free_text=request.free_text,
-            outcome_status=request.outcome_status or "not_yet_grown",
-            crop_performance=request.crop_performance,
+            rating=rating_val,
+            reason=request.reason or (f"Followed: {request.did_you_follow}" if request.did_you_follow else None),
+            free_text=combined_text,
+            outcome_status="harvested" if request.actual_yield or request.yield_observation else (request.outcome_status or "not_yet_grown"),
+            crop_performance=request.crop_performance or (request.outcome.lower() if request.outcome in ["Successful", "Neutral", "Poor outcome"] else None),
             actual_yield=request.actual_yield,
             yield_unit=request.yield_unit or "quintals_per_ha",
             model_version=request.model_version or "random_forest_v2",

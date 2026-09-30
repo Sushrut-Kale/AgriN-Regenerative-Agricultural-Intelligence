@@ -342,6 +342,95 @@ def compute_suitability_score(
     moderate   = [f for f in all_factors if f["status"] == "moderate"]
     uncertain  = [f for f in all_factors if f["status"] == "uncertain"]
 
+    # EC & Salinity evaluation (Actionable Soil Intelligence)
+    ec_val = None
+    if soil_data.get("EC") is not None:
+        try:
+            ec_val = float(soil_data["EC"])
+        except (ValueError, TypeError):
+            pass
+
+    # OC evaluation
+    oc_val = None
+    if soil_data.get("OC") is not None:
+        try:
+            oc_val = float(soil_data["OC"])
+        except (ValueError, TypeError):
+            pass
+
+    salt_sensitive_crops = {
+        "chickpea", "pigeonpeas", "mungbean", "blackgram", "lentil", 
+        "mothbeans", "kidneybeans", "orange", "pomegranate"
+    }
+    salt_tolerant_crops = {"barley", "cotton", "mustard", "wheat"}
+
+    ec_score = 1.0
+    if ec_val is not None:
+        if ec_val > 2.0:
+            if crop_name.lower() in salt_sensitive_crops:
+                ec_score = 0.35
+                limiting.append({
+                    "factor": "Salinity (EC)",
+                    "status": "limiting",
+                    "note": f"Soil EC ({ec_val:.2f} dS/m > 2.0 dS/m) imposes severe osmotic barrier for salt-sensitive {crop_name.title()}.",
+                    "score": 35.0
+                })
+            elif crop_name.lower() in salt_tolerant_crops:
+                ec_score = 0.85
+                moderate.append({
+                    "factor": "Salinity (EC)",
+                    "status": "moderate",
+                    "note": f"Elevated EC ({ec_val:.2f} dS/m); {crop_name.title()} possesses moderate salinity tolerance.",
+                    "score": 85.0
+                })
+            else:
+                ec_score = 0.60
+                limiting.append({
+                    "factor": "Salinity (EC)",
+                    "status": "limiting",
+                    "note": f"Elevated EC ({ec_val:.2f} dS/m) exceeds 2.0 dS/m baseline threshold.",
+                    "score": 60.0
+                })
+        elif ec_val <= 1.0:
+            supporting.append({
+                "factor": "Salinity (EC)",
+                "status": "suitable",
+                "note": f"Normal electrical conductivity ({ec_val:.2f} dS/m); zero salinity hazard.",
+                "score": 100.0
+            })
+        else:
+            moderate.append({
+                "factor": "Salinity (EC)",
+                "status": "moderate",
+                "note": f"Slight EC elevation ({ec_val:.2f} dS/m); maintain proper subsoil drainage.",
+                "score": 75.0
+            })
+
+    oc_score = 1.0
+    if oc_val is not None:
+        if oc_val < 0.50:
+            oc_score = 0.40
+            limiting.append({
+                "factor": "Soil Organic Carbon",
+                "status": "limiting",
+                "note": f"Depleted Organic Carbon ({oc_val:.2f}% < 0.50% critical benchmark); reduces root moisture buffer.",
+                "score": 40.0
+            })
+        elif oc_val >= 0.75:
+            supporting.append({
+                "factor": "Soil Organic Carbon",
+                "status": "suitable",
+                "note": f"Healthy Organic Carbon ({oc_val:.2f}% >= 0.75% benchmark); supports vigorous microbial activity.",
+                "score": 100.0
+            })
+        else:
+            moderate.append({
+                "factor": "Soil Organic Carbon",
+                "status": "moderate",
+                "note": f"Medium Organic Carbon ({oc_val:.2f}%); green manuring recommended.",
+                "score": 70.0
+            })
+
     # Source Traceability
     source_info = {
         "source_name": crop_req.get("source_name", "Government of India Soil Health Card"),
@@ -383,6 +472,38 @@ def compute_suitability_score(
     else:
         data_confidence = "Low"
 
+    # Sub-compatibility metrics (Phase 5 - 0 to 100 scale based on real engine evaluations)
+    soil_compat = round(max(5.0, min(100.0, (ph_score * 0.25 + npk_score * 0.35 + micro_score * 0.20 + ec_score * 0.10 + oc_score * 0.10) * 100)), 1)
+    weather_compat = round(max(5.0, min(100.0, (temp_score * 0.55 + (rain_score if rain_score is not None else 0.75) * 0.45) * 100)), 1)
+    season_compat = round(season_gate * 100, 1)
+    loc_compat = round(max(30.0, min(100.0, ctx_score * 100)), 1)
+    water_compat = round(max(5.0, min(100.0, (water_gate * (rain_score if rain_score is not None else 0.75)) * 100)), 1)
+
+    # Risk factors compilation
+    risk_factors = [f["note"] for f in limiting]
+    if water_gate < 1.0 and "water" not in " ".join(risk_factors).lower():
+        risk_factors.append("High crop water requirement exceeds rainfed water availability; supplemental irrigation needed.")
+    if season_gate < 1.0 and "season" not in " ".join(risk_factors).lower():
+        risk_factors.append(f"Crop is out of canonical regional sowing window for {farm_data.get('season', 'current season')}.")
+    if ph_gate < 1.0 and "ph" not in " ".join(risk_factors).lower():
+        risk_factors.append(f"Severe soil reaction barrier (pH {soil_data.get('ph')} outside viable agronomic limits).")
+
+    # Structured explanation reasons (Phase 5)
+    why_notes = [f["note"] for f in supporting[:3]]
+    if not why_notes:
+        why_notes = [f"General agronomic suitability under {farm_data.get('state', 'regional')} conditions."]
+    
+    consideration_notes = [f["note"] for f in limiting[:3]]
+    if not consideration_notes:
+        consideration_notes = ["Standard crop management practices apply."]
+
+    structured_reason = {
+        "why": why_notes,
+        "considerations": consideration_notes,
+        "confidence": data_confidence,
+        "summary": "Why:\n" + "\n".join([f"✓ {note}" for note in why_notes]) + "\n\nConsiderations:\n" + "\n".join([f"• {note}" for note in consideration_notes]) + f"\n\nConfidence:\n{data_confidence}"
+    }
+
     return {
         "crop": crop_name,
         "common_name": crop_req.get("common_name", crop_name.title()),
@@ -391,6 +512,15 @@ def compute_suitability_score(
         "category": crop_req.get("category", ""),
         "category_type": crop_req.get("category_type", "seasonal_field_crop"),
         "final_score": final_score,
+        "overall_score": final_score,
+        "soil_compatibility": soil_compat,
+        "weather_compatibility": weather_compat,
+        "season_compatibility": season_compat,
+        "location_compatibility": loc_compat,
+        "water_compatibility": water_compat,
+        "risk_factors": risk_factors,
+        "confidence": data_confidence,
+        "reason": structured_reason,
         "ml_score": round(ml_score_raw * 100, 1),
         "rule_score": round(rule_raw * 100, 1),
         "data_confidence": data_confidence,
@@ -418,10 +548,25 @@ def compute_suitability_score(
 def _no_knowledge_fallback(crop_name: str, ml_probability: float) -> dict:
     score = round(ml_probability * 100, 1)
     classification, color = classify_score(score)
+    structured_reason = {
+        "why": ["Statistical pattern match from historical crop production dataset."],
+        "considerations": ["No agronomic rule profile available in current knowledge base."],
+        "confidence": "Low",
+        "summary": "Why:\n✓ Statistical pattern match from historical crop production dataset.\n\nConsiderations:\n• No agronomic rule profile available in current knowledge base.\n\nConfidence:\nLow"
+    }
     return {
         "crop": crop_name,
         "common_name": crop_name.title(),
         "final_score": score,
+        "overall_score": score,
+        "soil_compatibility": score,
+        "weather_compatibility": score,
+        "season_compatibility": 50.0,
+        "location_compatibility": 50.0,
+        "water_compatibility": 50.0,
+        "risk_factors": ["Rule profile unverified for this crop"],
+        "confidence": "Low",
+        "reason": structured_reason,
         "ml_score": score,
         "rule_score": None,
         "data_confidence": "Low",
@@ -440,3 +585,55 @@ def _no_knowledge_fallback(crop_name: str, ml_probability: float) -> dict:
         "prediction_trace": {"crop_name": crop_name, "note": "No rule profile available"},
         "disclaimer": "ML probability score only; no knowledge profile available for this crop."
     }
+
+
+def compute_detailed_suitability(
+    crop_name: str,
+    farm_data: dict,
+    soil_data: dict,
+    env_data: Optional[dict] = None
+) -> dict:
+    """
+    Computes a detailed biophysical suitability evaluation for a single crop
+    across soil, weather, season, water, and location dimensions.
+    """
+    from backend.app.services.validation import count_missing_soil_fields
+    from ml.predict import predictor
+
+    c_clean = crop_name.lower().strip()
+    s_dict = soil_data or {}
+    e_dict = env_data or {}
+    f_dict = farm_data or {}
+
+    ml_inputs = {
+        "N": s_dict.get("N"), "P": s_dict.get("P"), "K": s_dict.get("K"),
+        "S": s_dict.get("S"), "Zn": s_dict.get("Zn"), "Fe": s_dict.get("Fe"),
+        "Cu": s_dict.get("Cu"), "Mn": s_dict.get("Mn"), "B": s_dict.get("B"),
+        "ph": s_dict.get("pH") if s_dict.get("pH") is not None else s_dict.get("ph"),
+        "EC": s_dict.get("EC"), "OC": s_dict.get("OC"),
+        "temperature": e_dict.get("temperature"),
+        "humidity": e_dict.get("humidity"),
+        "rainfall": e_dict.get("rainfall"),
+    }
+    try:
+        ml_prob = predictor.predict_single_crop(c_clean, ml_inputs) or 0.0
+    except Exception:
+        ml_prob = 0.50
+
+    _, missing_fields = count_missing_soil_fields(s_dict)
+    res = compute_suitability_score(c_clean, ml_prob, s_dict, e_dict, f_dict, missing_fields)
+
+    return {
+        "crop_name": c_clean.title(),
+        "overall_score": res.get("final_score", res.get("overall_score", 70.0)),
+        "soil_compatibility": res.get("soil_compatibility", 70.0),
+        "weather_compatibility": res.get("weather_compatibility", 70.0),
+        "season_compatibility": res.get("season_compatibility", 70.0),
+        "water_compatibility": res.get("water_compatibility", 70.0),
+        "location_compatibility": res.get("location_compatibility", 70.0),
+        "confidence": res.get("confidence", "Medium"),
+        "supporting_factors": [f.get("note") for f in res.get("supporting_factors", []) if f.get("note")],
+        "limiting_factors": [f.get("note") for f in res.get("limiting_factors", []) if f.get("note")],
+        "raw_result": res
+    }
+

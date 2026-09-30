@@ -168,9 +168,24 @@ def find_nearest_district(lat: float, lon: float) -> Tuple[Dict[str, Any], str]:
 
 
 def get_agro_climatic_zone_info(zone_name: str) -> Optional[Dict[str, Any]]:
-    """Get metadata for an ICAR National Agro-Climatic Zone."""
+    """Get metadata for an ICAR National Agro-Climatic Zone by name or ID."""
     _load_data()
-    return _ACZ_DATA.get(zone_name)
+    if not zone_name:
+        return None
+    # 1. Exact key match
+    if zone_name in _ACZ_DATA:
+        return {"name": zone_name, **_ACZ_DATA[zone_name]}
+    
+    # 2. Case-insensitive or normalized ID match (e.g. ACZ-01, IN_ACZ_01, Western Himalayan Region)
+    clean_target = zone_name.strip().lower()
+    clean_id = clean_target.replace("in_", "").replace("_", "-")
+    for k, v in _ACZ_DATA.items():
+        if k.lower() == clean_target:
+            return {"name": k, **v}
+        zid = v.get("id", "").lower()
+        if zid == clean_target or zid == clean_id:
+            return {"name": k, **v}
+    return None
 
 
 def get_all_agro_climatic_zones() -> List[Dict[str, Any]]:
@@ -201,3 +216,70 @@ def get_crop_seasons_for_region(crop_name: str, state_name: Optional[str] = None
             return regional[st_key]
 
     return crop_info.get("national_seasons", ["kharif", "rabi"])
+
+
+def get_crop_season_context(
+    crop_name: str,
+    season: str,
+    state_name: Optional[str] = None,
+    district_name: Optional[str] = None,
+    agro_climatic_zone: Optional[str] = None
+) -> Dict[str, Any]:
+    """
+    Evaluates multi-factor seasonal intelligence:
+    Location (State + District) + Agro-climatic Zone + Crop + Target Season.
+    Returns:
+        is_suitable_season: bool
+        confidence: 'HIGH' (state-specific rule match), 'MEDIUM' (national baseline), 'LOW' (fallback)
+        sowing_window: str
+        harvest_window: str
+        duration_days: str
+        water_profile: str
+        notes: str
+    """
+    _load_data()
+    c_clean = crop_name.strip().lower()
+    s_clean = season.strip().lower()
+    crop_info = _CROP_CALENDAR.get(c_clean)
+
+    if not crop_info:
+        # Unknown crop fallback
+        return {
+            "is_suitable_season": True,
+            "confidence": "LOW",
+            "sowing_window": "Refer to local KVK advisory",
+            "harvest_window": "Refer to local KVK advisory",
+            "duration_days": "Unknown",
+            "water_profile": "Standard crop water requirement",
+            "notes": f"Crop '{crop_name}' not cataloged in primary national crop calendar; fallback heuristic applied."
+        }
+
+    st_key = state_name.strip().lower().replace(" ", "_") if state_name else None
+    regional = crop_info.get("regional_seasons", {})
+    
+    if st_key and st_key in regional:
+        allowed = [s.lower() for s in regional[st_key]]
+        confidence = "HIGH"
+        geo_level = f"State-specific calendar ({state_name})"
+    else:
+        allowed = [s.lower() for s in crop_info.get("national_seasons", ["kharif", "rabi"])]
+        confidence = "MEDIUM"
+        geo_level = "National agro-climatic baseline (State override not documented)"
+
+    is_suitable = s_clean in allowed
+
+    sowing_win = crop_info.get("sowing_window", {}).get(s_clean, "Season specific window")
+    harvest_win = crop_info.get("harvest_window", {}).get(s_clean, "Season specific window")
+
+    return {
+        "is_suitable_season": is_suitable,
+        "confidence": confidence,
+        "allowed_seasons": allowed,
+        "calendar_source": geo_level,
+        "sowing_window": sowing_win,
+        "harvest_window": harvest_win,
+        "duration_days": crop_info.get("duration_days", "90-120"),
+        "water_profile": crop_info.get("water_profile", "Moderate"),
+        "notes": f"Sowing in {season.title()} is {'recommended' if is_suitable else 'sub-optimal/unfavorable'} under {geo_level}."
+    }
+

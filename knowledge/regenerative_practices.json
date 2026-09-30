@@ -1,0 +1,187 @@
+{
+  "version": "1.0.0",
+  "authority": "AgriN Regenerative Knowledge Registry / CRIDA / ICAR-CAZRI / FAO Conservation Agriculture",
+  "last_reviewed": "2026-09-30",
+  "evidence_framework": "Empirical field validation standards from Indian National Agricultural Research System (NARS)",
+  "practices": [
+    {
+      "id": "RP-001",
+      "name": "Legume Cover Cropping & Green Manuring",
+      "category": "SOIL_COVER_AND_BIODIVERSITY",
+      "target_conditions": [
+        "Low soil organic carbon (< 0.50%)",
+        "Depleted available nitrogen (< 280 kg/ha)",
+        "Post-monsoon or fallow inter-season window",
+        "High soil erosion risk"
+      ],
+      "soil_relevance": "Builds soil biological nitrogen through symbiotic Rhizobium fixation (50-100 kg N/ha equivalent); adds 15-25 t/ha fresh biomass.",
+      "water_relevance": "Reduces evaporation losses by 30-40% via live vegetative ground cover; improves rainfall infiltration.",
+      "climate_relevance": "Buffers rootzone against high surface soil temperatures and heat waves.",
+      "crop_context": ["Cotton", "Sugarcane", "Maize", "Wheat", "Soybean"],
+      "constraints": ["Requires sufficient moisture for initial seed germination", "Seed availability of local cultivars like Sesbania or Crotalaria"],
+      "evidence_level": "HIGH",
+      "multi_temporal_pathway": {
+        "immediate_action": "Sow fast-growing green manure (Dhaincha / Sunnhemp / Cowpea) across fallow beds or between wide rows.",
+        "seasonal_practice": "Incorporate biomass into the top 10-15 cm soil at 50% flowering (45-50 days after sowing) prior to main crop transplanting.",
+        "long_term_goal": "Elevate soil organic carbon by 0.15-0.25% over 3-5 rotational seasons, establishing biological nutrient cycling."
+      },
+      "expected_objective": "Rebuild soil organic matter, fix atmospheric nitrogen naturally, and protect topsoil from erosion."
+    },
+    {
+      "id": "RP-002",
+      "name": "Biochar Soil Conditioning",
+      "category": "CARBON_SEQUESTRATION",
+      "target_conditions": [
+        "Coarse sandy soil or low cation exchange capacity (CEC)",
+        "Critically low organic carbon (< 0.40%)",
+        "Acidic soil (pH < 5.5) or severely leached laterites",
+        "Availability of surplus crop residue/biomass"
+      ],
+      "soil_relevance": "Stable aromatic recalcitrant carbon with 100+ year half-life; dramatically increases CEC and nutrient holding capacity.",
+      "water_relevance": "Enhances plant available water capacity (AWC) by 15-25% in porous sandy or weathered soils.",
+      "climate_relevance": "Prevents open-field residue burning and atmospheric carbon emissions.",
+      "crop_context": ["All crops", "Horticultural orchards", "Rainfed coarse cereals"],
+      "constraints": ["Must be properly charged/inoculated with compost or biofertilizer before application to prevent initial nitrogen immobilization", "Requires pyrolysis kiln access"],
+      "evidence_level": "HIGH",
+      "multi_temporal_pathway": {
+        "immediate_action": "Inoculate biochar with fresh cow dung slurry, vermicompost, and PSB for 14 days before field application.",
+        "seasonal_practice": "Apply charged biochar @ 2-5 tonnes/ha along crop root furrow during primary tillage.",
+        "long_term_goal": "Permanent stabilization of soil organic carbon framework, reducing fertilizer leaching and drought shock vulnerability."
+      },
+      "expected_objective": "Provide long-term recalcitrant soil carbon matrix, boost microbial colonization, and prevent nutrient leaching."
+    },
+    {
+      "id": "RP-003",
+      "name": "Conservation Tillage & Residue Retention",
+      "category": "SOIL_CONSERVATION",
+      "target_conditions": [
+        "Heavy black Vertisols prone to crusting/erosion",
+        "Cereal-pulse intensive cropping systems",
+        "High wind or water erosion zones",
+        "Elevated fuel/machinery input costs"
+      ],
+      "soil_relevance": "Preserves fungal mycorrhizal hyphal networks and soil macro-aggregates; prevents pulverization of soil structure.",
+      "water_relevance": "Standing crop stubble captures precipitation, minimizes surface runoff, and conserves residual subsoil moisture.",
+      "climate_relevance": "Reduces on-farm diesel emissions and mitigates rapid soil moisture evaporation under thermal spikes.",
+      "crop_context": ["Wheat", "Chickpea", "Mustard", "Soybean"],
+      "constraints": ["Requires specialized zero-till / Happy Seeder equipment for seeding through heavy stubble", "Initial weed management strategy required"],
+      "evidence_level": "HIGH",
+      "multi_temporal_pathway": {
+        "immediate_action": "Retain at least 30-40% of previous crop residue standing on the field surface instead of burning or deep moldboard plowing.",
+        "seasonal_practice": "Use zero-till seed-cum-fertilizer drills to deposit seed and basal fertilizer directly into untilled stubble.",
+        "long_term_goal": "Establish continuous undisturbed earthworm and mycorrhizal networks, decreasing soil compaction and runoff by over 50%."
+      },
+      "expected_objective": "Preserve soil structure, reduce diesel emissions, and maximize seedbed moisture conservation."
+    },
+    {
+      "id": "RP-004",
+      "name": "Crop Diversification & Pulse Rotation",
+      "category": "SYSTEM_BIODIVERSITY",
+      "target_conditions": [
+        "Continuous cereal-cereal or monoculture cash crop cycles",
+        "Escalating pest/disease pressure (e.g. pink bollworm, wilt complexes)",
+        "Declining fertilizer response ratio"
+      ],
+      "soil_relevance": "Breaks host-specific pest/nematode cycles; deep-taproot legumes scavenge subsoil nutrients and solubilize phosphorus.",
+      "water_relevance": "Alternates deep and shallow rootzones, maximizing water-use efficiency across the profile.",
+      "climate_relevance": "Spreads market and climate risks; short-duration pulses offer drought-escape mechanisms.",
+      "crop_context": ["Rice-Wheat", "Cotton-Monoculture", "Sugarcane-Monoculture"],
+      "constraints": ["Farm-gate market procurement certainty for alternative pulse or oilseed crops"],
+      "evidence_level": "HIGH",
+      "multi_temporal_pathway": {
+        "immediate_action": "Introduce a 60-day catch crop (Mungbean / Urad / Mothbean) immediately after rabi harvest.",
+        "seasonal_practice": "Rotate one full parcel per year from cereal monoculture to a legume or oilseed (Pigeonpea, Chickpea, Mustard).",
+        "long_term_goal": "Restore natural ecological pest-predator balance and reduce external synthetic nitrogen dependency by 25-35%."
+      },
+      "expected_objective": "Disrupt pest and disease life cycles, diversify farm income streams, and replenish soil nitrogen."
+    },
+    {
+      "id": "RP-005",
+      "name": "Organic Mulching & In-Situ Biomass Recycling",
+      "category": "WATER_AND_MICROCLIMATE",
+      "target_conditions": [
+        "Semi-arid or drought-prone rainfall zones",
+        "Wide-row spaced crops (Cotton, Sugarcane, Fruit Orchards)",
+        "High summer soil temperatures (> 40°C)"
+      ],
+      "soil_relevance": "Decomposing mulch gradually feeds topsoil epigeic earthworms and enriches humus layer.",
+      "water_relevance": "Reduces evaporative moisture loss from soil surface by 40-60%; suppresses weed germination.",
+      "climate_relevance": "Moderates rootzone thermal fluctuations by 3-5°C during extreme daytime solar radiation.",
+      "crop_context": ["Cotton", "Pomegranate", "Citrus", "Banana", "Sugarcane"],
+      "constraints": ["Availability of dry straw or bagasse; termite management in dry sandy tracts"],
+      "evidence_level": "HIGH",
+      "multi_temporal_pathway": {
+        "immediate_action": "Spread 5-8 cm layer of dry crop residue, wheat straw, or shredded biomass along crop root zones.",
+        "seasonal_practice": "Replenish mulch layer post-monsoon to conserve receding residual moisture for rabi/summer cycles.",
+        "long_term_goal": "Substantially reduce irrigation frequencies, build spongy surface aggregate layer, and eliminate weed competition."
+      },
+      "expected_objective": "Conserve soil moisture, suppress weed competition, and buffer root systems against extreme soil temperatures."
+    },
+    {
+      "id": "RP-006",
+      "name": "Vermicomposting & On-Farm Microbial Bio-Formulations",
+      "category": "BIOLOGICAL_FERTILITY",
+      "target_conditions": [
+        "Depleted soil biology or low beneficial microbial biomass",
+        "High dependence on synthetic chemical fertilizers",
+        "On-farm availability of livestock manure or organic wastes"
+      ],
+      "soil_relevance": "Supplies enzymatically active vermicast containing plant growth promoting rhizobacteria (PGPR), auxins, and humic substances.",
+      "water_relevance": "High humic matter increases water absorption capacity up to 3 times its dry weight.",
+      "climate_relevance": "Recycles on-farm cattle wastes into stable bio-amendments without methane-generating open lagoons.",
+      "crop_context": ["All crops", "Vegetables", "Spices", "Orchards"],
+      "constraints": ["Requires farm labour for maintaining vermicompost bed moisture (60-70%) and shade"],
+      "evidence_level": "HIGH",
+      "multi_temporal_pathway": {
+        "immediate_action": "Set up low-cost shaded vermicompost beds using local earthworm species (Eisenia fetida) and farm crop residue.",
+        "seasonal_practice": "Apply 2.5 tonnes/ha vermicompost as basal manure combined with Trichoderma / Pseudomonas bio-inoculants.",
+        "long_term_goal": "Establish self-sustaining on-farm biological fertility, reducing purchased urea and DAP fertilizer expenses by 30%."
+      },
+      "expected_objective": "Inoculate soil with beneficial microbial flora, improve nutrient absorption efficiency, and restore earthworm populations."
+    },
+    {
+      "id": "RP-007",
+      "name": "Agroforestry & Field Boundary Tree Windbreaks",
+      "category": "LANDSCAPE_RESILIENCE",
+      "target_conditions": [
+        "Open wind-swept agricultural plains",
+        "Severe soil erosion or dry desiccating winds",
+        "Marginal farm boundaries or non-arable field borders"
+      ],
+      "soil_relevance": "Deep tree roots pump subsoil minerals back to surface via leaf litter; nitrogen-fixing trees enrich perimeter soils.",
+      "water_relevance": "Windbreaks reduce wind velocity across the crop canopy, cutting crop evapotranspiration rates by 15-20%.",
+      "climate_relevance": "Provides substantial long-term woody biomass carbon sequestration and microclimate shade.",
+      "crop_context": ["Dryland farms", "Semi-arid rainfed zones", "Coastal belts"],
+      "constraints": ["Competition with border crop rows if tree branches are not periodically pruned; multi-year maturation timeline"],
+      "evidence_level": "MEDIUM",
+      "multi_temporal_pathway": {
+        "immediate_action": "Plant multi-purpose native trees (Neem, Gliricidia, Subabul, Teak) along outer field boundaries at 3-5 meter spacing.",
+        "seasonal_practice": "Prune tree branches annually before sowing season and apply loppings as nitrogen-rich green mulch.",
+        "long_term_goal": "Establish a permanent ecological microclimate barrier, generating secondary timber/fodder revenue while protecting field crops."
+      },
+      "expected_objective": "Reduce wind-driven evapotranspiration, intercept topsoil erosion, and enhance farm-scale biodiversity."
+    },
+    {
+      "id": "RP-008",
+      "name": "Broad Bed and Furrow (BBF) In-Situ Moisture Conservation",
+      "category": "WATER_AND_DRAINAGE",
+      "target_conditions": [
+        "Heavy clay soils (Vertisols) with drainage and waterlogging vulnerabilities",
+        "Erratic high-intensity monsoon rainfall events",
+        "Rainfed kharif crop production (Soybean, Cotton, Groundnut)"
+      ],
+      "soil_relevance": "Prevents soil crusting and root asphyxiation during waterlogging; aerates the crop rootzone.",
+      "water_relevance": "Furrows safely drain excess runoff during heavy downpours and store moisture in subsoil for subsequent dry spells.",
+      "climate_relevance": "Mitigates crop loss from extreme torrential rainfall followed by dry spells.",
+      "crop_context": ["Soybean", "Cotton", "Groundnut", "Pigeonpea"],
+      "constraints": ["Requires tractor-drawn BBF former / ridge planter attachment at land preparation"],
+      "evidence_level": "HIGH",
+      "multi_temporal_pathway": {
+        "immediate_action": "Lay out broad beds (100 cm width) separated by furrows (30 cm width, 15 cm depth) along 0.2-0.5% grade.",
+        "seasonal_practice": "Plant 2-4 crop rows on the elevated bed, keeping furrows open for drainage and supplemental irrigation.",
+        "long_term_goal": "Eliminate moisture-stress crop failures, prevent topsoil erosion, and ensure optimal aeration in heavy clay soils."
+      },
+      "expected_objective": "Prevent waterlogging during heavy rainfall while simultaneously recharging groundwater for dry spell resilience."
+    }
+  ]
+}

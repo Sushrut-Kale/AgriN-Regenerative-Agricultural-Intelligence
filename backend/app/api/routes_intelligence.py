@@ -19,7 +19,7 @@ from sqlalchemy.orm import Session
 
 from backend.app.database.db import (
     get_db, FarmerSession, SoilRecord, EnvRecord, PredictionRecord,
-    FarmObservationRecord, AdvisoryRecord, AdvisoryFeedbackRecord
+    FarmObservationRecord, AdvisoryRecord, AdvisoryFeedbackRecord, FeedbackRecord
 )
 from backend.app.models.schemas import (
     AnalysisRequest,
@@ -40,19 +40,36 @@ try:
     from backend.app.services.regenerative_advisor import advise_regenerative_practices
     from backend.app.services.farm_resilience import calculate_farm_resilience
     from backend.app.services.agrin_intelligence import run_full_agricultural_intelligence
-    from backend.app.services.disease_service import diagnose_crop_image
-    from backend.app.services.satellite_service import get_satellite_status_report
+    from backend.app.services.disease_service import diagnose_crop_image, get_disease_provider
+    from backend.app.services.satellite_service import (
+        get_satellite_status_report,
+        get_satellite_observation,
+        analyze_satellite_time_series,
+        get_satellite_provider
+    )
     from backend.app.adapters import ADAPTER_REGISTRY, get_country_adapter
+    from backend.app.adapters.brics import run_brics_interoperability_simulation
     from backend.app.services.geo_service import get_all_agro_climatic_zones, get_all_states
+    from backend.app.services.crop_comparison import compare_crops
+    from backend.app.services.knowledge_graph import knowledge_graph
 except ImportError:
     from app.services.soil_intelligence import assess_soil_health
     from app.services.regenerative_advisor import advise_regenerative_practices
     from app.services.farm_resilience import calculate_farm_resilience
     from app.services.agrin_intelligence import run_full_agricultural_intelligence
-    from app.services.disease_service import diagnose_crop_image
-    from app.services.satellite_service import get_satellite_status_report
+    from app.services.disease_service import diagnose_crop_image, get_disease_provider
+    from app.services.satellite_service import (
+        get_satellite_status_report,
+        get_satellite_observation,
+        analyze_satellite_time_series,
+        get_satellite_provider
+    )
     from app.adapters import ADAPTER_REGISTRY, get_country_adapter
+    from app.adapters.brics import run_brics_interoperability_simulation
     from app.services.geo_service import get_all_agro_climatic_zones, get_all_states
+    from app.services.crop_comparison import compare_crops
+    from app.services.knowledge_graph import knowledge_graph
+
 
 
 router = APIRouter()
@@ -492,11 +509,28 @@ async def diagnose_crop_disease(
     """
     Crop disease diagnostic endpoint. Validates image integrity and passes to provider interface.
     Strictly returns MODEL_NOT_DEPLOYED when trained vision weights are unlinked.
+    Enforces payload size bounds and safe extension whitelist.
     """
-    content = await file.read()
+    import os
+    filename = file.filename or "leaf.jpg"
+    ext = os.path.splitext(filename.lower())[1]
+    if ext not in {".jpg", ".jpeg", ".png", ".webp"}:
+        raise HTTPException(
+            status_code=400,
+            detail=f"Invalid image extension '{ext}'. Permitted extensions: .jpg, .jpeg, .png, .webp"
+        )
+
+    # Read with 10MB max ceiling to protect against memory exhaustion
+    max_bytes = 10 * 1024 * 1024
+    content = await file.read(max_bytes + 1)
+    if len(content) > max_bytes:
+        raise HTTPException(status_code=413, detail="File size exceeds maximum allowable limit of 10 MB.")
+    if len(content) < 64:
+        raise HTTPException(status_code=400, detail="Uploaded file is corrupt or too small (< 64 bytes).")
+
     result = diagnose_crop_image(
         image_bytes=content,
-        filename=file.filename or "leaf.jpg",
+        filename=filename,
         crop=crop,
         symptoms_description=symptoms,
         farm_id=farm_id
@@ -504,20 +538,23 @@ async def diagnose_crop_disease(
     return result
 
 
-# ── 12. Satellite Provider Connectivity Status Endpoint ───────────────────────
+# ── 12. Satellite Observation Query Endpoint (GET) ───────────────────────────
 
-@router.get("/satellite/status")
-def get_satellite_status(
-    latitude: Optional[float] = None,
-    longitude: Optional[float] = None,
-    farm_id: Optional[str] = None
+@router.get("/satellite/observation")
+def get_satellite_observation_query(
+    latitude: float,
+    longitude: float,
+    start_date: Optional[str] = None,
+    end_date: Optional[str] = None,
+    allow_demo: bool = False
 ):
     """
-    Returns real-time connectivity status of Earth Observation satellite providers.
-    Explicitly reports NOT_CONNECTED without simulated NDVI values.
+    Normalized Earth Observation query via GET query parameters.
+    Returns normalized contract with status = NOT_CONNECTED when provider is offline.
     """
-    status = get_satellite_status_report(latitude=latitude, longitude=longitude, farm_id=farm_id)
-    return status
+    obs = get_satellite_observation(latitude=latitude, longitude=longitude, start_date=start_date, end_date=end_date, allow_demo=allow_demo)
+    return obs
+
 
 
 # ── 13. National Agricultural Intelligence Overview ──────────────────────────
@@ -568,4 +605,269 @@ def list_interoperability_adapters():
         "spatial_crs": "WGS84 (EPSG:4326)",
         "adapters": adapters_info
     }
+
+
+# ── 15. Longitudinal Farm History & Empirical Trends (Phase 11) ─────────────
+
+@router.get("/farms/{farm_id}/history")
+def get_farm_longitudinal_history(farm_id: str, db: Session = Depends(get_db)):
+    """
+    Retrieves repeated farm soil tests, environmental readings, prediction records,
+    and calculates empirical trends (SOC, pH, EC, N, P, K, resilience) only when
+    at least 2 real historical observations exist. Never manufactures synthetic trends.
+    """
+    soil_records = db.query(SoilRecord).filter(SoilRecord.session_id == farm_id).order_by(SoilRecord.created_at.asc()).all()
+    pred_records = db.query(PredictionRecord).filter(PredictionRecord.session_id == farm_id).order_by(PredictionRecord.created_at.asc()).all()
+    feedback_records = db.query(FeedbackRecord).filter(FeedbackRecord.session_id == farm_id).order_by(FeedbackRecord.created_at.asc()).all()
+
+    total_records = len(soil_records)
+
+    history_snapshots = []
+    for idx, s in enumerate(soil_records):
+        p = pred_records[idx] if idx < len(pred_records) else None
+        history_snapshots.append({
+            "observation_index": idx + 1,
+            "created_at": s.created_at.isoformat() if s.created_at else None,
+            "soil": {
+                "OC": s.OC, "pH": s.ph, "EC": s.EC,
+                "N": s.N, "P": s.P, "K": s.K,
+                "Zn": s.Zn, "Fe": s.Fe, "B": s.B
+            },
+            "top_crop": p.top_crop if p else None,
+            "suitability_score": p.top_score if p else None,
+            "data_confidence": p.data_confidence if p else None
+        })
+
+    if total_records < 2:
+        return {
+            "success": True,
+            "farm_id": farm_id,
+            "has_sufficient_history": False,
+            "observation_count": total_records,
+            "message": "At least 2 longitudinal soil observations are required to compute trends without synthetic interpolation.",
+            "history": history_snapshots,
+            "trends": None,
+            "feedback_history": [
+                {
+                    "recommended_crop": fb.recommended_crop,
+                    "rating": fb.rating,
+                    "notes": fb.free_text,
+                    "created_at": fb.created_at.isoformat() if fb.created_at else None
+                } for fb in feedback_records
+            ]
+        }
+
+    # Calculate Empirical Multi-Observation Trends (Phase 11)
+    s_first, s_last = soil_records[0], soil_records[-1]
+
+    def _trend(val_start, val_end, unit=""):
+        if val_start is None or val_end is None:
+            return None
+        delta = round(val_end - val_start, 2)
+        direction = "STABLE"
+        if delta > 0.05:
+            direction = "INCREASING"
+        elif delta < -0.05:
+            direction = "DECREASING"
+        return {
+            "initial": val_start,
+            "latest": val_end,
+            "delta": delta,
+            "direction": direction,
+            "unit": unit
+        }
+
+    trends = {
+        "organic_carbon": _trend(s_first.OC, s_last.OC, "%"),
+        "soil_ph": _trend(s_first.ph, s_last.ph, "pH units"),
+        "electrical_conductivity": _trend(s_first.EC, s_last.EC, "dS/m"),
+        "nitrogen": _trend(s_first.N, s_last.N, "kg/ha"),
+        "phosphorus": _trend(s_first.P, s_last.P, "kg/ha"),
+        "potassium": _trend(s_first.K, s_last.K, "kg/ha"),
+        "resilience_suitability": _trend(
+            pred_records[0].top_score if pred_records else None,
+            pred_records[-1].top_score if pred_records else None,
+            "pts"
+        )
+    }
+
+    return {
+        "success": True,
+        "farm_id": farm_id,
+        "has_sufficient_history": True,
+        "observation_count": total_records,
+        "history": history_snapshots,
+        "trends": trends,
+        "feedback_history": [
+            {
+                "recommended_crop": fb.recommended_crop,
+                "rating": fb.rating,
+                "notes": fb.free_text,
+                "created_at": fb.created_at.isoformat() if fb.created_at else None
+            } for fb in feedback_records
+        ]
+    }
+
+
+# ── 16. Multi-Crop Comparison & Trade-Off Evaluation (Phase 3 Requirement 7 & 8) ──
+
+@router.post("/crops/compare")
+def compare_candidate_crops(payload: Dict[str, Any]):
+    """
+    Evaluates 2 to 4 candidate crops side-by-side across:
+    - Soil compatibility
+    - Climate fit
+    - Water requirement & fit
+    - Season fit
+    - Biophysical risks & limitations
+    - Pairwise trade-off narratives (e.g. Higher water vs better soil fit)
+    """
+    candidate_crops = payload.get("candidate_crops") or payload.get("crops", [])
+    if not candidate_crops or len(candidate_crops) < 2:
+        raise HTTPException(status_code=400, detail="Provide at least 2 candidate crops for comparison (maximum 4).")
+    if len(candidate_crops) > 4:
+        candidate_crops = candidate_crops[:4]
+
+    farm_data = payload.get("farm_data") or payload.get("location", {})
+    soil_data = payload.get("soil_data") or payload.get("soil", {})
+    env_data = payload.get("env_data") or payload.get("weather")
+
+    res = compare_crops(
+        candidate_crops=candidate_crops,
+        farm_data=farm_data,
+        soil_data=soil_data,
+        env_data=env_data
+    )
+    return res
+
+
+# ── 17. Centralized Knowledge Sources Registry (Phase 3 Requirement 18) ────────
+
+@router.get("/knowledge/sources")
+def get_knowledge_sources_registry():
+    """Returns the centralized registry of authoritative agronomic and climate data sources."""
+    import json
+    from pathlib import Path
+    sources_path = Path(__file__).resolve().parent.parent.parent.parent / "knowledge" / "knowledge_sources.json"
+    if sources_path.exists():
+        with open(sources_path, "r", encoding="utf-8") as f:
+            return json.load(f)
+    return {"sources": [], "error": "knowledge_sources.json not found"}
+
+
+# ── 18. Externalized Regenerative Practice Knowledge Base (Phase 3 Requirement 16) ─
+
+@router.get("/knowledge/regenerative-practices")
+def get_regenerative_practices_kb():
+    """Returns the structured regenerative practices knowledge base with target conditions, objectives, and evidence levels."""
+    import json
+    from pathlib import Path
+    kb_path = Path(__file__).resolve().parent.parent.parent.parent / "knowledge" / "regenerative_practices.json"
+    if kb_path.exists():
+        with open(kb_path, "r", encoding="utf-8") as f:
+            return json.load(f)
+    return {"practices": [], "error": "regenerative_practices.json not found"}
+
+
+# ── 19. Realistic Synthetic Demo Farms (Phase 3 Requirement 23) ──────────────────
+
+@router.get("/demo/farms")
+def get_demo_farms():
+    """
+    Returns realistic demonstration farms covering key Indian agro-climatic archetypes.
+    Every record is explicitly marked 'synthetic: true' with documented agronomic rationale.
+    """
+    import json
+    from pathlib import Path
+    demo_path = Path(__file__).resolve().parent.parent.parent.parent / "knowledge" / "demo_farms.json"
+    if demo_path.exists():
+        with open(demo_path, "r", encoding="utf-8") as f:
+            return json.load(f)
+    return {"demo_farms": [], "error": "demo_farms.json not found"}
+
+
+# ── 20. Satellite Provider Status & Observation (Phase 4 Requirements 2 & 3) ────
+
+@router.get("/satellite/status")
+def get_satellite_status(
+    latitude: Optional[float] = None,
+    longitude: Optional[float] = None,
+    farm_id: Optional[str] = None,
+    allow_demo: bool = False
+):
+    """Returns real-time connectivity status of Earth Observation satellite providers."""
+    return get_satellite_status_report(latitude=latitude, longitude=longitude, farm_id=farm_id, allow_demo=allow_demo)
+
+
+@router.post("/satellite/observation")
+def get_satellite_observation_endpoint(payload: Dict[str, Any]):
+    """Retrieves standard normalized observation from active satellite provider."""
+    lat = float(payload.get("latitude", 19.26))
+    lon = float(payload.get("longitude", 76.77))
+    start_date = payload.get("start_date")
+    end_date = payload.get("end_date")
+    allow_demo = bool(payload.get("allow_demo", False))
+    return get_satellite_observation(lat, lon, start_date=start_date, end_date=end_date, allow_demo=allow_demo)
+
+
+@router.post("/satellite/time-series")
+def get_satellite_time_series_endpoint(payload: Dict[str, Any]):
+    """Analyzes chronological satellite time series: NDVI(t1), NDVI(t2), NDVI(t3)."""
+    observations = payload.get("observations", [])
+    if not observations:
+        lat = float(payload.get("latitude", 19.26))
+        lon = float(payload.get("longitude", 76.77))
+        allow_demo = bool(payload.get("allow_demo", False))
+        prov = get_satellite_provider(allow_demo=allow_demo)
+        observations = prov.fetch_time_series(lat, lon, farm_id=payload.get("farm_id"))
+    return analyze_satellite_time_series(observations)
+
+
+# ── 21. Crop Disease Diagnostics & Triage (Phase 4 Requirements 7-10 & 25) ─────
+
+@router.post("/disease/diagnose")
+async def diagnose_leaf_image(
+    file: UploadFile = File(...),
+    crop_hint: Optional[str] = Form(None),
+    symptoms: Optional[str] = Form(None),
+    farm_id: Optional[str] = Form(None),
+    allow_demo: bool = Form(False)
+):
+    """
+    Diagnostic endpoint with strict file validation, magic byte checks,
+    local model triage, and IPM cultural management advisories.
+    """
+    file_bytes = await file.read()
+    return diagnose_crop_image(
+        image_bytes=file_bytes,
+        filename=file.filename or "leaf.jpg",
+        crop=crop_hint,
+        symptoms_description=symptoms,
+        farm_id=farm_id,
+        allow_demo=allow_demo
+    )
+
+
+# ── 22. Agricultural Knowledge Graph Query (Phase 4 Requirement 16 & 17) ──────
+
+@router.get("/knowledge/graph/crop/{crop_name}")
+def get_crop_graph_relationships(crop_name: str):
+    """Queries lightweight relationship graph for crop biophysical links, risks, and practices."""
+    return knowledge_graph.get_crop_relationships(crop_name)
+
+
+# ── 23. BRICS Interoperability Simulation (Phase 4 Requirements 11 & 15) ────────
+
+@router.post("/brics/simulate")
+def simulate_brics_interoperability(payload: Dict[str, Any]):
+    """
+    Executes a deterministic interoperability test for IND, BRA, ZAF, RUS, CHN.
+    Validates, normalizes localized units to AgriN Common Schema, and runs intelligence.
+    """
+    country_code = payload.get("country_code", "BRA")
+    raw_data = payload.get("raw_payload", payload)
+    return run_brics_interoperability_simulation(country_code, raw_data)
+
+
+
 

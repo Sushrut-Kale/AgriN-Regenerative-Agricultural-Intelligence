@@ -101,9 +101,14 @@ class FeedbackInput(BaseModel):
     recommended_crop: str
     selected_crop: Optional[str] = None
     suitability_score: Optional[float] = None
-    rating: str  # 'helpful', 'not_helpful', 'partially'
+    rating: Optional[str] = "helpful"  # 'helpful', 'not_helpful', 'partially'
     reason: Optional[str] = None
     free_text: Optional[str] = None
+    # Phase 12 Farmer Feedback Loop fields
+    did_you_follow: Optional[str] = None  # 'YES', 'PARTIALLY', 'NO'
+    outcome: Optional[str] = None  # 'Successful', 'Neutral', 'Poor outcome', 'Not applicable'
+    yield_observation: Optional[str] = None
+    disease_observation: Optional[str] = None
     outcome_status: Optional[str] = "not_yet_grown"  # 'not_yet_grown', 'growing', 'harvested'
     crop_performance: Optional[str] = None  # 'poor', 'average', 'good', 'excellent'
     actual_yield: Optional[float] = None
@@ -111,6 +116,7 @@ class FeedbackInput(BaseModel):
     model_version: Optional[str] = "random_forest_v2"
     region: Optional[str] = None
     season: Optional[str] = None
+
 
 
 # ── Factor Schema ─────────────────────────────────────────────────────────────
@@ -129,8 +135,17 @@ class CropResult(BaseModel):
     common_name: str
     local_name: Optional[str] = ""
     final_score: float
+    overall_score: Optional[float] = None
     ml_score: float
     rule_score: Optional[float] = None
+    soil_compatibility: Optional[float] = None
+    weather_compatibility: Optional[float] = None
+    season_compatibility: Optional[float] = None
+    location_compatibility: Optional[float] = None
+    water_compatibility: Optional[float] = None
+    risk_factors: Optional[List[str]] = []
+    confidence: Optional[str] = None
+    reason: Optional[Dict[str, Any]] = None
     classification: str
     classification_color: str
     supporting_factors: List[Dict] = []
@@ -154,6 +169,27 @@ class AnalysisResponse(BaseModel):
     data_completeness: Dict[str, Any]
     recommendation_explanation: str
     timestamp: datetime = Field(default_factory=datetime.now)
+    # Phase 3: Unified AgriN Agricultural Intelligence Response Schema
+    farm_context: Optional[Dict[str, Any]] = None
+    location_context: Optional[Dict[str, Any]] = None
+    weather_context: Optional[Dict[str, Any]] = None
+    soil_health: Optional[Dict[str, Any]] = None
+    crop_suitability: Optional[List[Dict[str, Any]]] = None
+    regenerative_opportunities: Optional[List[Dict[str, Any]]] = None
+    farm_resilience: Optional[Dict[str, Any]] = None
+    confidence: Optional[Dict[str, Any]] = None
+    explanation: Optional[Dict[str, Any]] = None
+    data_sources: Optional[Dict[str, Any]] = None
+    limitations: Optional[List[str]] = None
+    # Phase 3 Maturity Schema Extensions
+    farm_intelligence_report: Optional[Dict[str, Any]] = None
+    risks: Optional[List[Dict[str, Any]]] = None
+    prioritized_advisories: Optional[List[Dict[str, Any]]] = None
+    data_quality: Optional[Dict[str, Any]] = None
+    weather_reasoning: Optional[List[Dict[str, Any]]] = None
+    country_neutral_advisory: Optional[Dict[str, Any]] = None
+
+
 
 
 class FeasibilityResponse(BaseModel):

@@ -1,0 +1,335 @@
+{
+  "version": "1.0.0",
+  "disclaimer": "SYNTHETIC DEMONSTRATION DATASET — NOT REAL-WORLD FARM MEASUREMENTS",
+  "demo_farms": [
+    {
+      "id": "DEMO-FARM-01-NORTH-IRRIGATED",
+      "name": "Irrigated Northern Intensive Plains",
+      "region_archetype": "irrigated northern",
+      "synthetic": true,
+      "notice": "DEMO DATA — NOT REAL FARM DATA",
+      "location": {
+        "state": "Punjab",
+        "district": "Ludhiana",
+        "sub_district": "Ludhiana East",
+        "village": "Synthetic Demo Hamlet A",
+        "latitude": 30.9010,
+        "longitude": 75.8573,
+        "agro_climatic_zone": "Trans-Gangetic Plains"
+      },
+      "farm": {
+        "farm_id": "SYNTH-PUNJAB-001",
+        "season": "rabi",
+        "farm_area": 5.0,
+        "soil_type": "alluvial",
+        "irrigation_available": "yes",
+        "water_source": "borewell",
+        "drainage": "good",
+        "current_crop": "wheat",
+        "previous_crop": "rice"
+      },
+      "soil": {
+        "N": 240.0,
+        "P": 45.0,
+        "K": 280.0,
+        "S": 18.0,
+        "Zn": 1.2,
+        "Fe": 6.8,
+        "Cu": 0.8,
+        "Mn": 4.5,
+        "B": 0.7,
+        "ph": 7.3,
+        "EC": 0.45,
+        "OC": 0.54
+      },
+      "weather": {
+        "temperature": 18.5,
+        "humidity": 65.0,
+        "rainfall": 45.0,
+        "forecast_summary": "Stable winter temperatures with mild morning dew."
+      }
+    },
+    {
+      "id": "DEMO-FARM-02-SEMI-ARID",
+      "name": "Thar Semi-Arid Dryland Region",
+      "region_archetype": "semi-arid",
+      "synthetic": true,
+      "notice": "DEMO DATA — NOT REAL FARM DATA",
+      "location": {
+        "state": "Rajasthan",
+        "district": "Jodhpur",
+        "sub_district": "Luni",
+        "village": "Synthetic Demo Hamlet B",
+        "latitude": 26.2389,
+        "longitude": 73.0243,
+        "agro_climatic_zone": "Western Dry Region"
+      },
+      "farm": {
+        "farm_id": "SYNTH-RAJASTHAN-002",
+        "season": "kharif",
+        "farm_area": 6.5,
+        "soil_type": "sandy",
+        "irrigation_available": "no",
+        "water_source": "none",
+        "drainage": "excessive",
+        "current_crop": "mothbeans",
+        "previous_crop": "fallow"
+      },
+      "soil": {
+        "N": 95.0,
+        "P": 12.0,
+        "K": 160.0,
+        "S": 8.0,
+        "Zn": 0.4,
+        "Fe": 3.2,
+        "Cu": 0.3,
+        "Mn": 2.1,
+        "B": 0.3,
+        "ph": 8.4,
+        "EC": 2.3,
+        "OC": 0.21
+      },
+      "weather": {
+        "temperature": 37.2,
+        "humidity": 32.0,
+        "rainfall": 15.0,
+        "forecast_summary": "High thermal radiation and dry desiccation."
+      }
+    },
+    {
+      "id": "DEMO-FARM-03-HIGH-RAINFALL",
+      "name": "Western Ghats High Rainfall Belt",
+      "region_archetype": "high rainfall",
+      "synthetic": true,
+      "notice": "DEMO DATA — NOT REAL FARM DATA",
+      "location": {
+        "state": "Kerala",
+        "district": "Wayanad",
+        "sub_district": "Vythiri",
+        "village": "Synthetic Demo Hamlet C",
+        "latitude": 11.6854,
+        "longitude": 76.1320,
+        "agro_climatic_zone": "West Coast Plains & Ghats"
+      },
+      "farm": {
+        "farm_id": "SYNTH-KERALA-003",
+        "season": "kharif",
+        "farm_area": 2.2,
+        "soil_type": "laterite",
+        "irrigation_available": "yes",
+        "water_source": "canal",
+        "drainage": "moderate",
+        "current_crop": "rice",
+        "previous_crop": "pepper"
+      },
+      "soil": {
+        "N": 185.0,
+        "P": 22.0,
+        "K": 195.0,
+        "S": 15.0,
+        "Zn": 0.9,
+        "Fe": 14.2,
+        "Cu": 1.4,
+        "Mn": 8.1,
+        "B": 0.5,
+        "ph": 5.1,
+        "EC": 0.28,
+        "OC": 1.48
+      },
+      "weather": {
+        "temperature": 24.0,
+        "humidity": 89.0,
+        "rainfall": 340.0,
+        "forecast_summary": "Persistent monsoon cloud cover and heavy rainfall."
+      }
+    },
+    {
+      "id": "DEMO-FARM-04-DECCAN-VERTISOL",
+      "name": "Marathwada Black Soil Deccan Basin",
+      "region_archetype": "black soil/deccan",
+      "synthetic": true,
+      "notice": "DEMO DATA — NOT REAL FARM DATA",
+      "location": {
+        "state": "Maharashtra",
+        "district": "Parbhani",
+        "sub_district": "Gangakhed",
+        "village": "Synthetic Demo Hamlet D",
+        "latitude": 19.2610,
+        "longitude": 76.7767,
+        "agro_climatic_zone": "Western Plateau & Hills"
+      },
+      "farm": {
+        "farm_id": "SYNTH-MAHARASHTRA-004",
+        "season": "kharif",
+        "farm_area": 3.5,
+        "soil_type": "black",
+        "irrigation_available": "no",
+        "water_source": "borewell",
+        "drainage": "poor",
+        "current_crop": "cotton",
+        "previous_crop": "soybean"
+      },
+      "soil": {
+        "N": 130.0,
+        "P": 26.0,
+        "K": 230.0,
+        "S": 10.0,
+        "Zn": 0.55,
+        "Fe": 4.6,
+        "Cu": 0.5,
+        "Mn": 5.0,
+        "B": 0.4,
+        "ph": 7.9,
+        "EC": 0.65,
+        "OC": 0.44
+      },
+      "weather": {
+        "temperature": 31.5,
+        "humidity": 65.0,
+        "rainfall": 105.0,
+        "forecast_summary": "Intermittent monsoon showers with high soil moisture retention."
+      }
+    },
+    {
+      "id": "DEMO-FARM-05-COASTAL",
+      "name": "Coromandel Coastal Delta Region",
+      "region_archetype": "coastal",
+      "synthetic": true,
+      "notice": "DEMO DATA — NOT REAL FARM DATA",
+      "location": {
+        "state": "Tamil Nadu",
+        "district": "Thanjavur",
+        "sub_district": "Kumbakonam",
+        "village": "Synthetic Demo Hamlet E",
+        "latitude": 10.7870,
+        "longitude": 79.1378,
+        "agro_climatic_zone": "East Coast Plains & Hills"
+      },
+      "farm": {
+        "farm_id": "SYNTH-TAMILNADU-005",
+        "season": "kharif",
+        "farm_area": 4.0,
+        "soil_type": "alluvial",
+        "irrigation_available": "yes",
+        "water_source": "canal",
+        "drainage": "moderate",
+        "current_crop": "rice",
+        "previous_crop": "blackgram"
+      },
+      "soil": {
+        "N": 190.0,
+        "P": 32.0,
+        "K": 220.0,
+        "S": 16.0,
+        "Zn": 0.8,
+        "Fe": 7.5,
+        "Cu": 0.9,
+        "Mn": 4.8,
+        "B": 0.6,
+        "ph": 7.2,
+        "EC": 0.95,
+        "OC": 0.62
+      },
+      "weather": {
+        "temperature": 29.8,
+        "humidity": 78.0,
+        "rainfall": 160.0,
+        "forecast_summary": "Maritime humidity and regulated canal discharge."
+      }
+    },
+    {
+      "id": "DEMO-FARM-06-EASTERN-HUMID",
+      "name": "Brahmaputra Valley Eastern Humid Zone",
+      "region_archetype": "eastern humid",
+      "synthetic": true,
+      "notice": "DEMO DATA — NOT REAL FARM DATA",
+      "location": {
+        "state": "Assam",
+        "district": "Jorhat",
+        "sub_district": "Titabor",
+        "village": "Synthetic Demo Hamlet F",
+        "latitude": 26.7509,
+        "longitude": 94.2037,
+        "agro_climatic_zone": "Eastern Himalayan Region"
+      },
+      "farm": {
+        "farm_id": "SYNTH-ASSAM-006",
+        "season": "kharif",
+        "farm_area": 2.8,
+        "soil_type": "alluvial",
+        "irrigation_available": "no",
+        "water_source": "rainfed",
+        "drainage": "moderate",
+        "current_crop": "rice",
+        "previous_crop": "mustard"
+      },
+      "soil": {
+        "N": 165.0,
+        "P": 20.0,
+        "K": 190.0,
+        "S": 12.0,
+        "Zn": 0.7,
+        "Fe": 9.4,
+        "Cu": 0.7,
+        "Mn": 5.2,
+        "B": 0.45,
+        "ph": 5.4,
+        "EC": 0.22,
+        "OC": 1.15
+      },
+      "weather": {
+        "temperature": 28.2,
+        "humidity": 84.0,
+        "rainfall": 280.0,
+        "forecast_summary": "Humid sub-tropical climate with river valley moisture."
+      }
+    },
+    {
+      "id": "DEMO-FARM-07-INCOMPLETE-DATA",
+      "name": "Incomplete Data & Sparse Observation Farm",
+      "region_archetype": "incomplete-data",
+      "synthetic": true,
+      "notice": "DEMO DATA — NOT REAL FARM DATA",
+      "location": {
+        "state": "Bihar",
+        "district": "Gaya",
+        "sub_district": "",
+        "village": "",
+        "latitude": null,
+        "longitude": null,
+        "agro_climatic_zone": "Middle Gangetic Plains"
+      },
+      "farm": {
+        "farm_id": "SYNTH-INCOMPLETE-007",
+        "season": "kharif",
+        "farm_area": 1.5,
+        "soil_type": "",
+        "irrigation_available": "unknown",
+        "water_source": "",
+        "drainage": "unknown",
+        "current_crop": "",
+        "previous_crop": ""
+      },
+      "soil": {
+        "N": null,
+        "P": null,
+        "K": null,
+        "S": null,
+        "Zn": null,
+        "Fe": null,
+        "Cu": null,
+        "Mn": null,
+        "B": null,
+        "ph": null,
+        "EC": null,
+        "OC": null
+      },
+      "weather": {
+        "temperature": null,
+        "humidity": null,
+        "rainfall": null,
+        "forecast_summary": "Unspecified; falling back to regional climatological normals."
+      }
+    }
+  ]
+}

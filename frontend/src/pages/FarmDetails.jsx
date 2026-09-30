@@ -3,11 +3,12 @@ import { useNavigate } from 'react-router-dom'
 import { useApp } from '../context/AppContext'
 import { getReferenceData, getLiveWeather } from '../services/api'
 import StepLayout from '../components/StepLayout'
-import { MapPin, Calendar, Trees, Droplets, Navigation, CheckCircle, AlertCircle } from 'lucide-react'
+import { MapPin, Calendar, Trees, Droplets, Navigation, CheckCircle, AlertCircle, Sparkles } from 'lucide-react'
+import { DEMO_SCENARIOS } from '../services/demoScenarios'
 
 export default function FarmDetails() {
   const navigate = useNavigate()
-  const { farmData, setFarmData } = useApp()
+  const { farmData, setFarmData, setSoilData, setEnvData } = useApp()
   const [refData, setRefData] = useState({
     states: [], districts: [], seasons: [], soil_types: [],
     water_sources: [], drainage_conditions: [], previous_crops: [],
@@ -116,6 +117,15 @@ export default function FarmDetails() {
     )
   }
 
+  const handleSelectDemoScenario = (scId) => {
+    if (!scId) return
+    const sc = DEMO_SCENARIOS.find(s => s.id === scId)
+    if (!sc) return
+    setFarmData(sc.farmData)
+    setSoilData(sc.soilData)
+    setEnvData(sc.envData)
+  }
+
   const validate = () => {
     const errs = {}
     if (!farmData.state)    errs.state    = 'Please select your state'
@@ -142,8 +152,49 @@ export default function FarmDetails() {
     ? refData.states
     : [{ name: 'Maharashtra', type: 'State' }]
 
+  const isDemo = Boolean(farmData?.farm_id?.startsWith('DEMO-'))
+
   return (
     <StepLayout step={1} title="Farm Details" subtitle="Tell us about your farm location and conditions across India">
+
+      {/* Demo Scenario Selector (Phase 19) */}
+      <div style={{
+        background: isDemo ? '#FEF3C7' : '#F9FAFB',
+        border: isDemo ? '2px dashed #D97706' : '1px solid #E5E7EB',
+        borderRadius: 14,
+        padding: '12px 18px',
+        marginBottom: 18,
+        display: 'flex',
+        alignItems: 'center',
+        justifyContent: 'space-between',
+        flexWrap: 'wrap',
+        gap: 12
+      }}>
+        <div style={{ display: 'flex', alignItems: 'center', gap: 10 }}>
+          <Sparkles size={18} className="text-amber-600" />
+          <div>
+            <div style={{ fontWeight: 700, fontSize: '0.85rem', color: isDemo ? '#92400E' : '#374151' }}>
+              {isDemo ? '⚠️ DEMO DATA — NOT REAL FARM DATA' : 'Demonstration Scenarios (Phase 19)'}
+            </div>
+            <div style={{ fontSize: '0.72rem', color: isDemo ? '#B45309' : '#6B7280' }}>
+              Pre-fill form with regional archetypes (Punjab, Rajasthan, Kerala, Maharashtra, Incomplete Data).
+            </div>
+          </div>
+        </div>
+
+        <select
+          onChange={(e) => handleSelectDemoScenario(e.target.value)}
+          style={{
+            fontSize: '0.8rem', padding: '6px 12px', borderRadius: 8,
+            border: '1px solid #D1D5DB', background: '#FFFFFF'
+          }}
+        >
+          <option value="">Select a Demo Scenario...</option>
+          {DEMO_SCENARIOS.map(sc => (
+            <option key={sc.id} value={sc.id}>{sc.title}</option>
+          ))}
+        </select>
+      </div>
 
       {/* GPS Location Bar */}
       <div style={{

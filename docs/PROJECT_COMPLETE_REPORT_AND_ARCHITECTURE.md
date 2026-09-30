@@ -373,16 +373,85 @@ pytest -v tests/test_qa_master.py
 
 ---
 
-## 13. Limitations & Strategic Roadmap
+## 13. System Status Classification (Phase 21)
 
-### Current Limitations
-1. **Micronutrient Test Coverage**: When farmers lack comprehensive Soil Health Cards, micronutrients fall back to state/district medians with an uncertainty penalty.
-2. **Weather Granularity**: Relies on real-time snapshots from Open-Meteo rather than downscaled seasonal monsoon forecasts.
-
-### Strategic Roadmap
-- [ ] **Multi-Lingual Localization**: Voice-assisted vernacular interface in Marathi, Hindi, Telugu, and Kannada.
-- [ ] **Satellite Earth Observation**: Integration with Sentinel-2 NDVI imagery to assess live field vigor and soil moisture.
-- [ ] **Mandi Price & Fertilizer Cost Optimizer**: Real-time economic viability modeling linking fertilizer amendments with local market prices.
+To maintain absolute architectural honesty and prevent technical ambiguity, all system components are categorized into three explicit tiers:
 
 ---
-*Report generated and archived in `docs/PROJECT_COMPLETE_REPORT_AND_ARCHITECTURE.md`.*
+
+### 13.1 IMPLEMENTED (Genuinely Working Functionality)
+
+The following components are fully implemented, connected to live pipelines, and verified by 82 automated test suites and production builds:
+
+1. **Unified Agricultural Intelligence Pipeline (`/api/analyze` & `run_full_agricultural_intelligence`)**:
+   - Single orchestration pipeline resolving farm context, location context, weather, soil health, crop suitability, regenerative opportunities, resilience, confidence, 5-pillar explainability, and data freshness.
+2. **Pan-India Geographic Intelligence**:
+   - 700+ districts across all 36 States & Union Territories with administrative hierarchies and Agro-Climatic Zone (ACZ) mapping.
+   - GPS coordinate centroid resolution and nearest-district boundary matching.
+3. **Dynamic Weather Integration & Climatological Degradation**:
+   - Live Open-Meteo REST API queries with fallback to monthly agro-climatic normals upon network failure.
+   - Real-time observation freshness tagging (`FRESH`, `RECENT`, `STALE`, `CLIMATOLOGICAL_NORMAL`).
+4. **Soil Health Intelligence & Actionable Constraints**:
+   - Standardized evaluation of 12 chemical parameters against ICAR and State STCR benchmarks.
+   - Deterministic constraint detection (low OC, high EC/salinity, acidity, alkalinity, nutrient deficiencies) linked to targeted amendment advisories.
+5. **Multifactorial Crop Suitability Engine**:
+   - 22+ crop models evaluated across 5 sub-compatibility vectors: Soil, Weather, Season, Location, Water.
+   - Top 10 cultivar rankings with explicit risk factors, confidence ratings, and structured consideration reasons.
+6. **Context-Aware Regenerative Agriculture Advisor**:
+   - 8 regenerative practice archetypes (cover cropping, green manuring, biochar, conservation tillage, vermicomposting, crop rotation, mulching, agroforestry).
+   - Formulates practice, why relevant, triggering condition, expected objective, confidence, and evidence limitations without unsubstantiated yield claims.
+7. **Decoupled Farm Resilience Index**:
+   - Biophysical agricultural resilience (Soil 25%, Water 25%, Climate 20%, Crop Diversity 15%, Crop Suitability 15%) strictly separated from data confidence.
+   - Strengths and vulnerability diagnostics.
+8. **Multi-Dimensional Data Confidence Engine**:
+   - Quantitative evaluation of Input Completeness (0.35), Geographic Resolution (0.25), Sensor Freshness (0.20), and Model Calibration (0.20).
+9. **5-Pillar Master Explainability**:
+   - Standardized explanation matrix: `WHAT`, `WHY`, `BASED_ON`, `CONFIDENCE`, `LIMITATIONS`.
+10. **Longitudinal Farm History (`GET /api/farms/{farm_id}/history`)**:
+    - Multi-observation trends for SOC, pH, EC, N, P, K, and resilience when $\ge 2$ real observations exist; returns `has_sufficient_history: False` when data is sparse.
+11. **Closed-Loop Farmer Feedback (`POST /api/feedback`)**:
+    - Captures implementation status (`YES`, `PARTIALLY`, `NO`), outcomes, yield, disease observations, and comments without immediate automated model retraining.
+12. **Farmer-Facing React Application & Demo Scenario System**:
+    - 8 ordered sections in `Recommendations.jsx` (Farm Snapshot, Recommendations, Why, Soil Health, Regenerative Opportunities, Resilience, Confidence, Missing Info).
+    - 5 pre-configured demo scenarios (Punjab, Rajasthan, Kerala, Maharashtra, Incomplete Data) labeled `DEMO DATA — NOT REAL FARM DATA`.
+
+---
+
+### 13.2 ARCHITECTURE READY (Contracts & Interfaces Ready; Honest Guardrails)
+
+The following components possess complete architectural schemas, interface contracts, and endpoints, but operate under strict non-fabrication guardrails until external models or sensors are integrated:
+
+1. **Satellite Earth Observation Abstraction (`backend/app/services/satellite_service.py`)**:
+   - Clean provider contract: `get_observation(latitude, longitude, start_date, end_date)`.
+   - **Honest Guardrail**: Returns `status = "NOT_CONNECTED"`, `ndvi = None`, `vegetation_health = None` with explicit disconnection disclosures.
+2. **Plant Leaf Disease Vision Diagnostics (`backend/app/services/disease_service.py`)**:
+   - 7-stage diagnostic lifecycle (`IMAGE_VALIDATED_AWAITING_MODEL`).
+   - File upload validation (<10MB size limit, MIME verification, magic byte checks).
+   - **Honest Guardrail**: Returns `status = "MODEL_NOT_DEPLOYED"`, `diagnosis_status = "NOT_ASSESSED"`, `confidence = 0.0` when local ONNX weights are unmounted.
+3. **AgriN Data Exchange (ADE) & Common Agricultural Data Model**:
+   - Schema models (`ADE_Location`, `ADE_SoilObservation`, `ADE_WeatherObservation`, `ADE_CropObservation`) free of India-specific assumptions.
+4. **BRICS Partner Country Adapters (`backend/app/adapters/brics.py`)**:
+   - Adapter specifications for Brazil (EMBRAPA), Russia (Rosgidromet), China (CAAS), and South Africa (ARC) with unit conversions.
+   - **Honest Guardrail**: Marked `is_reference_implementation = False` without fabricating synthetic national farm datasets.
+
+---
+
+### 13.3 FUTURE (Capabilities Requiring External Models, Datasets & Integration)
+
+The following capabilities represent future development phases:
+
+1. **Live Satellite Raster Pipeline**:
+   - Production STAC API connection to Sentinel-2 / Landsat-9 with real-time cloud masking and farm boundary polygon clipping.
+2. **Deep-Learning Plant Pathology Weights (`disease_vit.onnx`)**:
+   - Supervised training and quantization of Vision Transformer / MobileNet checkpoints on validated field pathogen datasets.
+3. **Direct BRICS National Registry Ingestion**:
+   - Production API bindings to Brazilian SIGATER, Russian EGIS-Agro, and South African ARC soil databases.
+4. **Vernacular Multi-Lingual Voice Support**:
+   - Speech-to-text and audio advisory generation in Hindi, Marathi, Telugu, Tamil, and Kannada.
+5. **Mandi Real-Time APMC Market Price Optimizer**:
+   - Economic margin modeling linking crop suitability with dynamic wholesale price trends.
+
+---
+
+*Report updated and certified in `docs/PROJECT_COMPLETE_REPORT_AND_ARCHITECTURE.md`.*
+

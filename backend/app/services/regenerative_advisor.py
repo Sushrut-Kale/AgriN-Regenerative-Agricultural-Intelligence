@@ -115,6 +115,12 @@ def advise_regenerative_practices(
             classified_recs.append({
                 "class": "CROP_ROTATION",
                 "title": f"Post-{crop_name.capitalize()} Legume Rotation Sequence",
+                "practice": f"Post-{crop_name.capitalize()} Legume Rotation Sequence",
+                "why": f"Continuous monoculture of heavy nutrient feeders like {crop_name.capitalize()} depletes soil nitrogen and disrupts sub-soil microbiology. Breaking the cycle with Chickpea, Lentil, or Pigeonpea fixes 30-50 kg/ha atmospheric nitrogen.",
+                "trigger": f"Current or intended crop is {crop_name.capitalize()} (heavy nutrient feeder) without documented legume cycle",
+                "objective": "Break pest/nematode breeding cycles and biologically fix nitrogen into soil profile",
+                "confidence": "High",
+                "limitations": ["Requires market access or farm-level utilization for legume produce."],
                 "urgency": "HIGH",
                 "practice_id": "PRACTICE-001",
                 "rationale": f"Continuous monoculture of heavy feeders like {crop_name.capitalize()} depletes soil nitrogen and disrupts sub-soil microbiology. Breaking the cycle with Chickpea, Lentil, or Pigeonpea fixes 30-50 kg/ha atmospheric nitrogen.",
@@ -131,6 +137,12 @@ def advise_regenerative_practices(
         classified_recs.append({
             "class": "CROP_DIVERSIFICATION",
             "title": "Intercropping & Polyculture Canopy Architecture",
+            "practice": "Intercropping & Polyculture Canopy Architecture",
+            "why": "Semi-arid rainfed tracts experience erratic mid-season dry spells. Intercropping a deep-rooted taproot crop with a fibrous root cereal creates resilient canopy cover and reduces drought risk.",
+            "trigger": f"Rainfed farming regime ({rainfall_val or 'deficit'} mm seasonal precipitation)",
+            "objective": "Increase spatial land equivalent ratio and hedge against erratic rainfall shocks",
+            "confidence": "High",
+            "limitations": ["Requires mechanical adjustment if using motorized multi-row harvesters."],
             "urgency": "HIGH" if is_rainfed else "MEDIUM",
             "practice_id": "PRACTICE-005",
             "rationale": "Semi-arid rainfed tracts experience erratic mid-season dry spells. Intercropping a deep-rooted taproot crop with a fibrous root cereal creates resilient canopy cover and reduces drought risk.",
@@ -139,13 +151,19 @@ def advise_regenerative_practices(
                 "Ensure complementary root depths: shallow-feeder cereal with deep-taproot pulse.",
                 "Harvest components staggered to optimize moisture and solar radiation capture."
             ],
-            "expected_benefits": "Insurance against erratic monsoon failure, enhanced spatial land equivalent ratio (LER > 1.25), suppression of weed seedbeds."
+            "expected_benefits": "Insurance against erratic monsoon failure, enhanced spatial land equivalent ratio, suppression of weed seedbeds."
         })
 
     # --- CLASS 3: COVER-CROP OPPORTUNITY ---
     classified_recs.append({
         "class": "COVER_CROP_OPPORTUNITY",
         "title": "Seasonal Fallow Protection with Short-Duration Cover Crops",
+        "practice": "Cover cropping with short-duration green manure",
+        "why": "Leaving soil bare between main cropping seasons accelerates topsoil loss from wind and solar scorching, while degrading root-zone mycorrhizae.",
+        "trigger": "Seasonal fallow window between primary crop cycles",
+        "objective": "Improve soil protection and organic matter via in-situ biomass generation",
+        "confidence": "High",
+        "limitations": ["Requires sufficient residual soil moisture for initial germination."],
         "urgency": "MEDIUM",
         "practice_id": "PRACTICE-002",
         "rationale": "Leaving soil bare between main cropping seasons accelerates topsoil loss from wind and solar scorching, while degrading root-zone mycorrhizae.",
@@ -163,6 +181,12 @@ def advise_regenerative_practices(
         classified_recs.append({
             "class": "SOIL_ORGANIC_MATTER_IMPROVEMENT",
             "title": "Accelerated Soil Organic Carbon (SOC) Rebuilding Protocol",
+            "practice": "Accelerated Soil Organic Carbon (SOC) Rebuilding",
+            "why": f"Current Soil Organic Carbon is {oc_val:.2f}% (benchmark >= 0.75%). Low organic matter limits microbial respiration, cation exchange capacity (CEC), and moisture holding capacity.",
+            "trigger": f"Soil test Organic Carbon = {oc_val:.2f}% < 0.75% benchmark",
+            "objective": "Rebuild soil humus reserves, restore microbial respiration, and expand water holding capacity",
+            "confidence": "High",
+            "limitations": ["Requires consistent organic biomass additions over 3-5 consecutive seasons."],
             "urgency": severity,
             "practice_id": "PRACTICE-009",
             "rationale": f"Current Soil Organic Carbon is {oc_val:.2f}% (benchmark >= 0.75%). Low organic matter limits microbial respiration, cation exchange capacity (CEC), and moisture holding capacity.",
@@ -171,7 +195,7 @@ def advise_regenerative_practices(
                 "Incorporate biochar @ 2-5 t/ha once every 3-5 years to build stable, recalcitrant carbon reservoirs.",
                 "Inoculate soil with vesicular arbuscular mycorrhiza (VAM) and Trichoderma bio-agents."
             ],
-            "expected_benefits": "Substantial increase in rootzone water retention (1% increase in SOC stores ~150,000 L water/ha) and enhanced fertilizer use efficiency."
+            "expected_benefits": "Substantial increase in rootzone water retention and enhanced fertilizer use efficiency."
         })
 
     # --- CLASS 5: WATER CONSERVATION ---
@@ -179,6 +203,12 @@ def advise_regenerative_practices(
         classified_recs.append({
             "class": "WATER_CONSERVATION",
             "title": "In-situ Moisture Harvesting via Broad Bed Furrow (BBF)",
+            "practice": "In-situ Moisture Harvesting via Broad Bed Furrow (BBF)",
+            "why": "In semi-arid drylands, rain occurs in high-intensity convective showers that cause heavy surface runoff. Broad Bed Furrow systems detain rainwater in furrows, promoting deep percolation.",
+            "trigger": f"Rainfed or moisture-deficit regime (rainfall {rainfall_val or 'deficit'} mm) with runoff risk",
+            "objective": "Detain storm rainfall in furrows, mitigate waterlogging, and recharge subsoil rootzone",
+            "confidence": "Medium",
+            "limitations": ["Requires land-forming implements or animal-drawn ridger across slope contour."],
             "urgency": "HIGH",
             "practice_id": "PRACTICE-004",
             "rationale": "In semi-arid drylands, rain occurs in high-intensity convective showers that cause heavy surface runoff. Broad Bed Furrow systems detain rainwater in furrows, promoting deep percolation.",
@@ -187,13 +217,19 @@ def advise_regenerative_practices(
                 "Sow 2-4 crop rows on the bed, leaving furrows clear for moisture infiltration.",
                 "Connect furrow ends to a micro-catchment farm pond for supplemental life-saving irrigation."
             ],
-            "expected_benefits": "Reduces runoff velocity by 60%, prevents waterlogging during heavy downpours, and prolongs profile moisture availability by 2-3 weeks."
+            "expected_benefits": "Reduces runoff velocity by 60%, prevents waterlogging during heavy downpours, and prolongs profile moisture availability."
         })
 
     # --- CLASS 6: REDUCED SOIL DISTURBANCE ---
     classified_recs.append({
         "class": "REDUCED_SOIL_DISTURBANCE",
         "title": "Conservation Agriculture: Minimum Tillage & Direct Sowing",
+        "practice": "Conservation Agriculture: Minimum Tillage & Direct Sowing",
+        "why": "Repeated deep disc ploughing pulverizes soil aggregates, oxidizes organic matter into carbon dioxide, and creates a dense subsoil hardpan.",
+        "trigger": "Field crop sowing preparation under conventional inversion tillage",
+        "objective": "Protect soil aggregate structure, earthworm biopores, and reduce operational energy costs",
+        "confidence": "High",
+        "limitations": ["May require specialized zero-till seed drill (e.g. Happy Seeder or Zero-Till drill)."],
         "urgency": "MEDIUM",
         "practice_id": "PRACTICE-003",
         "rationale": "Repeated deep disc ploughing pulverizes soil aggregates, oxidizes organic matter into carbon dioxide, and creates a dense subsoil hardpan.",
@@ -202,13 +238,19 @@ def advise_regenerative_practices(
             "Restrict tillage to the immediate seeding slot (strip-till) rather than full-field inversion.",
             "Maintain soil surface mulch cover to protect undisturbed earthworm channels and fungal hyphae."
         ],
-        "expected_benefits": "Reduces diesel fuel consumption by 40-60%, curtails topsoil erosion, and preserves beneficial soil macro-fauna."
+        "expected_benefits": "Reduces fuel consumption, curtails topsoil erosion, and preserves beneficial soil macro-fauna."
     })
 
     # --- CLASS 7: NUTRIENT MANAGEMENT ---
     classified_recs.append({
         "class": "NUTRIENT_MANAGEMENT",
         "title": "Integrated Nutrient Management (INM) & Bio-Priming",
+        "practice": "Integrated Nutrient Management (INM) & Bio-Priming",
+        "why": "Exclusive reliance on synthetic chemical fertilizers acidifies or salinizes soil, suppresses mycorrhizae, and causes micronutrient imbalances.",
+        "trigger": "Nutrient replenishment planning with synthetic fertilizer dependence",
+        "objective": "Balance organic and inorganic nutrition to improve fertilizer use efficiency without soil degradation",
+        "confidence": "High",
+        "limitations": ["Biofertilizers must be fresh and stored away from direct sunlight and heat."],
         "urgency": "HIGH",
         "practice_id": "PRACTICE-006",
         "rationale": "Exclusive reliance on synthetic chemical fertilizers (Urea + DAP) acidifies or salinizes soil, suppresses mycorrhizae, and causes micronutrient imbalances.",
@@ -217,13 +259,19 @@ def advise_regenerative_practices(
             "Seed treatment with Azotobacter / Azospirillum (nitrogen fixers) and PSB (phosphorus solubilizers) @ 250 g/10 kg seed.",
             "Split nitrogen applications into 3-4 micro-doses guided by leaf color charts (LCC) to avoid volatilization."
         ],
-        "expected_benefits": "Improves nutrient uptake efficiency from 35% to 55%, suppresses fertilizer-induced soil acidity/salinity, and reduces input expenditure."
+        "expected_benefits": "Improves nutrient uptake efficiency, suppresses fertilizer-induced soil acidity/salinity, and reduces input expenditure."
     })
 
     # --- CLASS 8: RESIDUE MANAGEMENT ---
     classified_recs.append({
         "class": "RESIDUE_MANAGEMENT",
         "title": "Zero-Burn In-Situ Crop Residue Mulching & Bio-Decomposition",
+        "practice": "Zero-Burn In-Situ Crop Residue Mulching",
+        "why": "Burning straw and stover destroys organic nitrogen, phosphorus, and incinerates beneficial topsoil microorganisms.",
+        "trigger": "Post-harvest crop residue management window",
+        "objective": "Recycle crop carbon back into the soil, suppress weed germination, and curtail evaporative losses",
+        "confidence": "High",
+        "limitations": ["Decomposition rate depends on soil moisture and ambient temperature."],
         "urgency": "HIGH",
         "practice_id": "PRACTICE-007",
         "rationale": "Burning straw and stover destroys 100% of organic nitrogen, 75% of phosphorus, and incinerates beneficial topsoil microorganisms.",
@@ -232,7 +280,7 @@ def advise_regenerative_practices(
             "Spray ligno-cellulolytic microbial consortium (e.g. Pusa Bio-Decomposer) @ 25 L/ha with 1% urea spray to accelerate field rotting.",
             "Direct-sow into stubble cover using specialized tractor seeders."
         ],
-        "expected_benefits": "Prevents air pollution and greenhouse gas emissions, retains 4-5 tonnes/ha organic biomass, and conserves 30% soil moisture."
+        "expected_benefits": "Prevents air pollution and greenhouse gas emissions, retains organic biomass, and conserves soil moisture."
     })
 
     # Compute overall regenerative readiness indicators

@@ -5,14 +5,16 @@ import { runWhatIf, getCrops } from '../services/api'
 import { ArrowLeft, Zap, AlertTriangle, RotateCcw } from 'lucide-react'
 
 const SIMULATABLE = [
-  { key: 'N',           label: 'Nitrogen (N)',    unit: 'kg/ha', min: 0,   max: 800,  step: 10,  emoji: '🌱' },
-  { key: 'P',           label: 'Phosphorus (P)',  unit: 'kg/ha', min: 0,   max: 300,  step: 5,   emoji: '🌿' },
-  { key: 'K',           label: 'Potassium (K)',   unit: 'kg/ha', min: 0,   max: 1200, step: 10,  emoji: '🍃' },
-  { key: 'ph',          label: 'Soil pH',         unit: '',      min: 3.5, max: 10.0, step: 0.1, emoji: '⚗️' },
-  { key: 'temperature', label: 'Temperature',     unit: '°C',    min: 0,   max: 50,   step: 0.5, emoji: '🌡️' },
-  { key: 'humidity',    label: 'Humidity',        unit: '%',     min: 0,   max: 100,  step: 1,   emoji: '💧' },
-  { key: 'rainfall',    label: 'Rainfall',        unit: 'mm',    min: 0,   max: 3000, step: 25,  emoji: '🌧️' },
+  { key: 'ph',          label: 'Soil pH',               unit: '',      min: 3.5, max: 10.0, step: 0.1, emoji: '⚗️' },
+  { key: 'OC',          label: 'Organic Carbon (OC)',   unit: '%',     min: 0.1, max: 3.0,  step: 0.05, emoji: '🍂' },
+  { key: 'rainfall',    label: 'Rainfall Assumption',   unit: 'mm',    min: 100, max: 2500, step: 25,   emoji: '🌧️' },
+  { key: 'temperature', label: 'Temperature Assumption', unit: '°C',   min: 10,  max: 48,   step: 0.5,  emoji: '🌡️' },
+  { key: 'N',           label: 'Nitrogen (N)',          unit: 'kg/ha', min: 0,   max: 800,  step: 10,   emoji: '🌱' },
+  { key: 'P',           label: 'Phosphorus (P)',        unit: 'kg/ha', min: 0,   max: 300,  step: 5,    emoji: '🌿' },
+  { key: 'K',           label: 'Potassium (K)',         unit: 'kg/ha', min: 0,   max: 1200, step: 10,   emoji: '🍃' },
+  { key: 'EC',          label: 'Salinity (EC)',         unit: 'dS/m',  min: 0.1, max: 8.0,  step: 0.1,  emoji: '🧂' },
 ]
+
 
 export default function WhatIf() {
   const navigate = useNavigate()
@@ -269,14 +271,30 @@ export default function WhatIf() {
 }
 
 function WhatIfResult({ result, cropName }) {
-  const { before, after, score_change, changed_params, explanation, disclaimer } = result
+  const { before, after, score_change, changed_params, explanation, disclaimer, scenario_comparison } = result
   const improved = score_change > 0
   const neutral = score_change === 0
 
   return (
     <div className="ff-card" style={{ padding: 24 }}>
+      {/* Explicit Simulation Label (Requirement 6) */}
+      <div style={{
+        background: '#FEF3C7', border: '1px solid #F59E0B', borderRadius: 8,
+        padding: '8px 14px', marginBottom: 16, display: 'flex', alignItems: 'center', gap: 8
+      }}>
+        <span style={{ fontSize: '1rem' }}>🔬</span>
+        <div>
+          <span style={{ fontSize: '0.82rem', fontWeight: 800, color: '#92400E' }}>
+            Scenario simulation
+          </span>
+          <span style={{ fontSize: '0.78rem', color: '#B45309', marginLeft: 6 }}>
+            — Not a prediction of actual future yield
+          </span>
+        </div>
+      </div>
+
       <h3 style={{
-        fontSize: '1.1rem', fontWeight: 800, color: 'var(--ff-text)',
+        fontSize: '1.15rem', fontWeight: 800, color: 'var(--ff-text)',
         display: 'flex', alignItems: 'center', gap: 8, marginBottom: 20,
       }}>
         <Zap size={20} style={{ color: 'var(--ff-warning)' }} />
@@ -287,7 +305,7 @@ function WhatIfResult({ result, cropName }) {
       <div style={{ display: 'grid', gridTemplateColumns: '1fr auto 1fr', gap: 10, alignItems: 'center', marginBottom: 20 }}>
         <div className="before-card">
           <div style={{ fontSize: '0.72rem', fontWeight: 700, textTransform: 'uppercase', letterSpacing: '0.05em', color: 'var(--ff-info)', marginBottom: 8 }}>
-            Current
+            CURRENT
           </div>
           <div style={{ fontSize: '2.4rem', fontWeight: 900, color: 'var(--ff-info)', lineHeight: 1 }}>
             {before.score}
@@ -307,7 +325,7 @@ function WhatIfResult({ result, cropName }) {
 
         <div className="after-card">
           <div style={{ fontSize: '0.72rem', fontWeight: 700, textTransform: 'uppercase', letterSpacing: '0.05em', color: 'var(--ff-primary)', marginBottom: 8 }}>
-            Simulated
+            SCENARIO
           </div>
           <div style={{ fontSize: '2.4rem', fontWeight: 900, color: 'var(--ff-primary)', lineHeight: 1 }}>
             {after.score}
@@ -316,6 +334,64 @@ function WhatIfResult({ result, cropName }) {
           <div style={{ fontSize: '0.78rem', color: 'var(--ff-text-secondary)', marginTop: 6 }}>{after.classification}</div>
         </div>
       </div>
+
+      {/* Multi-Dimensional CURRENT vs SCENARIO Matrix (Requirement 6) */}
+      {scenario_comparison && (
+        <div style={{ marginBottom: 20, background: '#F8FAF8', padding: 14, borderRadius: 10, border: '1px solid #E5E7EB' }}>
+          <h4 style={{ fontSize: '0.85rem', fontWeight: 800, color: '#1F2937', marginBottom: 10 }}>
+            CURRENT vs SCENARIO Agricultural Comparison
+          </h4>
+          <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(170px, 1fr))', gap: 10 }}>
+            <div style={{ background: '#FFFFFF', padding: 10, borderRadius: 8, border: '1px solid #E5E7EB' }}>
+              <div style={{ fontSize: '0.7rem', color: '#6B7280', fontWeight: 600 }}>Crop Suitability</div>
+              <div style={{ fontSize: '0.9rem', fontWeight: 800, color: '#111827', marginTop: 2 }}>
+                {scenario_comparison.crop_suitability?.current} → {scenario_comparison.crop_suitability?.scenario}
+                <span style={{ fontSize: '0.75rem', color: scenario_comparison.crop_suitability?.delta >= 0 ? '#059669' : '#DC2626', marginLeft: 6 }}>
+                  ({scenario_comparison.crop_suitability?.delta >= 0 ? '+' : ''}{scenario_comparison.crop_suitability?.delta} pts)
+                </span>
+              </div>
+            </div>
+
+            <div style={{ background: '#FFFFFF', padding: 10, borderRadius: 8, border: '1px solid #E5E7EB' }}>
+              <div style={{ fontSize: '0.7rem', color: '#6B7280', fontWeight: 600 }}>Soil Compatibility</div>
+              <div style={{ fontSize: '0.9rem', fontWeight: 800, color: '#111827', marginTop: 2 }}>
+                {scenario_comparison.soil_compatibility?.current}% → {scenario_comparison.soil_compatibility?.scenario}%
+              </div>
+            </div>
+
+            <div style={{ background: '#FFFFFF', padding: 10, borderRadius: 8, border: '1px solid #E5E7EB' }}>
+              <div style={{ fontSize: '0.7rem', color: '#6B7280', fontWeight: 600 }}>Water Fit</div>
+              <div style={{ fontSize: '0.9rem', fontWeight: 800, color: '#111827', marginTop: 2 }}>
+                {scenario_comparison.water_requirement?.current_water_fit}% → {scenario_comparison.water_requirement?.scenario_water_fit}%
+              </div>
+            </div>
+
+            <div style={{ background: '#FFFFFF', padding: 10, borderRadius: 8, border: '1px solid #E5E7EB' }}>
+              <div style={{ fontSize: '0.7rem', color: '#6B7280', fontWeight: 600 }}>Detected Risks</div>
+              <div style={{ fontSize: '0.9rem', fontWeight: 800, color: '#111827', marginTop: 2 }}>
+                {scenario_comparison.risk_profile?.current_risk_count} risks → {scenario_comparison.risk_profile?.scenario_risk_count} risks
+              </div>
+            </div>
+
+            <div style={{ background: '#FFFFFF', padding: 10, borderRadius: 8, border: '1px solid #E5E7EB' }}>
+              <div style={{ fontSize: '0.7rem', color: '#6B7280', fontWeight: 600 }}>Farm Resilience</div>
+              <div style={{ fontSize: '0.9rem', fontWeight: 800, color: '#111827', marginTop: 2 }}>
+                {scenario_comparison.farm_resilience?.current_score} → {scenario_comparison.farm_resilience?.scenario_score}
+                <span style={{ fontSize: '0.7rem', color: '#6B7280', marginLeft: 4 }}>
+                  ({scenario_comparison.farm_resilience?.scenario_tier || 'MODERATE'})
+                </span>
+              </div>
+            </div>
+
+            <div style={{ background: '#FFFFFF', padding: 10, borderRadius: 8, border: '1px solid #E5E7EB' }}>
+              <div style={{ fontSize: '0.7rem', color: '#6B7280', fontWeight: 600 }}>Data Confidence</div>
+              <div style={{ fontSize: '0.9rem', fontWeight: 800, color: '#111827', marginTop: 2 }}>
+                {scenario_comparison.data_confidence?.current_level} → {scenario_comparison.data_confidence?.scenario_level}
+              </div>
+            </div>
+          </div>
+        </div>
+      )}
 
       {/* Changed params */}
       <div style={{ marginBottom: 16 }}>
@@ -343,7 +419,7 @@ function WhatIfResult({ result, cropName }) {
       <div className="ai-card" style={{ marginBottom: 14 }}>
         <div style={{ display: 'flex', alignItems: 'center', gap: 8, marginBottom: 8 }}>
           <div className="ai-sparkle">✦</div>
-          <span style={{ fontWeight: 600, fontSize: '0.82rem', color: 'var(--ff-primary)' }}>FarmFriend AI Explains</span>
+          <span style={{ fontWeight: 600, fontSize: '0.82rem', color: 'var(--ff-primary)' }}>AgriN Agricultural Reasoning</span>
         </div>
         <p style={{ fontSize: '0.88rem', color: 'var(--ff-text-secondary)', lineHeight: 1.7, whiteSpace: 'pre-wrap' }}>
           {explanation}
@@ -361,3 +437,4 @@ function WhatIfResult({ result, cropName }) {
     </div>
   )
 }
+

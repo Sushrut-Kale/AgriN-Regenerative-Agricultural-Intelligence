@@ -1,0 +1,274 @@
+{
+  "timestamp": "2026-09-30T17:30:16.650273+00:00",
+  "total_scenarios": 18,
+  "passed": 18,
+  "failed": 0,
+  "success_rate_percent": 100.0,
+  "results": [
+    {
+      "scenario_number": 1,
+      "scenario_name": "Maharashtra Irrigated Farm (Black Soil)",
+      "status": "PASSED",
+      "execution_time_ms": 1970.66,
+      "source_classification": "REAL + CONNECTED",
+      "confidence": 0.85,
+      "failures": [],
+      "warnings": [],
+      "evidence": {
+        "top_crop": "cotton",
+        "resilience_score": 75.5,
+        "zone": "ACZ-09"
+      }
+    },
+    {
+      "scenario_number": 2,
+      "scenario_name": "Maharashtra Water-Stressed Farm (Rainfed Deficit)",
+      "status": "PASSED",
+      "execution_time_ms": 1454.54,
+      "source_classification": "REAL + CONNECTED",
+      "confidence": 0.82,
+      "failures": [],
+      "warnings": [],
+      "evidence": {
+        "risks_detected": 1,
+        "resilience": "Moderate"
+      }
+    },
+    {
+      "scenario_number": 3,
+      "scenario_name": "Punjab Farm (Trans-Gangetic Plain)",
+      "status": "PASSED",
+      "execution_time_ms": 1590.52,
+      "source_classification": "REAL + CONNECTED",
+      "confidence": 0.88,
+      "failures": [],
+      "warnings": [],
+      "evidence": {
+        "zone": "ACZ-06 (Trans-Gangetic)",
+        "top_crops": [
+          "chickpea",
+          "kidneybeans",
+          "blackgram"
+        ]
+      }
+    },
+    {
+      "scenario_number": 4,
+      "scenario_name": "Rajasthan Dryland Farm (Western Dry Region)",
+      "status": "PASSED",
+      "execution_time_ms": 1176.38,
+      "source_classification": "REAL + CONNECTED",
+      "confidence": 0.8,
+      "failures": [],
+      "warnings": [],
+      "evidence": {
+        "zone": "ACZ-14 (Western Dry)",
+        "heat_stress_detected": true,
+        "resilience": null
+      }
+    },
+    {
+      "scenario_number": 5,
+      "scenario_name": "Kerala High-Rainfall Farm (West Coast Plains)",
+      "status": "PASSED",
+      "execution_time_ms": 1271.63,
+      "source_classification": "REAL + CONNECTED",
+      "confidence": 0.85,
+      "failures": [],
+      "warnings": [],
+      "evidence": {
+        "zone": "ACZ-12 (West Coast)",
+        "high_organic_carbon": true,
+        "annual_rainfall": 2600.0
+      }
+    },
+    {
+      "scenario_number": 6,
+      "scenario_name": "Assam Acidic-Soil Farm (Eastern Himalayan)",
+      "status": "PASSED",
+      "execution_time_ms": 0.01,
+      "source_classification": "REAL + LOCAL",
+      "confidence": 0.9,
+      "failures": [],
+      "warnings": [],
+      "evidence": {
+        "state": "Assam",
+        "district": "Kamrup",
+        "zone": "Eastern Himalayan Region"
+      }
+    },
+    {
+      "scenario_number": 7,
+      "scenario_name": "Karnataka Dryland Farm (Southern Plateau)",
+      "status": "PASSED",
+      "execution_time_ms": 1313.43,
+      "source_classification": "REAL + CONNECTED",
+      "confidence": 0.88,
+      "failures": [],
+      "warnings": [],
+      "evidence": {
+        "zone": "ACZ-10 (Southern Plateau)",
+        "status": true
+      }
+    },
+    {
+      "scenario_number": 8,
+      "scenario_name": "Himachal Pradesh Hill Agriculture (Western Himalayan)",
+      "status": "PASSED",
+      "execution_time_ms": 0.01,
+      "source_classification": "REAL + LOCAL",
+      "confidence": 0.9,
+      "failures": [],
+      "warnings": [],
+      "evidence": {
+        "state": "Himachal Pradesh",
+        "zone": "Western Himalayan Region"
+      }
+    },
+    {
+      "scenario_number": 9,
+      "scenario_name": "Incomplete Soil Data (Known/Unknown Explainability)",
+      "status": "PASSED",
+      "execution_time_ms": 0.01,
+      "source_classification": "REAL + LOCAL",
+      "confidence": 0.35,
+      "failures": [],
+      "warnings": [],
+      "evidence": {
+        "known_count": 2,
+        "missing_count": 5
+      }
+    },
+    {
+      "scenario_number": 10,
+      "scenario_name": "Satellite Provider Offline (Honest NOT_CONNECTED)",
+      "status": "PASSED",
+      "execution_time_ms": 0.03,
+      "source_classification": "ARCHITECTURE ONLY",
+      "confidence": 0.0,
+      "failures": [],
+      "warnings": [],
+      "evidence": {
+        "satellite_status": "NOT_CONNECTED",
+        "active_provider": null
+      }
+    },
+    {
+      "scenario_number": 11,
+      "scenario_name": "Satellite Demo Mode (Explicit is_synthetic: true)",
+      "status": "PASSED",
+      "execution_time_ms": 0.01,
+      "source_classification": "SYNTHETIC / DEMO",
+      "confidence": 0.85,
+      "failures": [],
+      "warnings": [],
+      "evidence": {
+        "ndvi": 0.43,
+        "ndwi": 0.09,
+        "is_synthetic": true
+      }
+    },
+    {
+      "scenario_number": 12,
+      "scenario_name": "Disease Model Undeployed (MODEL_NOT_DEPLOYED Guardrail)",
+      "status": "PASSED",
+      "execution_time_ms": 0.05,
+      "source_classification": "ARCHITECTURE ONLY",
+      "confidence": 0.0,
+      "failures": [],
+      "warnings": [],
+      "evidence": {
+        "status": "MODEL_NOT_DEPLOYED",
+        "confidence": 0.0
+      }
+    },
+    {
+      "scenario_number": 13,
+      "scenario_name": "Disease Demo Screening (Non-toxic IPM Advice)",
+      "status": "PASSED",
+      "execution_time_ms": 0.01,
+      "source_classification": "SYNTHETIC / DEMO",
+      "confidence": 0.82,
+      "failures": [],
+      "warnings": [],
+      "evidence": {
+        "condition": "Cercospora Leaf Spot",
+        "is_synthetic": true
+      }
+    },
+    {
+      "scenario_number": 14,
+      "scenario_name": "What-If Scenario Simulation (Sensitivity Delta)",
+      "status": "PASSED",
+      "execution_time_ms": 122.18,
+      "source_classification": "REAL + LOCAL",
+      "confidence": 0.85,
+      "failures": [],
+      "warnings": [],
+      "evidence": {
+        "crop": "cotton",
+        "before_score": 35.3,
+        "after_score": 39.4,
+        "score_delta": 4.1
+      }
+    },
+    {
+      "scenario_number": 15,
+      "scenario_name": "Crop Comparison & Trade-Offs (Side-by-Side)",
+      "status": "PASSED",
+      "execution_time_ms": 47.86,
+      "source_classification": "REAL + LOCAL",
+      "confidence": 0.85,
+      "failures": [],
+      "warnings": [],
+      "evidence": {
+        "crops_evaluated": 3,
+        "tradeoff_count": 3
+      }
+    },
+    {
+      "scenario_number": 16,
+      "scenario_name": "Farm Longitudinal Memory (Empirical Trajectory)",
+      "status": "PASSED",
+      "execution_time_ms": 0.04,
+      "source_classification": "REAL + LOCAL",
+      "confidence": 0.92,
+      "failures": [],
+      "warnings": [],
+      "evidence": {
+        "observations": 2,
+        "oc_trend": "Improving"
+      }
+    },
+    {
+      "scenario_number": 17,
+      "scenario_name": "BRICS 5-Nation Interoperability (Canonical Model)",
+      "status": "PASSED",
+      "execution_time_ms": 0.07,
+      "source_classification": "SYNTHETIC / DEMO",
+      "confidence": 0.95,
+      "failures": [],
+      "warnings": [],
+      "evidence": {
+        "partner_countries_registered": 5,
+        "brazil_normalized_iso3": "BRA"
+      }
+    },
+    {
+      "scenario_number": 18,
+      "scenario_name": "Combined Multi-Source Intelligence Pipeline",
+      "status": "PASSED",
+      "execution_time_ms": 1206.11,
+      "source_classification": "REAL + CONNECTED",
+      "confidence": 0.85,
+      "failures": [],
+      "warnings": [],
+      "evidence": {
+        "pipeline_success": true,
+        "crops_ranked": 10,
+        "resilience_score": 74.8,
+        "soil_constraints_detected": 0
+      }
+    }
+  ]
+}

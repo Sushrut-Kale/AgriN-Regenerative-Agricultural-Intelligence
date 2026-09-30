@@ -1,0 +1,103 @@
+{
+  "version": "1.0.0",
+  "registry_name": "AgriN Agricultural Knowledge Source & Standard Registry",
+  "last_updated": "2026-09-30",
+  "sources": [
+    {
+      "id": "KS-001",
+      "source_name": "Soil Health Card (SHC) Critical Limits & Nutrient Indices",
+      "authority": "Ministry of Agriculture & Farmers Welfare, Government of India / ICAR",
+      "source_type": "GOVERNMENT_STANDARD",
+      "coverage": "Soil Chemical Parameters (N, P, K, S, Zn, Fe, Cu, Mn, B, pH, EC, OC)",
+      "version": "2024.1",
+      "applicable_geography": "India (All 36 States and Union Territories)",
+      "last_updated": "2026-09-30",
+      "evidence_level": "HIGH",
+      "description": "National benchmark ratings for classifying soil test values into Deficient, Medium, and Sufficient categories."
+    },
+    {
+      "id": "KS-002",
+      "source_name": "ICAR-CRIDA Rainfed Agriculture & Dryland Technology Directory",
+      "authority": "Central Research Institute for Dryland Agriculture (CRIDA), Hyderabad",
+      "source_type": "RESEARCH_INSTITUTE",
+      "coverage": "In-situ moisture conservation, drought contingency, resilient cropping systems",
+      "version": "2023.2",
+      "applicable_geography": "India (Rainfed and Semi-Arid Agro-Climatic Zones)",
+      "last_updated": "2026-09-30",
+      "evidence_level": "HIGH",
+      "description": "Empirical guidelines for contingent crop planning, drought-proofing, and Vertisol management."
+    },
+    {
+      "id": "KS-003",
+      "source_name": "ICAR Agro-Climatic Regional Planning Framework",
+      "authority": "Planning Commission / Indian Council of Agricultural Research",
+      "source_type": "NATIONAL_FRAMEWORK",
+      "coverage": "15 National Agro-Climatic Zones (ACZs) & 700+ District Mappings",
+      "version": "2.0",
+      "applicable_geography": "Pan-India",
+      "last_updated": "2026-09-30",
+      "evidence_level": "HIGH",
+      "description": "Geographical zoning based on physiography, climate, hydrology, and crop calendar distributions."
+    },
+    {
+      "id": "KS-004",
+      "source_name": "Open-Meteo Global Numerical Weather Prediction API",
+      "authority": "Open-Meteo / ECMWF / DWD / NOAA",
+      "source_type": "METEOROLOGICAL_SERVICE",
+      "coverage": "Hourly temperature, relative humidity, precipitation, wind speed, solar radiation",
+      "version": "v1-live",
+      "applicable_geography": "Global (0.1 degree grid resolution)",
+      "last_updated": "2026-09-30",
+      "evidence_level": "HIGH",
+      "description": "High-resolution real-time atmospheric reanalysis and 7-day meteorological forecasts."
+    },
+    {
+      "id": "KS-005",
+      "source_name": "FAO Conservation Agriculture Guidelines & Principles",
+      "authority": "Food and Agriculture Organization of the United Nations (FAO)",
+      "source_type": "INTERNATIONAL_BODY",
+      "coverage": "Minimum soil disturbance, permanent soil organic cover, species diversification",
+      "version": "2022",
+      "applicable_geography": "Global Tropical & Sub-Tropical Arable Lands",
+      "last_updated": "2026-09-30",
+      "evidence_level": "HIGH",
+      "description": "Global scientific consensus on conservation agriculture and biological soil restoration."
+    },
+    {
+      "id": "KS-006",
+      "source_name": "EMBRAPA Cerrado Soil Fertility & Oxisol Manual",
+      "authority": "Empresa Brasileira de Pesquisa Agropecuária (EMBRAPA), Brazil",
+      "source_type": "BRICS_PARTNER_SPECIFICATION",
+      "coverage": "SMP buffer index, Mehlich-1 phosphorus, aluminum saturation, tropical Oxisols",
+      "version": "Manual de Solos 2017",
+      "applicable_geography": "Brazil (Cerrado Biome)",
+      "last_updated": "2026-09-30",
+      "evidence_level": "HIGH",
+      "description": "Reference methodology for tropical savannah acid soil management and soybean-corn rotation."
+    },
+    {
+      "id": "KS-007",
+      "source_name": "SSSSA Soil Analysis Handbook",
+      "authority": "Soil Science Society of South Africa (SSSSA) / ARC",
+      "source_type": "BRICS_PARTNER_SPECIFICATION",
+      "coverage": "Walkley-Black carbon, Bray-1/2 P, Vertisol drought management",
+      "version": "Handbook 1990",
+      "applicable_geography": "South Africa (Highveld & Karoo dryland)",
+      "last_updated": "2026-09-30",
+      "evidence_level": "HIGH",
+      "description": "Analytical methods for South African Vertisols and summer rainfall grain production."
+    },
+    {
+      "id": "KS-008",
+      "source_name": "Copernicus Sentinel-2 Surface Reflectance Product Specification",
+      "authority": "European Space Agency (ESA) / Copernicus Open Access Hub",
+      "source_type": "EARTH_OBSERVATION_CONTRACT",
+      "coverage": "Level-2A Bottom-Of-Atmosphere spectral bands (B2, B3, B4, B8, B11, B12)",
+      "version": "PSD-14.9",
+      "applicable_geography": "Global 10m-20m multispectral imagery",
+      "last_updated": "2026-09-30",
+      "evidence_level": "HIGH",
+      "description": "Normalized data contract for optical satellite vegetation indices (NDVI, NDWI, EVI)."
+    }
+  ]
+}

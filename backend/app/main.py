@@ -40,11 +40,11 @@ async def lifespan(app: FastAPI):
 
 
 app = FastAPI(
-    title="FarmFriend AI",
+    title="AgriN — Regenerative Agricultural Intelligence",
     description=(
-        "Explainable AI-Based Soil & Crop Suitability Decision-Support System. "
-        "This API provides crop recommendations, feasibility analysis, what-if simulation, "
-        "feedback ingestion, and AI-generated explanations based on soil test data and farm conditions."
+        "Pan-India AI-powered agricultural intelligence and regenerative decision support. "
+        "Provides localized crop recommendations, Soil Health Card diagnostics, multi-source weather telemetry, "
+        "satellite remote sensing abstraction, plant pathology triage, farm resilience scoring, and BRICS interoperability."
     ),
     version="2.0.0",
     lifespan=lifespan
@@ -72,13 +72,14 @@ app.include_router(routes_intelligence.router, prefix="/api", tags=["Agricultura
 @app.get("/", tags=["Health"])
 def root():
     return {
-        "app": "FarmFriend AI",
+        "app": "AgriN — Regenerative Agricultural Intelligence",
         "version": "2.0.0",
-        "tagline": "Understand Your Soil. Explore Your Crops.",
+        "track": "BRICS Track 4 — AgriN & Regenerative Agricultural Intelligence",
+        "tagline": "Localized Agricultural Intelligence, Multi-Source Fusion & BRICS Cooperation",
         "status": "running",
         "disclaimer": (
-            "FarmFriend AI provides data-driven decision support. "
-            "It does not replace professional agricultural advice or local agricultural recommendations."
+            "AgriN provides data-driven agronomic decision support. "
+            "It does not replace professional agricultural extension services or laboratory soil assays."
         )
     }
 
