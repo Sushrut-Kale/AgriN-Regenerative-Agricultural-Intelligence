@@ -14,7 +14,7 @@ Provides production endpoints for:
 import uuid
 from datetime import datetime
 from typing import Optional, List, Dict, Any
-from fastapi import APIRouter, HTTPException, Depends
+from fastapi import APIRouter, HTTPException, Depends, File, UploadFile, Form
 from sqlalchemy.orm import Session
 
 from backend.app.database.db import (
@@ -35,6 +35,25 @@ from backend.app.services.farm_health_service import build_farm_health_snapshot
 from backend.app.services.advisory_service import generate_comprehensive_advisories
 from backend.app.services.crop_prediction import get_ranked_crops
 from backend.app.services.weather_service import fetch_live_weather
+try:
+    from backend.app.services.soil_intelligence import assess_soil_health
+    from backend.app.services.regenerative_advisor import advise_regenerative_practices
+    from backend.app.services.farm_resilience import calculate_farm_resilience
+    from backend.app.services.agrin_intelligence import run_full_agricultural_intelligence
+    from backend.app.services.disease_service import diagnose_crop_image
+    from backend.app.services.satellite_service import get_satellite_status_report
+    from backend.app.adapters import ADAPTER_REGISTRY, get_country_adapter
+    from backend.app.services.geo_service import get_all_agro_climatic_zones, get_all_states
+except ImportError:
+    from app.services.soil_intelligence import assess_soil_health
+    from app.services.regenerative_advisor import advise_regenerative_practices
+    from app.services.farm_resilience import calculate_farm_resilience
+    from app.services.agrin_intelligence import run_full_agricultural_intelligence
+    from app.services.disease_service import diagnose_crop_image
+    from app.services.satellite_service import get_satellite_status_report
+    from app.adapters import ADAPTER_REGISTRY, get_country_adapter
+    from app.services.geo_service import get_all_agro_climatic_zones, get_all_states
+
 
 router = APIRouter()
 
@@ -391,3 +410,162 @@ def get_system_coverage():
             "brics_data_exchange": "ARCHITECTURE_READY (Standard schemas implemented)"
         }
     }
+
+
+# ── 7. Unified AgriN Intelligence Orchestrator ───────────────────────────────
+
+@router.post("/intelligence/full-analysis")
+def execute_full_intelligence_analysis(payload: Dict[str, Any]):
+    """
+    Executes the modular end-to-end AgriN Agricultural Intelligence pipeline.
+    Synthesizes Location, Soil Health, Weather, Crop Suitability, Regenerative Plan,
+    Resilience Prototype, and canonical advisories.
+    """
+    try:
+        result = run_full_agricultural_intelligence(payload)
+        return result
+    except Exception as e:
+        raise HTTPException(status_code=500, detail=f"Intelligence pipeline error: {str(e)}")
+
+
+# ── 8. Dedicated Soil Intelligence Profile Endpoint ──────────────────────────
+
+@router.post("/soil/profile")
+def get_soil_health_profile(soil_payload: Dict[str, Any]):
+    """
+    Evaluates raw Soil Health Card test observations against ICAR/DAC&FW standards.
+    Returns status, score, limiting factors, constraints, and targeted amendments.
+    """
+    soil_type = soil_payload.pop("soil_type", None)
+    profile = assess_soil_health(soil_payload, soil_type=soil_type)
+    return {
+        "success": True,
+        "soil_profile": profile
+    }
+
+
+# ── 9. Dedicated Regenerative Advisor Endpoint ────────────────────────────────
+
+@router.post("/regenerative/advisor")
+def get_regenerative_advice(farm_payload: Dict[str, Any]):
+    """
+    Dedicated Regenerative Agriculture Advisor evaluating 8 practice classes
+    based on soil health, moisture regime, crop sequence, and diversity.
+    """
+    advice = advise_regenerative_practices(
+        farm_data=farm_payload,
+        current_crop=farm_payload.get("crop") or farm_payload.get("target_crop")
+    )
+    return {
+        "success": True,
+        "regenerative_advice": advice
+    }
+
+
+# ── 10. Farm Resilience Index Prototype Endpoint ─────────────────────────────
+
+@router.post("/resilience/score")
+def get_farm_resilience_score(farm_payload: Dict[str, Any]):
+    """
+    Computes the transparent AgriN Farm Resilience Index — prototype,
+    exposing all component scores (soil, water, climate, crop diversity, crop suitability).
+    """
+    resilience = calculate_farm_resilience(
+        farm_data=farm_payload,
+        crop_suitability_score=farm_payload.get("suitability_score")
+    )
+    return {
+        "success": True,
+        "farm_resilience": resilience
+    }
+
+
+# ── 11. Crop Health & Disease Diagnostic Endpoint (Honest Guardrail) ─────────
+
+@router.post("/crop-health/diagnose")
+async def diagnose_crop_disease(
+    file: UploadFile = File(...),
+    crop: Optional[str] = Form(None),
+    symptoms: Optional[str] = Form(None),
+    farm_id: Optional[str] = Form(None)
+):
+    """
+    Crop disease diagnostic endpoint. Validates image integrity and passes to provider interface.
+    Strictly returns MODEL_NOT_DEPLOYED when trained vision weights are unlinked.
+    """
+    content = await file.read()
+    result = diagnose_crop_image(
+        image_bytes=content,
+        filename=file.filename or "leaf.jpg",
+        crop=crop,
+        symptoms_description=symptoms,
+        farm_id=farm_id
+    )
+    return result
+
+
+# ── 12. Satellite Provider Connectivity Status Endpoint ───────────────────────
+
+@router.get("/satellite/status")
+def get_satellite_status(
+    latitude: Optional[float] = None,
+    longitude: Optional[float] = None,
+    farm_id: Optional[str] = None
+):
+    """
+    Returns real-time connectivity status of Earth Observation satellite providers.
+    Explicitly reports NOT_CONNECTED without simulated NDVI values.
+    """
+    status = get_satellite_status_report(latitude=latitude, longitude=longitude, farm_id=farm_id)
+    return status
+
+
+# ── 13. National Agricultural Intelligence Overview ──────────────────────────
+
+@router.get("/national/overview")
+def get_national_agricultural_overview():
+    """
+    Pan-India overview aggregating 15 National Agro-Climatic Zones,
+    soil distributions, and key regional cropping patterns without exposing farmer PII.
+    """
+    zones = get_all_agro_climatic_zones()
+    states = get_all_states()
+    return {
+        "country": "India",
+        "total_states_and_uts": len(states),
+        "total_agro_climatic_zones": len(zones),
+        "agro_climatic_zones": zones,
+        "sample_coverage": {
+            "arid_zone": "Western Dry Region (Rajasthan) — Bajra, Mothbeans, Mustard",
+            "gangetic_plains": "Middle/Upper Gangetic Plain — Rice, Wheat, Sugarcane",
+            "black_soil_plateau": "Western/Central Plateau (Maharashtra/MP) — Cotton, Soybean, Pulses",
+            "coastal_plains": "East/West Coast Plains & Ghats (Kerala, TN) — Coconut, Rice, Spices"
+        },
+        "data_license": "Government Open Data License - India"
+    }
+
+
+# ── 14. Interoperability & Country Adapters Registry ─────────────────────────
+
+@router.get("/interoperability/adapters")
+def list_interoperability_adapters():
+    """
+    Lists registered country adapters for the AgriN Data Exchange (ADE).
+    Highlights India as reference implementation, with BRICS partner interfaces.
+    """
+    adapters_info = []
+    for iso, adapter in ADAPTER_REGISTRY.items():
+        adapters_info.append({
+            "country_iso3": adapter.country_iso3,
+            "country_name": adapter.country_name,
+            "is_reference_implementation": adapter.is_reference_implementation,
+            "supported_zones": adapter.get_supported_agro_zones()
+        })
+
+    return {
+        "standard": "AgriN Data Exchange (ADE) v1.0.0",
+        "units": "SI (mg/kg, mm, ha, degC)",
+        "spatial_crs": "WGS84 (EPSG:4326)",
+        "adapters": adapters_info
+    }
+

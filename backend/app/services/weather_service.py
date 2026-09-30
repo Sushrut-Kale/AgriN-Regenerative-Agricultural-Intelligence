@@ -144,3 +144,14 @@ def fetch_live_weather(
         "recent_7day_precipitation_mm": 0.0,
         "note": f"Using benchmark regional climatology values for {info['name']}, {info.get('state', '')}."
     }
+
+
+def get_weather_data(district: str = "Parbhani", state: Optional[str] = None, lat: Optional[float] = None, lon: Optional[float] = None) -> Dict[str, Any]:
+    """Convenience alias for fetch_live_weather."""
+    return fetch_live_weather(district_name=district, state_name=state, lat=lat, lon=lon)
+
+
+def get_weather_forecast(district: str = "Parbhani", state: Optional[str] = None) -> Dict[str, Any]:
+    """Convenience alias for fetch_live_weather by district/state."""
+    return fetch_live_weather(district_name=district, state_name=state)
+

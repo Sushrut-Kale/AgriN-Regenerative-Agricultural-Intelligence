@@ -143,6 +143,62 @@ export default function Recommendations() {
           </p>
         </div>
 
+        {/* ── Track 4: Farm Resilience & Regenerative Intelligence Insights ── */}
+        <div className="ff-card animate-fade-in no-print" style={{ marginBottom: 24, padding: 18, border: '1px solid #10B98140', background: 'linear-gradient(135deg, #F0FDF4 0%, #FFFFFF 100%)' }}>
+          <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', marginBottom: 12, flexWrap: 'wrap', gap: 8 }}>
+            <div style={{ display: 'flex', alignItems: 'center', gap: 8 }}>
+              <span style={{ fontSize: '1.2rem' }}>🌾</span>
+              <div>
+                <h3 style={{ fontSize: '0.95rem', fontWeight: 700, color: '#065F46', margin: 0 }}>
+                  AgriN Farm Resilience Index — prototype
+                </h3>
+                <p style={{ fontSize: '0.75rem', color: '#047857', margin: 0 }}>
+                  Transparent 5-component resilience breakdown & long-term regenerative pathways
+                </p>
+              </div>
+            </div>
+            <span style={{ fontSize: '0.72rem', background: '#D1FAE5', color: '#065F46', padding: '4px 10px', borderRadius: 20, fontWeight: 700 }}>
+              Track 4 Regenerative Intelligence
+            </span>
+          </div>
+
+          <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(130px, 1fr))', gap: 10, marginBottom: 12 }}>
+            <div style={{ background: '#FFFFFF', padding: '10px', borderRadius: 8, border: '1px solid #E5E7EB', textAlign: 'center' }}>
+              <div style={{ fontSize: '0.72rem', color: 'var(--ff-text-secondary)' }}>Soil Health</div>
+              <div style={{ fontSize: '1.1rem', fontWeight: 800, color: '#059669' }}>
+                {soilData?.ph && Number(soilData.ph) >= 6.0 && Number(soilData.ph) <= 7.5 ? 'Balanced' : 'Monitor'}
+              </div>
+              <div style={{ fontSize: '0.68rem', color: '#6B7280' }}>pH: {soilData?.ph || 'N/A'}</div>
+            </div>
+            <div style={{ background: '#FFFFFF', padding: '10px', borderRadius: 8, border: '1px solid #E5E7EB', textAlign: 'center' }}>
+              <div style={{ fontSize: '0.72rem', color: 'var(--ff-text-secondary)' }}>Water Context</div>
+              <div style={{ fontSize: '1.1rem', fontWeight: 800, color: farmData?.irrigation_available === 'yes' ? '#2563EB' : '#D97706' }}>
+                {farmData?.irrigation_available === 'yes' ? 'Irrigated' : 'Rainfed'}
+              </div>
+              <div style={{ fontSize: '0.68rem', color: '#6B7280' }}>Rain: {envData?.rainfall || 'Normal'} mm</div>
+            </div>
+            <div style={{ background: '#FFFFFF', padding: '10px', borderRadius: 8, border: '1px solid #E5E7EB', textAlign: 'center' }}>
+              <div style={{ fontSize: '0.72rem', color: 'var(--ff-text-secondary)' }}>Crop Rotation</div>
+              <div style={{ fontSize: '1.1rem', fontWeight: 800, color: '#7C3AED' }}>Active</div>
+              <div style={{ fontSize: '0.68rem', color: '#6B7280' }}>Legume intercropping</div>
+            </div>
+            <div style={{ background: '#FFFFFF', padding: '10px', borderRadius: 8, border: '1px solid #E5E7EB', textAlign: 'center' }}>
+              <div style={{ fontSize: '0.72rem', color: 'var(--ff-text-secondary)' }}>Satellite State</div>
+              <div style={{ fontSize: '1.1rem', fontWeight: 800, color: '#6B7280' }}>Ready</div>
+              <div style={{ fontSize: '0.68rem', color: '#9CA3AF' }}>Not connected</div>
+            </div>
+            <div style={{ background: '#FFFFFF', padding: '10px', borderRadius: 8, border: '1px solid #E5E7EB', textAlign: 'center' }}>
+              <div style={{ fontSize: '0.72rem', color: 'var(--ff-text-secondary)' }}>Disease Triage</div>
+              <div style={{ fontSize: '1.1rem', fontWeight: 800, color: '#6B7280' }}>Ready</div>
+              <div style={{ fontSize: '0.68rem', color: '#9CA3AF' }}>Model not deployed</div>
+            </div>
+          </div>
+          <div style={{ fontSize: '0.75rem', color: '#065F46', background: '#ECFDF5', padding: '8px 12px', borderRadius: 6, display: 'flex', alignItems: 'center', gap: 6 }}>
+            <span>🌱</span>
+            <span><strong>Regenerative Pathway:</strong> Incorporate pulses or green manure post-{season} to restore biological nitrogen and rebuild soil organic carbon.</span>
+          </div>
+        </div>
+
         {/* Model & System Performance Info Badges */}
         {model_info?.metrics && (
           <div style={{ display: 'flex', flexWrap: 'wrap', gap: 8, marginBottom: 24 }}>

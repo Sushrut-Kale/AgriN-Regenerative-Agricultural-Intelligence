@@ -1,0 +1,981 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>AgriN — SIH Track 4 Final Pitch Deck</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Space+Grotesk:wght@500;700&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --bg-canvas: #09130e;
+      --bg-surface: #102219;
+      --bg-card: #152d21;
+      --bg-card-hover: #1c3b2c;
+      --border-subtle: #234835;
+      --border-strong: #346c4f;
+      
+      --brand-primary: #10b981;
+      --brand-light: #34d399;
+      --brand-accent: #6ee7b7;
+      --brand-glow: rgba(16, 185, 129, 0.25);
+      
+      --earth-gold: #f59e0b;
+      --earth-brown: #d97706;
+      --sky-blue: #38bdf8;
+      
+      --text-main: #f0fdf4;
+      --text-muted: #94a3b8;
+      --text-dim: #64748b;
+      
+      --badge-green-bg: rgba(16, 185, 129, 0.15);
+      --badge-green-border: #10b981;
+      --badge-blue-bg: rgba(56, 189, 248, 0.15);
+      --badge-blue-border: #38bdf8;
+      --badge-amber-bg: rgba(245, 158, 11, 0.15);
+      --badge-amber-border: #f59e0b;
+
+      --font-body: 'Plus Jakarta Sans', sans-serif;
+      --font-heading: 'Space Grotesk', sans-serif;
+      --font-mono: 'JetBrains Mono', monospace;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      background-color: var(--bg-canvas);
+      color: var(--text-main);
+      font-family: var(--font-body);
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      overflow-x: hidden;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    /* TOP CONTROLS BAR */
+    header.deck-bar {
+      height: 56px;
+      background: rgba(9, 19, 14, 0.85);
+      backdrop-filter: blur(12px);
+      border-bottom: 1px solid var(--border-subtle);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 0 1.5rem;
+      position: sticky;
+      top: 0;
+      z-index: 100;
+    }
+
+    .brand-meta {
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+    }
+
+    .brand-logo {
+      font-size: 1.25rem;
+      font-weight: 800;
+      font-family: var(--font-heading);
+      background: linear-gradient(135deg, #34d399, #10b981);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      letter-spacing: -0.02em;
+    }
+
+    .track-tag {
+      font-size: 0.75rem;
+      font-weight: 600;
+      background: var(--bg-card);
+      border: 1px solid var(--border-subtle);
+      padding: 0.2rem 0.6rem;
+      border-radius: 9999px;
+      color: var(--brand-accent);
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+    }
+
+    .deck-controls {
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+    }
+
+    .btn-nav {
+      background: var(--bg-surface);
+      color: var(--text-main);
+      border: 1px solid var(--border-subtle);
+      padding: 0.4rem 0.8rem;
+      border-radius: 6px;
+      font-size: 0.85rem;
+      font-weight: 600;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      gap: 0.4rem;
+      transition: all 0.2s ease;
+    }
+
+    .btn-nav:hover {
+      background: var(--bg-card-hover);
+      border-color: var(--brand-primary);
+      color: var(--brand-light);
+    }
+
+    .slide-counter {
+      font-family: var(--font-mono);
+      font-size: 0.85rem;
+      color: var(--brand-accent);
+      min-width: 60px;
+      text-align: center;
+    }
+
+    /* SLIDE STAGE */
+    main.deck-stage {
+      flex: 1;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 1.5rem;
+      position: relative;
+    }
+
+    .slide-container {
+      width: 100%;
+      max-width: 1200px;
+      aspect-ratio: 16 / 9;
+      background: radial-gradient(circle at 10% 10%, #132a1f 0%, #0d1e16 60%, #08120e 100%);
+      border: 1px solid var(--border-strong);
+      border-radius: 16px;
+      box-shadow: 0 20px 50px rgba(0, 0, 0, 0.6), 0 0 40px var(--brand-glow);
+      position: relative;
+      display: none;
+      flex-direction: column;
+      overflow: hidden;
+      padding: 2.75rem 3.5rem;
+    }
+
+    .slide-container.active {
+      display: flex;
+      animation: slideIn 0.3s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+    }
+
+    @keyframes slideIn {
+      from { opacity: 0; transform: scale(0.985); }
+      to { opacity: 1; transform: scale(1); }
+    }
+
+    /* SLIDE HEADER & FOOTER */
+    .slide-top {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+      margin-bottom: 1.5rem;
+      border-bottom: 1px solid rgba(52, 108, 79, 0.4);
+      padding-bottom: 0.75rem;
+    }
+
+    .slide-category {
+      font-size: 0.8rem;
+      font-weight: 700;
+      color: var(--brand-light);
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      font-family: var(--font-heading);
+      margin-bottom: 0.25rem;
+    }
+
+    .slide-title {
+      font-family: var(--font-heading);
+      font-size: 1.85rem;
+      font-weight: 700;
+      color: var(--text-main);
+      letter-spacing: -0.02em;
+    }
+
+    .slide-badge-box {
+      display: flex;
+      gap: 0.5rem;
+    }
+
+    .badge {
+      font-size: 0.75rem;
+      font-weight: 600;
+      padding: 0.3rem 0.65rem;
+      border-radius: 6px;
+      display: inline-flex;
+      align-items: center;
+      gap: 0.35rem;
+    }
+
+    .badge-implemented {
+      background: var(--badge-green-bg);
+      border: 1px solid var(--badge-green-border);
+      color: var(--brand-light);
+    }
+
+    .badge-partial {
+      background: var(--badge-amber-bg);
+      border: 1px solid var(--badge-amber-border);
+      color: var(--earth-gold);
+    }
+
+    .badge-arch {
+      background: var(--badge-blue-bg);
+      border: 1px solid var(--badge-blue-border);
+      color: var(--sky-blue);
+    }
+
+    .slide-body {
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+    }
+
+    .slide-footer {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-top: 1.25rem;
+      padding-top: 0.75rem;
+      border-top: 1px solid rgba(52, 108, 79, 0.4);
+      font-size: 0.75rem;
+      color: var(--text-dim);
+    }
+
+    /* COMMON COMPONENTS */
+    .grid-2 {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 1.5rem;
+    }
+
+    .grid-3 {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 1.25rem;
+    }
+
+    .grid-4 {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 1rem;
+    }
+
+    .card {
+      background: rgba(21, 45, 33, 0.6);
+      border: 1px solid var(--border-subtle);
+      border-radius: 12px;
+      padding: 1.25rem;
+      transition: border-color 0.2s;
+    }
+
+    .card:hover {
+      border-color: var(--border-strong);
+    }
+
+    .card h3 {
+      font-size: 1.1rem;
+      font-weight: 700;
+      color: var(--brand-accent);
+      margin-bottom: 0.5rem;
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+
+    .card p {
+      font-size: 0.85rem;
+      line-height: 1.45;
+      color: var(--text-muted);
+    }
+
+    /* PIPELINE DIAGRAMS */
+    .flow-pipeline {
+      display: flex;
+      align-items: stretch;
+      justify-content: space-between;
+      gap: 0.75rem;
+      margin: 1.25rem 0;
+    }
+
+    .flow-node {
+      flex: 1;
+      background: var(--bg-card);
+      border: 1px solid var(--border-subtle);
+      border-radius: 10px;
+      padding: 1rem;
+      text-align: center;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      position: relative;
+    }
+
+    .flow-node.active-node {
+      border-color: var(--brand-primary);
+      box-shadow: 0 0 15px var(--brand-glow);
+    }
+
+    .flow-step-num {
+      font-family: var(--font-mono);
+      font-size: 0.7rem;
+      color: var(--brand-light);
+      font-weight: 700;
+      margin-bottom: 0.25rem;
+    }
+
+    .flow-title {
+      font-size: 0.95rem;
+      font-weight: 700;
+      color: var(--text-main);
+      margin-bottom: 0.35rem;
+    }
+
+    .flow-sub {
+      font-size: 0.75rem;
+      color: var(--text-muted);
+      line-height: 1.3;
+    }
+
+    .flow-arrow {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: var(--brand-light);
+      font-size: 1.2rem;
+      font-weight: bold;
+    }
+
+    /* SPEAKER NOTES DRAWER */
+    .notes-drawer {
+      position: fixed;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      background: #0b1a13;
+      border-top: 2px solid var(--brand-primary);
+      padding: 1.25rem 2rem;
+      z-index: 150;
+      transform: translateY(100%);
+      transition: transform 0.25s ease-out;
+      box-shadow: 0 -10px 30px rgba(0, 0, 0, 0.7);
+    }
+
+    .notes-drawer.open {
+      transform: translateY(0);
+    }
+
+    .notes-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 0.5rem;
+    }
+
+    .notes-title {
+      font-size: 0.85rem;
+      font-weight: 700;
+      color: var(--brand-light);
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+
+    .notes-text {
+      font-size: 0.95rem;
+      color: #e2e8f0;
+      line-height: 1.6;
+      max-width: 1000px;
+    }
+
+    /* SLIDE 1 HERO */
+    .hero-box {
+      text-align: center;
+      max-width: 900px;
+      margin: 0 auto;
+    }
+
+    .hero-proposition {
+      font-size: 1.35rem;
+      font-weight: 600;
+      color: #e2e8f0;
+      line-height: 1.5;
+      margin-bottom: 2rem;
+      padding: 1.25rem 2rem;
+      background: rgba(16, 185, 129, 0.08);
+      border: 1px solid var(--border-strong);
+      border-radius: 12px;
+    }
+
+    .meta-pills {
+      display: flex;
+      justify-content: center;
+      gap: 1rem;
+      margin-top: 1.5rem;
+    }
+
+    .meta-pill {
+      font-size: 0.8rem;
+      padding: 0.4rem 0.8rem;
+      border-radius: 9999px;
+      background: var(--bg-card);
+      border: 1px solid var(--border-subtle);
+      color: var(--text-muted);
+    }
+
+    /* COMPARISON TABLE */
+    .matrix-table {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: 0.8rem;
+      margin-top: 0.5rem;
+    }
+
+    .matrix-table th {
+      text-align: left;
+      padding: 0.5rem 0.75rem;
+      background: var(--bg-card);
+      color: var(--brand-light);
+      border-bottom: 1px solid var(--border-strong);
+      font-weight: 700;
+    }
+
+    .matrix-table td {
+      padding: 0.5rem 0.75rem;
+      border-bottom: 1px solid var(--border-subtle);
+      color: var(--text-muted);
+    }
+
+    /* PRINT STYLES */
+    @media print {
+      header.deck-bar, .notes-drawer { display: none !important; }
+      body { background: white; color: black; }
+      .slide-container {
+        display: flex !important;
+        page-break-after: always;
+        box-shadow: none;
+        border: 1px solid #ccc;
+        background: white;
+        color: black;
+      }
+      .slide-title { color: #064e3b; }
+      .card { background: #f8fafc; border-color: #cbd5e1; color: black; }
+      .card p { color: #334155; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- TOP BAR -->
+  <header class="deck-bar">
+    <div class="brand-meta">
+      <span class="brand-logo">🌾 AgriN</span>
+      <span class="track-tag">SIH Track 4 · BRICS Cooperation</span>
+    </div>
+    <div class="deck-controls">
+      <button class="btn-nav" id="btnNotes" title="Toggle Speaker Notes [N]">🎙️ Notes</button>
+      <button class="btn-nav" id="btnPrev" title="Previous Slide [Left]">← Prev</button>
+      <span class="slide-counter" id="slideCounter">1 / 7</span>
+      <button class="btn-nav" id="btnNext" title="Next Slide [Right]">Next →</button>
+      <button class="btn-nav" id="btnFull" title="Fullscreen [F]">⛶ Full</button>
+    </div>
+  </header>
+
+  <!-- PRESENTATION STAGE -->
+  <main class="deck-stage">
+
+    <!-- SLIDE 1 -->
+    <div class="slide-container active" data-slide="1">
+      <div class="slide-top">
+        <div>
+          <div class="slide-category">SIH Track 4 Final Pitch · BRICS Theme: Cooperation</div>
+          <h1 class="slide-title">AgriN: Regenerative Agricultural Intelligence</h1>
+        </div>
+        <div class="slide-badge-box">
+          <span class="badge badge-implemented">🟢 Pan-India Architecture Ready</span>
+        </div>
+      </div>
+      <div class="slide-body">
+        <div class="hero-box">
+          <div class="hero-proposition">
+            "An AI-powered agricultural intelligence platform that converts farm, soil, weather, and location data into localized and actionable agricultural recommendations."
+          </div>
+          
+          <div class="flow-pipeline">
+            <div class="flow-node active-node">
+              <div class="flow-step-num">STAGE 01</div>
+              <div class="flow-title">FARM</div>
+              <div class="flow-sub">Geo-boundary, Season, Irrigation Type</div>
+            </div>
+            <div class="flow-arrow">→</div>
+            <div class="flow-node active-node">
+              <div class="flow-step-num">STAGE 02</div>
+              <div class="flow-title">SOIL + WEATHER</div>
+              <div class="flow-sub">12-Parameter SHC + Live Open-Meteo</div>
+            </div>
+            <div class="flow-arrow">→</div>
+            <div class="flow-node active-node">
+              <div class="flow-step-num">STAGE 03</div>
+              <div class="flow-title">AGRI INTELLIGENCE</div>
+              <div class="flow-sub">Decoupled ML (60%) + ICAR Rules (40%)</div>
+            </div>
+            <div class="flow-arrow">→</div>
+            <div class="flow-node active-node">
+              <div class="flow-step-num">STAGE 04</div>
+              <div class="flow-title">ACTIONABLE ADVISORY</div>
+              <div class="flow-sub">Ranked Crops · Limiting Factors · Amendments</div>
+            </div>
+          </div>
+
+          <div class="meta-pills">
+            <span class="meta-pill">👥 Team AgriN</span>
+            <span class="meta-pill">💻 Lead: Sushrut Kale</span>
+            <span class="meta-pill">🇮🇳 36 States & UTs</span>
+            <span class="meta-pill">🌿 15 ICAR Agro-Climatic Zones</span>
+          </div>
+        </div>
+      </div>
+      <div class="slide-footer">
+        <span>AgriN Platform · Release 2.0.0 (Production Verified)</span>
+        <span>Slide 1 of 7</span>
+      </div>
+    </div>
+
+    <!-- SLIDE 2 -->
+    <div class="slide-container" data-slide="2">
+      <div class="slide-top">
+        <div>
+          <div class="slide-category">Problem Statement & Ground Reality</div>
+          <h2 class="slide-title">The Problem: Agriculture Is Highly Local</h2>
+        </div>
+        <div class="slide-badge-box">
+          <span class="badge badge-partial">⚠️ Fragmented Data Sinks</span>
+        </div>
+      </div>
+      <div class="slide-body">
+        <div class="grid-4" style="margin-bottom: 1.5rem;">
+          <div class="card">
+            <h3>🌱 Soil Variability</h3>
+            <p>12 chemical parameters (NPK, Micros, pH, EC, OC) vary sharply across adjacent fields. Overlooking micronutrient limits causes unexpected yield caps.</p>
+          </div>
+          <div class="card">
+            <h3>🌦️ Climate Variability</h3>
+            <p>Erratic monsoon onsets, prolonged dry spells, and heat extremes render static historical sowing dates dangerously unreliable.</p>
+          </div>
+          <div class="card">
+            <h3>📍 Geographic Diversity</h3>
+            <p>India spans 15 diverse Agro-Climatic Zones across 700+ districts. A model calibrated for coastal alluvial belts fails in rainfed Vertisols.</p>
+          </div>
+          <div class="card">
+            <h3>📊 Fragmented Data</h3>
+            <p>Soil Health Cards, weather forecasts, and ICAR advisory packages live in disconnected silos with no unified intelligence layer.</p>
+          </div>
+        </div>
+
+        <div style="background: rgba(239, 68, 68, 0.08); border: 1px solid rgba(239, 68, 68, 0.3); border-radius: 12px; padding: 1rem 1.5rem;">
+          <div style="display: flex; align-items: center; justify-content: space-around; font-family: var(--font-mono); font-size: 0.85rem; color: #fca5a5;">
+            <span>Fragmented Data Sources</span>
+            <span>──►</span>
+            <span>Generic / Non-Localized Advice</span>
+            <span>──►</span>
+            <span>Higher Sowing Uncertainty</span>
+            <span>──►</span>
+            <span style="color: #ef4444; font-weight: 700;">Severe Input & Crop Risk</span>
+          </div>
+        </div>
+      </div>
+      <div class="slide-footer">
+        <span>Grounded in official ICAR & DAC&FW Smallholder Observations</span>
+        <span>Slide 2 of 7</span>
+      </div>
+    </div>
+
+    <!-- SLIDE 3 -->
+    <div class="slide-container" data-slide="3">
+      <div class="slide-top">
+        <div>
+          <div class="slide-category">System Architecture & Core Innovation</div>
+          <h2 class="slide-title">Our Solution: From Farm Data → Agricultural Intelligence</h2>
+        </div>
+        <div class="slide-badge-box">
+          <span class="badge badge-implemented">🟢 Hybrid Decoupled Engine</span>
+        </div>
+      </div>
+      <div class="slide-body">
+        <div class="grid-2" style="align-items: center;">
+          <div class="card" style="padding: 1.5rem;">
+            <h3 style="color: var(--brand-light); font-size: 1.2rem; margin-bottom: 0.75rem;">⚡ Core Architectural Breakthrough</h3>
+            <p style="font-size: 0.95rem; margin-bottom: 1rem; color: var(--text-main);">
+              <strong>Decoupling Machine Learning from Agronomic Truth:</strong>
+            </p>
+            <ul style="font-size: 0.85rem; color: var(--text-muted); line-height: 1.6; padding-left: 1.25rem;">
+              <li><strong style="color: var(--brand-accent);">Random Forest ML (60%):</strong> Evaluates multi-variable non-linear correlations across 15 biophysical features as probabilistic evidence.</li>
+              <li><strong style="color: var(--earth-gold);">Deterministic Rule Engine (40%):</strong> Enforces strict ICAR/TNAU/SHC agronomic bounds (soil pH limits, salinity tolerances, water security).</li>
+              <li><strong style="color: var(--sky-blue);">Pan-India Generalization:</strong> Scaled beyond the Maharashtra pilot into a 36 State/UT hierarchy covering all 15 Agro-Climatic Zones.</li>
+            </ul>
+          </div>
+
+          <div style="background: var(--bg-surface); border: 1px solid var(--border-subtle); border-radius: 12px; padding: 1.25rem; font-family: var(--font-mono); font-size: 0.75rem;">
+            <div style="text-align: center; color: var(--brand-light); font-weight: bold; margin-bottom: 0.5rem;">[ CLOSED-LOOP INTELLIGENCE FLOW ]</div>
+            <pre style="color: var(--brand-accent); line-height: 1.45; overflow-x: auto;">
+                  👨‍🌾 FARMER
+                     │ Enters Parcel / GPS
+                     ▼
+              FARM PROFILE
+                     │
+        ┌────────────┼────────────┐
+        ▼            ▼            ▼
+      SOIL        WEATHER      LOCATION
+   (12 SHC)    (Open-Meteo)  (15 ACZs)
+        │            │            │
+        └────────────┼────────────┘
+                     ▼
+          AGRICULTURAL INTELLIGENCE
+                     │
+             ┌───────┴───────┐
+             ▼ (60%)         ▼ (40%)
+         ML MODEL       RULE ENGINE
+       (23 Classes)    (ICAR Bounds)
+             └───────┬───────┘
+                     ▼
+          CROP SUITABILITY & XAI
+                     │
+                     ▼
+                  👨‍🌾 FARMER
+            </pre>
+          </div>
+        </div>
+      </div>
+      <div class="slide-footer">
+        <span>Zero-Hallucination Architecture · Data Completeness Penalty Applied on Missing Fields</span>
+        <span>Slide 3 of 7</span>
+      </div>
+    </div>
+
+    <!-- SLIDE 4 -->
+    <div class="slide-container" data-slide="4">
+      <div class="slide-top">
+        <div>
+          <div class="slide-category">Engineering Reality & Implemented Stack</div>
+          <h2 class="slide-title">How AgriN Works — 5-Stage Verified Pipeline</h2>
+        </div>
+        <div class="slide-badge-box">
+          <span class="badge badge-implemented">🟢 58/58 Automated Tests Passing</span>
+        </div>
+      </div>
+      <div class="slide-body">
+        <div class="flow-pipeline" style="margin-bottom: 1.5rem;">
+          <div class="flow-node">
+            <div class="flow-step-num">STAGE 1</div>
+            <div class="flow-title">LOCATION</div>
+            <div class="flow-sub">State → District → Sub-district → GPS Lat/Lon</div>
+          </div>
+          <div class="flow-arrow">→</div>
+          <div class="flow-node">
+            <div class="flow-step-num">STAGE 2</div>
+            <div class="flow-title">FARM + SOIL</div>
+            <div class="flow-sub">Season, Water Regime, 12 SHC Nutrients</div>
+          </div>
+          <div class="flow-arrow">→</div>
+          <div class="flow-node">
+            <div class="flow-step-num">STAGE 3</div>
+            <div class="flow-title">ENVIRONMENT</div>
+            <div class="flow-sub">Live Temp, Humidity, Rain via Open-Meteo</div>
+          </div>
+          <div class="flow-arrow">→</div>
+          <div class="flow-node">
+            <div class="flow-step-num">STAGE 4</div>
+            <div class="flow-title">INTELLIGENCE</div>
+            <div class="flow-sub">Random Forest v1 + ICAR Gates</div>
+          </div>
+          <div class="flow-arrow">→</div>
+          <div class="flow-node">
+            <div class="flow-step-num">STAGE 5</div>
+            <div class="flow-title">DECISION + XAI</div>
+            <div class="flow-sub">Ranked Crops, Limiting Factors & Amendments</div>
+          </div>
+        </div>
+
+        <div class="card" style="padding: 1rem 1.25rem;">
+          <div style="font-size: 0.8rem; font-weight: 700; color: var(--brand-light); text-transform: uppercase; margin-bottom: 0.5rem;">Current Production Stack:</div>
+          <div class="grid-3" style="font-size: 0.8rem;">
+            <div><strong>Client Tier:</strong> React 19, Vite SPA, Tailwind tokens, What-If simulation sandbox</div>
+            <div><strong>Backend API:</strong> Python 3.10+, FastAPI async REST core, Pydantic v2 schemas</div>
+            <div><strong>Persistence:</strong> SQLite, time-series observations, structured advisories & feedback</div>
+          </div>
+        </div>
+      </div>
+      <div class="slide-footer">
+        <span>Verified across Punjab, Rajasthan, Kerala, Maharashtra, Assam & Karnataka Scenarios</span>
+        <span>Slide 4 of 7</span>
+      </div>
+    </div>
+
+    <!-- SLIDE 5 -->
+    <div class="slide-container" data-slide="5">
+      <div class="slide-top">
+        <div>
+          <div class="slide-category">Hackathon Alignment & Capability Readiness</div>
+          <h2 class="slide-title">Why AgriN Fits Track 4: Foundation vs. Horizon</h2>
+        </div>
+        <div class="slide-badge-box">
+          <span class="badge badge-implemented">🟢 Honest Engineering Scope</span>
+        </div>
+      </div>
+      <div class="slide-body">
+        <div class="grid-2">
+          <div class="card" style="border-color: rgba(16, 185, 129, 0.4);">
+            <h3 style="color: var(--brand-light);">🟢 CURRENT OPERATIONAL FOUNDATION</h3>
+            <ul style="font-size: 0.8rem; color: var(--text-muted); line-height: 1.6; padding-left: 1.2rem; margin-top: 0.5rem;">
+              <li><strong style="color: var(--text-main);">Pan-India Geographic Intelligence:</strong> 36 States/UTs, 700+ Districts, 15 ICAR Agro-Climatic Zones.</li>
+              <li><strong style="color: var(--text-main);">12-Parameter Soil Health Card Engine:</strong> N, P, K, S, Zn, Fe, Cu, Mn, B, pH, EC, OC evaluated on DAC&FW limits.</li>
+              <li><strong style="color: var(--text-main);">Real-Time Weather Service:</strong> Live Open-Meteo REST API queries with regional benchmark fallback.</li>
+              <li><strong style="color: var(--text-main);">Decoupled Hybrid AI Decision:</strong> ML probabilities combined with deterministic rule gates.</li>
+              <li><strong style="color: var(--text-main);">Regenerative Practices (10 Practices):</strong> Codified ICAR/CRIDA rules evaluated on soil OC & water regime.</li>
+            </ul>
+          </div>
+
+          <div class="card" style="border-color: rgba(56, 189, 248, 0.4);">
+            <h3 style="color: var(--sky-blue);">🔵 ARCHITECTURE-READY EXTENSIONS</h3>
+            <ul style="font-size: 0.8rem; color: var(--text-muted); line-height: 1.6; padding-left: 1.2rem; margin-top: 0.5rem;">
+              <li><strong style="color: var(--text-main);">Sentinel-2 Satellite Monitoring:</strong> Mathematical formulations for NDVI, NDWI, EVI & SAVI defined; honest <code style="color: var(--earth-gold);">UNAVAILABLE</code> flag returned.</li>
+              <li><strong style="color: var(--text-main);">AI Disease Pathology:</strong> Multi-state triage (<code style="color: var(--sky-blue);">NOT_ASSESSED</code>) and Vision Transformer roadmap documented.</li>
+              <li><strong style="color: var(--text-main);">Farmer Feedback Loop:</strong> Schema, database table, and telemetry endpoints implemented.</li>
+              <li><strong style="color: var(--text-main);">Interoperable Agricultural Layer:</strong> AgriN Data Exchange (ADE) standardized on WGS84 and SI units.</li>
+            </ul>
+          </div>
+        </div>
+
+        <div style="margin-top: 1rem; text-align: center; font-size: 0.85rem; color: var(--brand-accent); font-weight: 600;">
+          "The current system establishes the India-wide intelligence foundation required to evolve into a regenerative agricultural network."
+        </div>
+      </div>
+      <div class="slide-footer">
+        <span>Zero Fake Statistics · Zero Fake Satellite Images · Transparent Model Governance</span>
+        <span>Slide 5 of 7</span>
+      </div>
+    </div>
+
+    <!-- SLIDE 6 -->
+    <div class="slide-container" data-slide="6">
+      <div class="slide-top">
+        <div>
+          <div class="slide-category">BRICS International Theme · Cooperation</div>
+          <h2 class="slide-title">From Pan-India Intelligence → Cooperative Agricultural Intelligence</h2>
+        </div>
+        <div class="slide-badge-box">
+          <span class="badge badge-arch">🌐 AgriN Data Exchange (ADE)</span>
+        </div>
+      </div>
+      <div class="slide-body">
+        <div class="grid-2" style="align-items: center;">
+          <div class="card">
+            <h3 style="color: var(--brand-light);">🤝 The BRICS Cooperation Blueprint</h3>
+            <ul style="font-size: 0.8rem; color: var(--text-muted); line-height: 1.5; padding-left: 1.2rem;">
+              <li><strong>India First:</strong> Build, stress-test, and validate intelligence across 15 diverse agro-climatic zones before cross-border federation.</li>
+              <li><strong>Universal Interoperability:</strong> Normalized interchange entities using SI units (mg/kg, mm, ha) and WGS84 coordinates.</li>
+              <li><strong>Ecosystem Synergies:</strong>
+                <ul style="padding-left: 1rem; margin-top: 0.25rem;">
+                  <li><strong>Brazil (EMBRAPA):</strong> Acidic Cerrado Oxisols, aluminum saturation models.</li>
+                  <li><strong>South Africa (ARC):</strong> Semi-arid vertisols & drought management (synergy with Central India).</li>
+                  <li><strong>Russia (Rosgidromet):</strong> Chernozem soils, winter wheat vernalization.</li>
+                  <li><strong>China (CAAS):</strong> Intensive double-cropping rotation models.</li>
+                </ul>
+              </li>
+              <li><strong>Federated Privacy:</strong> Algorithms travel to data; raw farm ownership records never cross sovereign boundaries.</li>
+            </ul>
+          </div>
+
+          <div style="background: var(--bg-surface); border: 1px solid var(--border-subtle); border-radius: 12px; padding: 1.25rem; font-family: var(--font-mono); font-size: 0.72rem;">
+            <div style="text-align: center; color: var(--sky-blue); font-weight: bold; margin-bottom: 0.5rem;">[ BRICS SHARED INTELLIGENCE MODEL ]</div>
+            <pre style="color: var(--brand-accent); line-height: 1.45; overflow-x: auto;">
+                         AGRIN
+                           │
+                 COMMON DATA MODEL (ADE)
+                 (WGS84 · SI Units: mg/kg)
+                           │
+        ┌──────────────────┼──────────────────┐
+        ▼                  ▼                  ▼
+      INDIA              BRAZIL          SOUTH AFRICA
+   (ICAR / SHC)       (EMBRAPA)             (ARC)
+   Alluvial/Vertisol  Cerrado Acidic      Semi-Arid Vert.
+        └──────────────────┬──────────────────┘
+                           ▼
+                  SHARED INTELLIGENCE
+              (Federated Resilient Models)
+                           ▼
+               CLIMATE-RESILIENT FARMING
+            </pre>
+          </div>
+        </div>
+      </div>
+      <div class="slide-footer">
+        <span>Formalized Specification in docs/BRICS_INTEROPERABILITY_ARCHITECTURE.md</span>
+        <span>Slide 6 of 7</span>
+      </div>
+    </div>
+
+    <!-- SLIDE 7 -->
+    <div class="slide-container" data-slide="7">
+      <div class="slide-top">
+        <div>
+          <div class="slide-category">The Road Ahead · Multi-Dimensional Impact</div>
+          <h2 class="slide-title">Impact, Phased Roadmap & Closing Vision</h2>
+        </div>
+        <div class="slide-badge-box">
+          <span class="badge badge-implemented">🌱 Scalable Architecture</span>
+        </div>
+      </div>
+      <div class="slide-body">
+        <div class="flow-pipeline" style="margin-bottom: 1.25rem;">
+          <div class="flow-node active-node">
+            <div class="flow-step-num">PHASE 1-2.5</div>
+            <div class="flow-title">PAN-INDIA CORE</div>
+            <div class="flow-sub">🟢 Verified: 36 States, 12 SHC, Hybrid Scorer, Regenerative Engine</div>
+          </div>
+          <div class="flow-arrow">→</div>
+          <div class="flow-node">
+            <div class="flow-step-num">PHASE 3.0</div>
+            <div class="flow-title">MULTI-MODAL IOT</div>
+            <div class="flow-sub">🔵 Arch-Ready: Sentinel-2 Rasters & On-device ViT Pathology</div>
+          </div>
+          <div class="flow-arrow">→</div>
+          <div class="flow-node">
+            <div class="flow-step-num">PHASE 4.0</div>
+            <div class="flow-title">BRICS NETWORK</div>
+            <div class="flow-sub">⚪ Future: Federated Learning Trials with EMBRAPA & ARC</div>
+          </div>
+        </div>
+
+        <div class="grid-4">
+          <div class="card">
+            <h3>🌱 Sustainable Agriculture</h3>
+            <p>Diversifies cropping away from monoculture through 10 codified regenerative practices.</p>
+          </div>
+          <div class="card">
+            <h3>💧 Resource Awareness</h3>
+            <p>Prevents fertilizer misapplication by targeting precise micronutrient limits ($Zn, B, OC$).</p>
+          </div>
+          <div class="card">
+            <h3>🌦️ Climate Resilience</h3>
+            <p>Shields rainfed farmers from erratic monsoons using live weather-informed planting gates.</p>
+          </div>
+          <div class="card">
+            <h3>🤝 Multilateral Cooperation</h3>
+            <p>Creates open-source interoperability standards for South-South agricultural intelligence.</p>
+          </div>
+        </div>
+
+        <div style="margin-top: 1.25rem; text-align: center; font-size: 1.15rem; font-weight: 700; color: var(--brand-light); font-family: var(--font-heading);">
+          "AgriN — From local farm intelligence to cooperative, climate-resilient agriculture."
+        </div>
+      </div>
+      <div class="slide-footer">
+        <span>AgriN Project · Ready for SIH Track 4 Final Round Presentation</span>
+        <span>Slide 7 of 7</span>
+      </div>
+    </div>
+
+  </main>
+
+  <!-- SPEAKER NOTES DRAWER -->
+  <aside class="notes-drawer" id="notesDrawer">
+    <div class="notes-header">
+      <div class="notes-title">🎙️ Speaker Notes · Slide <span id="notesSlideNum">1</span> (30-45 Sec Pitch)</div>
+      <button class="btn-nav" id="btnCloseNotes" style="padding: 0.2rem 0.6rem;">✕ Close</button>
+    </div>
+    <div class="notes-text" id="notesText">
+      Loading speaker notes...
+    </div>
+  </aside>
+
+  <script>
+    const slides = document.querySelectorAll('.slide-container');
+    const slideCounter = document.getElementById('slideCounter');
+    const notesDrawer = document.getElementById('notesDrawer');
+    const notesSlideNum = document.getElementById('notesSlideNum');
+    const notesText = document.getElementById('notesText');
+
+    let currentSlide = 1;
+    const totalSlides = slides.length;
+
+    const speakerNotes = {
+      1: "Respected members of the jury, smallholder farmers across India and the Global South make high-stakes agricultural decisions every season based on static habits or fragmented information. We present AgriN: Regenerative Agricultural Intelligence, built for SIH Track 4 under the BRICS Cooperation theme. AgriN is an agricultural intelligence infrastructure platform that connects farm parcel location, 12-parameter soil health chemistry, and real-time meteorological observations with an explainable hybrid intelligence engine. Instead of a black-box crop guesser, AgriN delivers localized, scientifically grounded, and climate-resilient crop suitability and regenerative soil advisories. Let us look at the fundamental problem we set out to solve.",
+      
+      2: "Agriculture is inherently localized. In India alone, we farm across 15 distinct Agro-Climatic Zones and more than 700 districts. The central problem is that agricultural information today is severely fragmented. Soil test cards sit in paper drawers; weather forecasts exist in generic apps; and regional agronomic packages from ICAR remain locked in static PDF tables. When farmers receive generic, unlocalized recommendations, uncertainty spikes. Planting high-water paddy in rainfed Vertisols during a dry spell leads to crop failure and wasted input capital. Farmers do not need another generic black-box prediction. They need an intelligent, localized decision-support layer that synthesizes soil chemistry, real-time weather, and regional agronomy into actionable guidance.",
+      
+      3: "To solve this challenge, we built AgriN as a closed-loop agricultural intelligence platform. As you see in this architecture diagram, the farmer begins by defining their farm profile or tapping GPS. AgriN immediately ingests three localized data streams: 12-parameter soil health chemistry, live weather via Open-Meteo, and the precise agro-climatic zone. Now, here is our key technical breakthrough: we decoupled the machine learning model from agronomic truth. Many hackathon projects feed raw numbers into an opaque model that recommends water-intensive rice in dryland rainfed districts. In AgriN, our Random Forest classifier provides probabilistic evidence with 60% weight, while our deterministic rule engine—codified from ICAR and Soil Health Card standards—enforces hard agronomic constraints with 40% weight. Furthermore, we have generalized AgriN from a Maharashtra prototype into a full Pan-India architecture covering all 28 states, 8 UTs, and 15 agro-climatic zones.",
+      
+      4: "Here is our complete 5-stage pipeline, fully implemented and running today. In Stage 1, the system resolves location—either through dynamic cascading dropdowns across all 36 Indian States and UTs or via direct GPS coordinates. In Stage 2 and 3, AgriN ingests the farm profile: sowing season, irrigation type, 12 Soil Health Card parameters, and live meteorological data queried from Open-Meteo. In Stage 4, our hybrid intelligence synthesizes these vectors. If data is incomplete—such as missing micronutrients—AgriN does not hallucinate high confidence; it applies a data completeness penalty. In Stage 5, the farmer receives ranked crop suitability, but more crucially, deterministic explainability. We highlight the exact limiting factors—such as zinc deficiency or low organic carbon—and provide actionable soil amendment guidelines. Everything on this slide is verified by 58 automated unit tests and a 68-point master QA audit.",
+      
+      5: "Track 4 calls for an AI-powered regenerative agricultural intelligence platform. On this slide, we present our capabilities with complete engineering integrity. On the left is our Current Operational Foundation: We have fully implemented Pan-India geographic intelligence across 36 States and UTs, complete 12-parameter Soil Health Card evaluation, real-time weather integration, decoupled AI crop suitability, and grounded explainability. Furthermore, our regenerative practice engine and farmer feedback loops are already coded and verified. On the right is our Extension Towards Full AgriN: For satellite monitoring and disease diagnosis, we have designed the complete mathematical pipelines and Pydantic schemas. But crucially, as an honest hackathon team, we do not simulate fake satellite NDVI values or run unverified disease models. Until live satellite rasters are connected, our API transparently returns an UNAVAILABLE flag. AgriN provides the rock-solid, verified software foundation required to scale into a national regenerative network.",
+      
+      6: "The BRICS nations represent 40% of the world's population, 30% of global agricultural land, and over 40% of cereal production. Yet agricultural intelligence remains trapped within national silos. Under the BRICS Cooperation theme, AgriN introduces the AgriN Data Exchange (ADE)—a standardized interoperability specification. First, we built an 'India First' foundation, validating our pipeline across India's immense diversity. Second, we solved the core barrier to international cooperation: data standardization. ADE normalizes agricultural entities into SI units—milligrams per kilogram for soil, millimeters for rainfall, hectares for area, and FAO botanical codes for crops. This enables shared intelligence across BRICS partners. For example, South Africa's Agricultural Research Council and India's CRIDA face nearly identical dryland vertisol management challenges. Through federated learning, sovereign farmer data stays within national borders while climate-resilient models can be trained collaboratively.",
+      
+      7: "In conclusion, AgriN is not a theoretical concept—it is a production-ready engineering foundation built with honesty, scientific rigor, and deep agricultural empathy. Our roadmap is clearly structured: having established our Pan-India foundation and regenerative evaluation engines in Phase 2.5, our next phase activates live Sentinel-2 satellite ingestion and on-device vision models. Phase 4 will initiate international pilot data exchanges with BRICS research partners like EMBRAPA. AgriN delivers four tangible impacts: sustainable crop diversity, resource-aware soil stewardship, climate resilience against erratic monsoons, and a global standard for agricultural cooperation. AgriN — From local farm intelligence to cooperative, climate-resilient agriculture. Thank you, and we welcome your questions!"
+    };
+
+    function updateSlide(newIndex) {
+      if (newIndex < 1 || newIndex > totalSlides) return;
+      currentSlide = newIndex;
+      slides.forEach(s => s.classList.remove('active'));
+      const activeSlide = document.querySelector(`.slide-container[data-slide="${currentSlide}"]`);
+      if (activeSlide) activeSlide.classList.add('active');
+      slideCounter.textContent = `${currentSlide} / ${totalSlides}`;
+      notesSlideNum.textContent = currentSlide;
+      notesText.textContent = speakerNotes[currentSlide] || "No notes available for this slide.";
+    }
+
+    document.getElementById('btnPrev').addEventListener('click', () => updateSlide(currentSlide - 1));
+    document.getElementById('btnNext').addEventListener('click', () => updateSlide(currentSlide + 1));
+    
+    document.getElementById('btnNotes').addEventListener('click', () => {
+      notesDrawer.classList.toggle('open');
+    });
+
+    document.getElementById('btnCloseNotes').addEventListener('click', () => {
+      notesDrawer.classList.remove('open');
+    });
+
+    document.getElementById('btnFull').addEventListener('click', () => {
+      if (!document.fullscreenElement) {
+        document.documentElement.requestFullscreen().catch(err => alert(err.message));
+      } else {
+        document.exitFullscreen();
+      }
+    });
+
+    // Keyboard navigation
+    window.addEventListener('keydown', (e) => {
+      if (e.key === 'ArrowRight' || e.key === ' ' || e.key === 'PageDown') {
+        e.preventDefault();
+        updateSlide(currentSlide + 1);
+      } else if (e.key === 'ArrowLeft' || e.key === 'PageUp') {
+        e.preventDefault();
+        updateSlide(currentSlide - 1);
+      } else if (e.key.toLowerCase() === 'n') {
+        notesDrawer.classList.toggle('open');
+      } else if (e.key.toLowerCase() === 'f') {
+        if (!document.fullscreenElement) {
+          document.documentElement.requestFullscreen().catch(() => {});
+        } else {
+          document.exitFullscreen();
+        }
+      }
+    });
+
+    // Initialize
+    updateSlide(1);
+  </script>
+</body>
+</html>

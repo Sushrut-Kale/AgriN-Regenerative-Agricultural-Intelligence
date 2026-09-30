@@ -1,5 +1,5 @@
 {
-  "test_run_date": "2026-09-30T14:25:32.902414",
+  "test_run_date": "2026-09-30T20:20:23.330565",
   "total": 68,
   "passed": 64,
   "failed": 0,
@@ -23,8 +23,8 @@
       "name": "Dataset has expected columns",
       "status": "PASS",
       "severity": "critical",
-      "expected": "{'Mn', 'humidity', 'K', 'B', 'Cu', 'temperature', 'label', 'Zn', 'P', 'ph', 'EC', 'rainfall', 'N', 'S', 'Fe', 'OC'}",
-      "actual": "{'Zn', 'P', 'Mn', 'ph', 'K', 'EC', 'humidity', 'rainfall', 'N', 'S', 'Fe', 'B', 'Cu', 'OC', 'temperature', 'label'}",
+      "expected": "{'Mn', 'rainfall', 'label', 'OC', 'S', 'P', 'ph', 'Fe', 'N', 'humidity', 'B', 'K', 'Cu', 'temperature', 'EC', 'Zn'}",
+      "actual": "{'Mn', 'humidity', 'label', 'rainfall', 'OC', 'S', 'K', 'B', 'P', 'ph', 'Fe', 'Cu', 'temperature', 'EC', 'Zn', 'N'}",
       "evidence": "",
       "root_cause": "",
       "fix": ""

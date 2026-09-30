@@ -173,6 +173,14 @@ def get_agro_climatic_zone_info(zone_name: str) -> Optional[Dict[str, Any]]:
     return _ACZ_DATA.get(zone_name)
 
 
+def get_all_agro_climatic_zones() -> List[Dict[str, Any]]:
+    """Get all 15 ICAR National Agro-Climatic Zones."""
+    _load_data()
+    return [{"name": k, "code": v.get("id", k), "id": v.get("id", k), **v} for k, v in _ACZ_DATA.items()]
+
+
+
+
 def get_crop_seasons_for_region(crop_name: str, state_name: Optional[str] = None) -> List[str]:
     """
     Get allowed seasons for a crop in a given state using multi-tier hierarchy:

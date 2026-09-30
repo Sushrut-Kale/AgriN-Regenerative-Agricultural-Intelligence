@@ -128,6 +128,10 @@ class DataSourceMetadata(BaseModel):
     license: Optional[str] = None
 
 
+DataSourceMeta = DataSourceMetadata
+
+
+
 class ConfidenceMetadata(BaseModel):
     confidence: Optional[float] = None
     confidence_level: DataConfidenceLevel = DataConfidenceLevel.UNKNOWN

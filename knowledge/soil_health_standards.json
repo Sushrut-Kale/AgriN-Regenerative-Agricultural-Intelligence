@@ -1,0 +1,131 @@
+{
+  "version": "1.0.0",
+  "authority": "Indian Council of Agricultural Research (ICAR) & Ministry of Agriculture & Farmers Welfare (DAC&FW)",
+  "standard_name": "Indian Soil Health Card Critical Limits & Nutrient Rating Framework",
+  "nutrients": {
+    "N": {
+      "name": "Available Nitrogen",
+      "symbol": "N",
+      "unit": "kg/ha",
+      "method": "Alkaline Permanganate (Subbiah & Asija, 1956)",
+      "ratings": {
+        "low": { "min": 0, "max": 280.0, "status": "DEFICIENT", "action": "Apply 25% extra nitrogen or incorporate green manure/legumes" },
+        "medium": { "min": 280.0, "max": 560.0, "status": "OPTIMAL", "action": "Maintain recommended dose of fertilizer (RDF)" },
+        "high": { "min": 560.0, "max": 1500.0, "status": "SURPLUS", "action": "Reduce chemical nitrogen by 25% to prevent leaching and vegetative lodging" }
+      }
+    },
+    "P": {
+      "name": "Available Phosphorus",
+      "symbol": "P2O5",
+      "unit": "kg/ha",
+      "method": "Olsen method (alkaline soil) / Bray & Kurtz No. 1 (acid soil)",
+      "ratings": {
+        "low": { "min": 0, "max": 10.0, "status": "DEFICIENT", "action": "Apply single superphosphate (SSP) with organic manure or PSB biofertilizer" },
+        "medium": { "min": 10.0, "max": 25.0, "status": "OPTIMAL", "action": "Apply standard recommended phosphorus at basal sowing" },
+        "high": { "min": 25.0, "max": 250.0, "status": "SURPLUS", "action": "Withhold chemical phosphorus; utilize mycorrhiza for P mobilization" }
+      }
+    },
+    "K": {
+      "name": "Available Potassium",
+      "symbol": "K2O",
+      "unit": "kg/ha",
+      "method": "Neutral Normal Ammonium Acetate (Hanway & Heidel, 1952)",
+      "ratings": {
+        "low": { "min": 0, "max": 108.0, "status": "DEFICIENT", "action": "Apply Muriate of Potash (MOP) or sulphate of potash" },
+        "medium": { "min": 108.0, "max": 280.0, "status": "OPTIMAL", "action": "Apply standard maintenance potash dose" },
+        "high": { "min": 280.0, "max": 1200.0, "status": "SURPLUS", "action": "Potash adequate; focus on micronutrient balance" }
+      }
+    },
+    "OC": {
+      "name": "Soil Organic Carbon",
+      "symbol": "OC",
+      "unit": "%",
+      "method": "Walkley-Black Rapid Titration",
+      "ratings": {
+        "low": { "min": 0, "max": 0.50, "status": "DEPLETED", "action": "Critical deficit: Apply 5-10 t/ha FYM/compost, practice crop residue retention and cover cropping" },
+        "medium": { "min": 0.50, "max": 0.75, "status": "MODERATE", "action": "Incorporate green manure (Dhaincha/Sunnhemp) or compost to build long-term carbon" },
+        "high": { "min": 0.75, "max": 5.0, "status": "HEALTHY", "action": "Maintain soil biological health via minimum tillage and residue cover" }
+      }
+    },
+    "pH": {
+      "name": "Soil Reaction",
+      "symbol": "pH",
+      "unit": "pH scale (1:2.5 soil-water)",
+      "ratings": {
+        "strongly_acidic": { "min": 0, "max": 5.5, "status": "ACIDIC_HAZARD", "action": "Apply agricultural lime (CaCO3) based on buffer pH test; avoid acidifying fertilizers" },
+        "moderately_acidic": { "min": 5.5, "max": 6.5, "status": "SLIGHTLY_ACIDIC", "action": "Optimal for tea, coffee, potato; apply rock phosphate instead of water-soluble P" },
+        "neutral": { "min": 6.5, "max": 7.5, "status": "OPTIMAL", "action": "Ideal nutrient availability zone; maintain balanced crop nutrition" },
+        "moderately_alkaline": { "min": 7.5, "max": 8.5, "status": "SLIGHTLY_ALKALINE", "action": "Calcareous/vertisol condition; apply zinc and iron foliar sprays to counter fixation" },
+        "strongly_alkaline": { "min": 8.5, "max": 14.0, "status": "SODIC_HAZARD", "action": "High sodicity hazard: Apply gypsum (CaSO4) followed by leaching; cultivate salt-tolerant green manure" }
+      }
+    },
+    "EC": {
+      "name": "Electrical Conductivity",
+      "symbol": "EC",
+      "unit": "dS/m",
+      "method": "Saturation extract / 1:2 soil-water suspension",
+      "ratings": {
+        "non_saline": { "min": 0, "max": 1.0, "status": "NORMAL", "action": "Normal soil salinity; zero restriction on crop germination" },
+        "slightly_saline": { "min": 1.0, "max": 2.0, "status": "MILD_SALINITY", "action": "Sensitive crops (pulses, beans) may show yield reduction; ensure good drainage" },
+        "moderately_saline": { "min": 2.0, "max": 4.0, "status": "SALINITY_HAZARD", "action": "Yield restriction for most crops; prefer salt-tolerant crops (Barley, Mustard, Cotton)" },
+        "strongly_saline": { "min": 4.0, "max": 20.0, "status": "SEVERE_SALINITY", "action": "Severe osmotic stress: install subsurface drainage, flush with good quality irrigation water" }
+      }
+    },
+    "S": { "name": "Available Sulphur", "unit": "ppm", "critical_limit": 10.0, "deficiency_action": "Apply Gypsum @ 200-250 kg/ha or elemental sulphur for oilseeds and pulses" },
+    "Zn": { "name": "Available Zinc (DTPA)", "unit": "ppm", "critical_limit": 0.60, "deficiency_action": "Soil application of Zinc Sulphate (ZnSO4) @ 25 kg/ha or foliar spray @ 0.5% at vegetative stage" },
+    "Fe": { "name": "Available Iron (DTPA)", "unit": "ppm", "critical_limit": 4.50, "deficiency_action": "Foliar spray of Ferrous Sulphate (FeSO4) @ 0.5% with 0.1% citric acid to alleviate chlorosis" },
+    "Cu": { "name": "Available Copper (DTPA)", "unit": "ppm", "critical_limit": 0.20, "deficiency_action": "Soil application of Copper Sulphate @ 5 kg/ha in deficient peat/sandy soils" },
+    "Mn": { "name": "Available Manganese (DTPA)", "unit": "ppm", "critical_limit": 2.00, "deficiency_action": "Foliar spray of Manganese Sulphate @ 0.5% in high-pH calcareous soils" },
+    "B": { "name": "Available Boron (Hot Water)", "unit": "ppm", "critical_limit": 0.50, "deficiency_action": "Soil application of Borax @ 10 kg/ha or foliar Solubor @ 0.2% before flowering in pulses/oilseeds" }
+  },
+  "constraints_rules": [
+    {
+      "id": "SC-001",
+      "name": "Soil Organic Carbon Depletion",
+      "condition": "OC < 0.50",
+      "severity": "HIGH",
+      "impact": "Impaired soil structure, low biological activity, poor water retention and high drought vulnerability.",
+      "remediation": "Incorporate 5-10 t/ha FYM/vermicompost, avoid burning crop residues, and adopt green manuring (Sesbania/Crotalaria)."
+    },
+    {
+      "id": "SC-002",
+      "name": "Soil Acidity Hazard",
+      "condition": "pH < 5.5",
+      "severity": "CRITICAL",
+      "impact": "Aluminium and Manganese toxicity, acute phosphorus fixation, suppressed biological nitrogen fixation.",
+      "remediation": "Broadcast agricultural lime or dolomite based on lime requirement test; apply rock phosphate with compost."
+    },
+    {
+      "id": "SC-003",
+      "name": "Alkalinity & Sodic Hazard",
+      "condition": "pH > 8.5",
+      "severity": "CRITICAL",
+      "impact": "Sodium disperses soil aggregates causing poor aeration, surface crusting, and micronutrient immobilization (Zn, Fe, Mn).",
+      "remediation": "Apply gypsum (CaSO4.2H2O) @ 2.5-5 t/ha followed by ponding/leaching; grow Dhaincha (Sesbania aculeata) as green manure."
+    },
+    {
+      "id": "SC-004",
+      "name": "Salinity Osmotic Stress",
+      "condition": "EC > 2.0",
+      "severity": "HIGH",
+      "impact": "Osmotic inhibition of root water uptake, seedling scorching, and nutrient imbalance.",
+      "remediation": "Improve field drainage, leach rootzone salts with fresh water, avoid saline borewell irrigation, and select salt-tolerant crops."
+    },
+    {
+      "id": "SC-005",
+      "name": "Zinc Deficiency Stress",
+      "condition": "Zn < 0.60",
+      "severity": "MEDIUM",
+      "impact": "Stunted vegetative growth, little leaf disorder, reduced auxin synthesis, and 'Khaira' disease in rice.",
+      "remediation": "Soil application of Zinc Sulphate (21% Zn) @ 25 kg/ha or foliar spray @ 0.5% (5g/L water) at active tillering/branching."
+    },
+    {
+      "id": "SC-006",
+      "name": "Boron Deficiency & Reproductive Failure",
+      "condition": "B < 0.50",
+      "severity": "MEDIUM",
+      "impact": "Poor pollen viability, flower drop, fruit cracking in pomegranate, and incomplete seed set in mustard/sunflower.",
+      "remediation": "Soil application of Borax @ 10 kg/ha or foliar application of 20% Solubor @ 1.0-1.5 g/L prior to flowering."
+    }
+  ]
+}

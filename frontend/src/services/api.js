@@ -106,3 +106,26 @@ export const getDataSources = () =>
 
 export const getCoverage = () =>
   apiCall('/coverage');
+
+// ── Track 4: AgriN Intelligence Layer ───────────────────────────────────────
+export const getFullAgriculturalIntelligence = (payload) =>
+  apiCall('/intelligence/full-analysis', { method: 'POST', body: JSON.stringify(payload) });
+
+export const getSoilHealthProfile = (payload) =>
+  apiCall('/soil/profile', { method: 'POST', body: JSON.stringify(payload) });
+
+export const getRegenerativeAdvisory = (payload) =>
+  apiCall('/regenerative/advisor', { method: 'POST', body: JSON.stringify(payload) });
+
+export const getFarmResilienceScore = (payload) =>
+  apiCall('/resilience/score', { method: 'POST', body: JSON.stringify(payload) });
+
+export const getSatelliteStatus = () =>
+  apiCall('/satellite/status');
+
+export const getNationalOverview = () =>
+  apiCall('/national/overview');
+
+export const getInteroperabilityAdapters = () =>
+  apiCall('/interoperability/adapters');
+

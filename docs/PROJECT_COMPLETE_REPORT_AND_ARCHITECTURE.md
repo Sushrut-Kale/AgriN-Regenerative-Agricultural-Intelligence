@@ -10,7 +10,7 @@
 
 ## 📑 Table of Contents
 1. [Executive Summary & System Purpose](#1-executive-summary--system-purpose)
-2. [High-Level System Architecture](#2-high-level-system-architecture)
+2. [High-Level System Architecture](#2-high-level-system-architecture)con
 3. [Data Architecture & Feature Engineering](#3-data-architecture--feature-engineering)
 4. [Machine Learning Engine & Pipeline](#4-machine-learning-engine--pipeline)
 5. [Agronomic Knowledge Base & Hybrid Rule Engine](#5-agronomic-knowledge-base--hybrid-rule-engine)
