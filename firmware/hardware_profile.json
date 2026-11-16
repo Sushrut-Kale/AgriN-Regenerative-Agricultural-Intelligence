@@ -1,0 +1,92 @@
+{
+  "board": "ESP32-DevKit-V1",
+  "profile_version": "1.0.0",
+  "hardware_revision": "REV_A",
+  "mcu": {
+    "model": "ESP32-WROOM-32",
+    "clock_mhz": 240,
+    "flash_mb": 4,
+    "logic_voltage": 3.3
+  },
+  "sensors": {
+    "soil_moisture": {
+      "interface": "ADC_ADS1115",
+      "i2c_address": "0x48",
+      "ads1115_channel": "A0",
+      "voltage_range": [0.0, 3.3],
+      "raw_min_dry": "TBD_BY_HARDWARE_TEAM",
+      "raw_max_wet": "TBD_BY_HARDWARE_TEAM",
+      "unit": "percent",
+      "enabled": true
+    },
+    "soil_temperature": {
+      "interface": "OneWire",
+      "gpio_pin": "TBD_BY_HARDWARE_TEAM",
+      "sensor_model": "DS18B20",
+      "pullup_resistor_ohms": 4700,
+      "unit": "celsius",
+      "enabled": true
+    },
+    "soil_ph": {
+      "interface": "ADC_ADS1115",
+      "i2c_address": "0x48",
+      "ads1115_channel": "A1",
+      "calibration_points": {
+        "ph4_voltage": "TBD_BY_HARDWARE_TEAM",
+        "ph7_voltage": "TBD_BY_HARDWARE_TEAM"
+      },
+      "unit": "scale",
+      "enabled": true
+    },
+    "soil_ec": {
+      "interface": "ADC_ADS1115",
+      "i2c_address": "0x48",
+      "ads1115_channel": "A2",
+      "calibration_kcl_voltage": "TBD_BY_HARDWARE_TEAM",
+      "unit": "dS/m",
+      "enabled": true
+    },
+    "npk": {
+      "interface": "RS485_MODBUS",
+      "gpio_de_re": "TBD_BY_HARDWARE_TEAM",
+      "gpio_rx": "TBD_BY_HARDWARE_TEAM",
+      "gpio_tx": "TBD_BY_HARDWARE_TEAM",
+      "baud_rate": 9600,
+      "modbus_slave_id": 1,
+      "register_map": {
+        "nitrogen_reg": "TBD_BY_HARDWARE_TEAM",
+        "phosphorus_reg": "TBD_BY_HARDWARE_TEAM",
+        "potassium_reg": "TBD_BY_HARDWARE_TEAM"
+      },
+      "enabled": false,
+      "note": "Requires verified register map from physical sensor datasheet"
+    }
+  },
+  "i2c_bus": {
+    "gpio_sda": "TBD_BY_HARDWARE_TEAM",
+    "gpio_scl": "TBD_BY_HARDWARE_TEAM",
+    "frequency_khz": 100
+  },
+  "power": {
+    "battery_nominal_voltage": 3.7,
+    "battery_capacity_mah": 2600,
+    "solar_panel_watts": 5.0,
+    "charger_ic": "CN3065",
+    "boost_converter_output_v": 5.0,
+    "adc_voltage_divider_ratio": 2.0
+  },
+  "wifi": {
+    "ssid": "CONFIGURE_ON_DEVICE",
+    "password": "CONFIGURE_ON_DEVICE"
+  },
+  "backend": {
+    "api_base_url": "http://192.168.1.100:8000",
+    "telemetry_endpoint": "/api/telemetry/ingest",
+    "heartbeat_endpoint": "/api/devices/{device_id}/heartbeat"
+  },
+  "timing": {
+    "measurement_interval_seconds": 300,
+    "heartbeat_interval_seconds": 60,
+    "sleep_mode": "light_sleep"
+  }
+}

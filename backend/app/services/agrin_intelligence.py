@@ -30,7 +30,7 @@ CROP SUITABILITY       SOIL HEALTH          CROP HEALTH
              (Canonical Multi-Category JSON)
 """
 
-from typing import Dict, Any, List, Optional
+from typing import Dict, Any, List, Optional, Tuple
 from datetime import datetime, timezone
 import os
 
@@ -1058,3 +1058,90 @@ def _generate_structured_advisories(
         })
 
     return advisories
+
+
+# =============================================================================
+# HARDWARE-READY IOT INTELLIGENCE ENTRY POINT
+# =============================================================================
+
+async def run_intelligence_from_telemetry(
+    device_id: str,
+    field_id: Optional[str],
+    telemetry_measurements: List[Dict[str, Any]],
+    device_location: Tuple[float, float],
+    district: str,
+    state: str = "Maharashtra",
+    soil_type: Optional[str] = "black",
+    target_crop: Optional[str] = None,
+    is_synthetic: bool = False,
+) -> Dict[str, Any]:
+    """
+    Direct entry point for physical or simulated IoT telemetry.
+    Bridge IoT sensor measurements → Canonical Agricultural Analysis → Irrigation & Crop Advisories.
+    Enforces strict provenance (SENSOR_MEASURED vs SYNTHETIC vs UNAVAILABLE).
+    """
+    from backend.app.services.telemetry_to_intelligence import (
+        build_measurements_index,
+        build_analysis_request_from_telemetry
+    )
+    from backend.app.services.irrigation_intelligence import compute_irrigation_advisory
+
+    lat, lon = device_location
+
+    # Index measurements by sensor type
+    measurements_index = build_measurements_index(telemetry_measurements)
+
+    # Build analysis request and provenance confidence report
+    farm_data, confidence_report = build_analysis_request_from_telemetry(
+        measurements=measurements_index,
+        device_location=device_location,
+        district=district,
+        state=state,
+        device_id=device_id,
+        field_id=field_id or f"field-{device_id[:8]}",
+        soil_type=soil_type or "black"
+    )
+
+    farm_data["request_id"] = f"iot-{device_id[:8]}"
+    farm_data["farm_id"] = field_id or device_id
+    farm_data["latitude"] = lat
+    farm_data["longitude"] = lon
+    farm_data["state"] = state
+    farm_data["district"] = district
+
+    # Run full biophysical and ML intelligence pipeline
+    analysis_result = run_full_agricultural_intelligence(farm_data=farm_data)
+
+    # Extract moisture for irrigation intelligence
+    moisture_meas = measurements_index.get("SOIL_MOISTURE")
+    moisture_val = moisture_meas.get("calibrated_value") if moisture_meas else None
+    moisture_quality = moisture_meas.get("quality", "MISSING") if moisture_meas else "MISSING"
+    moisture_src = "SYNTHETIC" if is_synthetic else (
+        moisture_meas.get("data_source", "SENSOR_MEASURED") if moisture_meas else "UNAVAILABLE"
+    )
+
+    # Extract forecasted rain from analysis weather if available
+    weather_info = analysis_result.get("weather", {})
+    rain_val = float(weather_info.get("rainfall") or 0.0)
+
+    # Compute agronomic irrigation advisory
+    irrigation_advisory = compute_irrigation_advisory(
+        soil_moisture_pct=moisture_val,
+        soil_type=soil_type or "black",
+        crop=target_crop or (analysis_result.get("top_crops", [{}])[0].get("name", "cotton") if analysis_result.get("top_crops") else "cotton"),
+        forecast_rain_mm_next_48h=min(50.0, rain_val * 0.1),
+        measurement_quality=moisture_quality,
+        data_source=moisture_src
+    )
+
+    return {
+        "status": "SUCCESS",
+        "device_id": device_id,
+        "field_id": field_id,
+        "is_synthetic": is_synthetic,
+        "telemetry_confidence_report": confidence_report,
+        "irrigation_intelligence": irrigation_advisory,
+        "agricultural_intelligence": analysis_result,
+        "timestamp": datetime.now(timezone.utc).isoformat()
+    }
+

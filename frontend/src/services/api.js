@@ -139,4 +139,21 @@ export const getKnowledgeSources = () =>
 export const getDemoFarms = () =>
   apiCall('/demo/farms');
 
+// ── IoT & Hardware Integration ──────────────────────────────────────────────
+export const getDeviceStatus = (deviceId) =>
+  apiCall(`/devices/${encodeURIComponent(deviceId)}`);
+
+export const getLatestTelemetry = (deviceId) =>
+  apiCall(`/telemetry/${encodeURIComponent(deviceId)}/latest`);
+
+export const getTelemetryHistory = (deviceId, page = 1, pageSize = 20) =>
+  apiCall(`/telemetry/${encodeURIComponent(deviceId)}/history?page=${page}&page_size=${pageSize}`);
+
+export const registerDevice = (data) =>
+  apiCall('/devices/register', { method: 'POST', body: JSON.stringify(data) });
+
+export const getFieldsForFarm = (farmId) =>
+  apiCall(`/fields/${encodeURIComponent(farmId)}`);
+
+
 

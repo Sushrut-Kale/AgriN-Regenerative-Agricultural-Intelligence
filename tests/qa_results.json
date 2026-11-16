@@ -1,5 +1,5 @@
 {
-  "test_run_date": "2026-09-30T23:00:40.187250",
+  "test_run_date": "2026-11-17T00:28:24.864271",
   "total": 68,
   "passed": 61,
   "failed": 2,
@@ -23,8 +23,8 @@
       "name": "Dataset has expected columns",
       "status": "PASS",
       "severity": "critical",
-      "expected": "{'Zn', 'EC', 'S', 'ph', 'label', 'Fe', 'OC', 'rainfall', 'Cu', 'B', 'P', 'N', 'Mn', 'K', 'temperature', 'humidity'}",
-      "actual": "{'Zn', 'N', 'Mn', 'EC', 'S', 'K', 'ph', 'label', 'Fe', 'OC', 'B', 'temperature', 'humidity', 'rainfall', 'Cu', 'P'}",
+      "expected": "{'EC', 'Mn', 'OC', 'S', 'Fe', 'K', 'rainfall', 'Cu', 'N', 'Zn', 'ph', 'P', 'B', 'label', 'temperature', 'humidity'}",
+      "actual": "{'EC', 'N', 'Mn', 'OC', 'S', 'Zn', 'Fe', 'ph', 'P', 'B', 'label', 'K', 'rainfall', 'temperature', 'Cu', 'humidity'}",
       "evidence": "",
       "root_cause": "",
       "fix": ""
@@ -787,7 +787,7 @@
     "model_info": {
       "model_version": "random_forest_v2",
       "model_type": "Random Forest",
-      "training_date": "2026-08-14T07:53:59.161634",
+      "training_date": "2026-11-17T00:03:56.045337",
       "metrics": {
         "accuracy": 0.7971014492753623,
         "precision_weighted": 0.7975675241389052,

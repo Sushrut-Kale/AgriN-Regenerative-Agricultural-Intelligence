@@ -192,6 +192,11 @@ class AdvisoryFeedbackRecord(Base):
 
 def init_db():
     """Create all tables and perform non-destructive schema migrations."""
+    # Import IoT models to register them on Base.metadata
+    try:
+        import backend.app.database.iot_models  # noqa: F401
+    except ImportError:
+        pass
     Base.metadata.create_all(bind=engine)
     
     # Non-destructive migration for newly added geographic and boundary columns in existing SQLite DB

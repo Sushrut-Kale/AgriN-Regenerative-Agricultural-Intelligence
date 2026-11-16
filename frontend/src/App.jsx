@@ -10,6 +10,8 @@ import CropDetails from './pages/CropDetails'
 import IWantToGrow from './pages/IWantToGrow'
 import WhatIf from './pages/WhatIf'
 import Dashboard from './pages/Dashboard'
+import DeviceMonitor from './pages/DeviceMonitor'
+import DeviceRegistration from './pages/DeviceRegistration'
 
 // Global state context
 import { AppProvider } from './context/AppContext'
@@ -29,6 +31,8 @@ export default function App() {
           <Route path="/i-want-to-grow" element={<IWantToGrow />} />
           <Route path="/what-if" element={<WhatIf />} />
           <Route path="/dashboard" element={<Dashboard />} />
+          <Route path="/devices" element={<DeviceMonitor />} />
+          <Route path="/devices/register" element={<DeviceRegistration />} />
           <Route path="*" element={<Navigate to="/" replace />} />
         </Routes>
       </BrowserRouter>

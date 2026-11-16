@@ -19,6 +19,13 @@ export default function Home() {
         </div>
         <div className="flex items-center gap-4">
           <button
+            onClick={() => navigate('/devices')}
+            className="btn-secondary text-sm"
+            style={{ padding: '8px 18px', fontSize: '0.85rem', borderColor: 'var(--ff-primary)', color: 'var(--ff-primary)' }}
+          >
+            📡 AgriSense IoT Monitor
+          </button>
+          <button
             onClick={() => navigate('/dashboard')}
             className="btn-secondary text-sm"
             style={{ padding: '8px 18px', fontSize: '0.85rem' }}

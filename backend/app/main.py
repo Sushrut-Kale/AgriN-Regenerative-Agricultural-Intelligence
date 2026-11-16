@@ -17,7 +17,8 @@ from contextlib import asynccontextmanager
 from backend.app.database.db import init_db
 from backend.app.api import (
     routes_farmer, routes_prediction, routes_whatif,
-    routes_ai, routes_analytics, routes_feedback, routes_intelligence
+    routes_ai, routes_analytics, routes_feedback, routes_intelligence,
+    routes_iot
 )
 
 FRONTEND_URL = os.getenv("FRONTEND_URL", "http://localhost:5173")
@@ -67,6 +68,7 @@ app.include_router(routes_ai.router, prefix="/api", tags=["AI Explanation"])
 app.include_router(routes_analytics.router, prefix="/api", tags=["Analytics"])
 app.include_router(routes_feedback.router, prefix="/api", tags=["Feedback"])
 app.include_router(routes_intelligence.router, prefix="/api", tags=["Agricultural Intelligence & Provenance"])
+app.include_router(routes_iot.router, prefix="/api", tags=["IoT & Hardware"])
 
 
 @app.get("/", tags=["Health"])
